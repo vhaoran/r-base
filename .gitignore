@@ -1,0 +1,11 @@
+
+target/
+*.lock
+.idea/
+.git/
+*.iml
+logs/
+*.log
+*.txt
+*.out
+*.mp3
