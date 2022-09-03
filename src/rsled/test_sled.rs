@@ -20,3 +20,18 @@ fn s_1() {
     let s = String::from_utf8(r.to_vec());
     println!("-----------{:?}-----------", s);
 }
+
+#[test]
+fn fib_1() {
+    fn fib(n: u64) -> u64 {
+        match n {
+            0 => 0,
+            1 => 1,
+            _ => fib(n - 1) + fib(n - 2),
+        }
+    }
+
+    for i in 30..60_u64 {
+        println!("----------fib({i}) = {}-----------", fib(i));
+    }
+}
