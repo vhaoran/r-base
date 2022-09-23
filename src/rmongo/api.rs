@@ -7,6 +7,7 @@ use mongodb::results::{InsertManyResult, InsertOneResult};
 use std::borrow::Borrow;
 use std::str::FromStr;
 
+use anyhow::anyhow;
 use futures::stream::{StreamExt, TryStreamExt};
 use mongodb::options::{AggregateOptions, DeleteOptions, UpdateModifications, UpdateOptions};
 use mongodb::results::{DeleteResult, UpdateResult};
@@ -23,7 +24,7 @@ pub async fn find_one<T>(
     tb: &str,
     filter: impl Into<Option<Document>>,
     options: impl Into<Option<FindOneOptions>>,
-) -> Result<T, Box<dyn std::error::Error>>
+) -> anyhow::Result<T>
 where
     T: Serialize + DeserializeOwned + Unpin + Debug + Send + Sync,
 {
@@ -32,14 +33,14 @@ where
         return Ok(data);
     }
 
-    Err(crate::err("no data"))
+    Err(anyhow!("no data"))
 }
 
 pub async fn exist(
     db: &str,
     tb: &str,
     filter: impl Into<Option<Document>>,
-) -> Result<bool, Box<dyn std::error::Error>> {
+) -> anyhow::Result<bool> {
     let r = raw_exist(db, tb, filter).await?;
     Ok(r)
 }
@@ -49,7 +50,7 @@ pub async fn count(
     tb: &str,
     filter: impl Into<Option<Document>>,
     options: impl Into<Option<CountOptions>>,
-) -> Result<u64, Box<dyn std::error::Error>> {
+) -> anyhow::Result<u64> {
     let c = raw_count(db, tb, filter, options).await?;
     Ok(c)
 }
@@ -59,7 +60,7 @@ pub async fn insert_one<T>(
     tb: &str,
     doc: T,
     options: impl Into<Option<InsertOneOptions>>,
-) -> Result<InsertOneResult, Box<dyn std::error::Error>>
+) -> anyhow::Result<InsertOneResult>
 where
     T: Serialize + DeserializeOwned + Unpin + Debug,
 {
@@ -72,7 +73,7 @@ pub async fn insert_many<T>(
     tb: &str,
     doc: Vec<T>,
     options: impl Into<Option<InsertManyOptions>>,
-) -> Result<InsertManyResult, Box<dyn std::error::Error>>
+) -> anyhow::Result<InsertManyResult>
 where
     T: Serialize + DeserializeOwned + Unpin + Debug,
 {
@@ -87,7 +88,7 @@ pub async fn find_many_fields<T>(
     filter: impl Into<Option<Document>>,
     cols: Option<Document>,
     limit: Option<i64>,
-) -> Result<Vec<T>, Box<dyn std::error::Error>>
+) -> anyhow::Result<Vec<T>>
 where
     T: Serialize + DeserializeOwned + Unpin + Debug + Send + Sync,
 {
@@ -104,7 +105,7 @@ pub async fn find_many<T>(
     tb: &str,
     filter: impl Into<Option<Document>>,
     options: Option<FindOptions>,
-) -> Result<Vec<T>, Box<dyn std::error::Error>>
+) -> anyhow::Result<Vec<T>>
 where
     T: Serialize + DeserializeOwned + Unpin + Debug + Send + Sync,
 {
@@ -146,7 +147,7 @@ pub async fn delete_one(
     tb: &str,
     doc: Document,
     options: impl Into<Option<DeleteOptions>>,
-) -> Result<DeleteResult, Box<dyn std::error::Error>> {
+) -> anyhow::Result<DeleteResult> {
     let r = raw_delete_one(db, tb, doc, options).await?;
     Ok(r)
 }
@@ -156,7 +157,7 @@ pub async fn delete_many(
     tb: &str,
     doc: Document,
     options: impl Into<Option<DeleteOptions>>,
-) -> Result<DeleteResult, Box<dyn std::error::Error>> {
+) -> anyhow::Result<DeleteResult> {
     let r = raw_delete_many(db, tb, doc, options).await?;
     Ok(r)
 }
@@ -167,7 +168,7 @@ pub async fn update_one(
     doc: Document,
     update: impl Into<UpdateModifications>,
     options: impl Into<Option<UpdateOptions>>,
-) -> Result<UpdateResult, Box<dyn std::error::Error>> {
+) -> anyhow::Result<UpdateResult> {
     let r = raw_update_one(db, tb, doc, update, options).await?;
     Ok(r)
 }
@@ -178,16 +179,12 @@ pub async fn update_many(
     doc: Document,
     update: impl Into<UpdateModifications>,
     options: impl Into<Option<UpdateOptions>>,
-) -> Result<UpdateResult, Box<dyn std::error::Error>> {
+) -> anyhow::Result<UpdateResult> {
     let r = raw_update_many(db, tb, doc, update, options).await?;
     Ok(r)
 }
 
-pub async fn page<T>(
-    db: &str,
-    tb: &str,
-    filter: Page<T>,
-) -> Result<Page<T>, Box<dyn std::error::Error>>
+pub async fn page<T>(db: &str, tb: &str, filter: Page<T>) -> anyhow::Result<Page<T>>
 where
     T: Debug + Clone + Serialize + DeserializeOwned + Unpin + Send + Sync,
 {
@@ -228,7 +225,7 @@ pub async fn aggregate<T>(
     tb: &str,
     pipeline: impl IntoIterator<Item = Document>,
     options: impl Into<Option<AggregateOptions>>,
-) -> Result<Vec<T>, Box<dyn std::error::Error>>
+) -> anyhow::Result<Vec<T>>
 where
     T: Debug + Clone + Serialize + DeserializeOwned + Unpin,
 {
@@ -242,24 +239,14 @@ where
     Ok(l)
 }
 
-pub async fn min<T>(
-    db: &str,
-    tb: &str,
-    doc: Document,
-    field_name: &str,
-) -> std::result::Result<T, Box<dyn std::error::Error>>
+pub async fn min<T>(db: &str, tb: &str, doc: Document, field_name: &str) -> anyhow::Result<T>
 where
     T: FromStr,
 {
     let r: T = self::agg_mult(db, tb, doc, "$min", field_name).await?;
     Ok(r)
 }
-pub async fn max<T>(
-    db: &str,
-    tb: &str,
-    doc: Document,
-    field_name: &str,
-) -> std::result::Result<T, Box<dyn std::error::Error>>
+pub async fn max<T>(db: &str, tb: &str, doc: Document, field_name: &str) -> anyhow::Result<T>
 where
     T: FromStr,
 {
@@ -267,12 +254,7 @@ where
     Ok(r)
 }
 
-pub async fn avg<T>(
-    db: &str,
-    tb: &str,
-    doc: Document,
-    field_name: &str,
-) -> std::result::Result<T, Box<dyn std::error::Error>>
+pub async fn avg<T>(db: &str, tb: &str, doc: Document, field_name: &str) -> anyhow::Result<T>
 where
     T: FromStr,
 {
@@ -280,12 +262,7 @@ where
     Ok(r)
 }
 
-pub async fn sum<T>(
-    db: &str,
-    tb: &str,
-    doc: Document,
-    field_name: &str,
-) -> std::result::Result<T, Box<dyn std::error::Error>>
+pub async fn sum<T>(db: &str, tb: &str, doc: Document, field_name: &str) -> anyhow::Result<T>
 where
     T: FromStr,
 {
@@ -299,7 +276,7 @@ async fn agg_mult<T>(
     doc: Document,
     fn_name: &str,
     field_name: &str,
-) -> std::result::Result<T, Box<dyn std::error::Error>>
+) -> anyhow::Result<T>
 where
     T: FromStr,
 {
@@ -333,6 +310,6 @@ where
             let i = s.parse::<T>().map_err(|e| crate::err(""))?;
             Ok(i)
         }
-        _ => Err(crate::err("无法解析到数据")),
+        _ => Err(anyhow!("无法解析到数据")),
     }
 }
