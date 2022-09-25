@@ -8,24 +8,24 @@ log:
   size: 10
   roll_count: 3
 redis:
-  host: 192.168.0.201
+  host: w5
   port: 6379
   db: 0
   user_name: ""
   password: ""
 mongo:
-  url: "mongodb://root:password@192.168.0.201:27017"
+  url: "mongodb://root:password@w5:27017/?retryWrites=false"
   max_idle_time: 1800
   max_pool_size: 10
   min_pool_size: 5
 es:
   url: "http://elastic:password@192.168.0.99:9200"
 #mq:
-#  url: "amqp://root:password@192.168.0.201:5672/%2f"
+#  url: "amqp://root:password@w5:5672/%2f"
 #  poolMax: 100
 #  poolMin: 10
 nats:
-  host: "192.168.0.201:4222"
+  host: "w5:4222"
   username: "root"
   pwd: "password"
 LevelDb:

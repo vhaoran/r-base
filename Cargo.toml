@@ -40,7 +40,7 @@ async-trait = "0.1.50"
 
 #Version 2.0.0-beta
 #mongodb = "2.0.0-beta"
-mongodb = "2.0.0"
+mongodb = "2.3.0"
 #redis = "0.20"
 #redis_rs = "0.9"
 redisclient = "^0.1"

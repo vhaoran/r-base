@@ -12,5 +12,4 @@ mod page_utils;
 //---------------------------
 pub mod test_api;
 mod test_bson;
-mod test_copy;
 mod test_raw;

@@ -11,7 +11,7 @@ use nats::Connection;
 
 static INSTANCE: OnceCell<Arc<Connection>> = OnceCell::new();
 
-pub async fn init(cfg: &Config) -> Result<(), Box<dyn std::error::Error>> {
+pub async fn init(cfg: &Config) -> anyhow::Result<()> {
     let host = cfg.host.clone().unwrap_or("192.168.0.99:4222".to_string());
     let user_name = cfg.user_name.clone().unwrap_or("root".to_string());
     let pwd = cfg.pwd.clone().unwrap_or("password".to_string());

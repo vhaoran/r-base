@@ -14,7 +14,7 @@ use once_cell::sync::OnceCell;
 use url::Url;
 static INSTANCE: OnceCell<Arc<Elasticsearch>> = OnceCell::new();
 
-pub async fn init(cfg: &Config) -> Result<(), Box<dyn std::error::Error>> {
+pub async fn init(cfg: &Config) -> anyhow::Result<()> {
     debug!("-----res init start----");
 
     let c = get_client(cfg.url.as_str())?;
@@ -33,7 +33,7 @@ pub fn cnt() -> Arc<Elasticsearch> {
     INSTANCE.get().unwrap().clone()
 }
 
-pub fn get_client(path: &str) -> Result<Elasticsearch, Box<dyn std::error::Error>> {
+pub fn get_client(path: &str) -> anyhow::Result<Elasticsearch> {
     // let transport = Transport::single_node(path)?;
     // Ok(Elasticsearch::new(transport))
 

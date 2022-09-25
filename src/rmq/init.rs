@@ -17,7 +17,7 @@ use super::Config;
 
 static INSTANCE: OnceCell<Mutex<Arc<Connection>>> = OnceCell::new();
 
-pub async fn init(cfg: &Config) -> Result<(), Box<dyn std::error::Error>> {
+pub async fn init(cfg: &Config) -> anyhow::Result<()> {
     let r = self::init_instance(cfg.clone()).await;
     //
     self::watch_spawn(cfg.clone()).await;

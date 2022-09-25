@@ -18,7 +18,7 @@ pub(crate) static INSTANCE: OnceCell<Arc<Mutex<DB>>> = OnceCell::new();
 // const SECS: i64 = 60 * 2;
 
 //-----------install action--------------------------
-pub fn init(cfg: Config) -> std::result::Result<(), Box<dyn std::error::Error>> {
+pub fn init(cfg: Config) -> anyhow::Result<()> {
     let path = cfg.path.unwrap_or("./level_db".to_string());
     let db = {
         let mut opt = rusty_leveldb::Options::default();

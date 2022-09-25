@@ -1,5 +1,6 @@
 extern crate chrono;
 
+use anyhow::anyhow;
 use std::env;
 use std::fs::File;
 use std::path::PathBuf;
@@ -9,7 +10,7 @@ use simple_log::LogConfigBuilder;
 
 use super::Config;
 
-pub fn init(cfg: &Config) -> Result<(), Box<dyn std::error::Error>> {
+pub fn init(cfg: &Config) -> anyhow::Result<()> {
     let path: PathBuf = env::current_dir()?;
     let path = path.join(cfg.path.as_str());
     if !path.exists() {
@@ -27,7 +28,7 @@ pub fn init(cfg: &Config) -> Result<(), Box<dyn std::error::Error>> {
         .output_console()
         .build();
 
-    simple_log::new(config)?;
+    let _ = simple_log::new(config).map_err(|e| anyhow!("{:?}", e))?;
 
     debug!("..log..module init ok.....");
     Ok(())

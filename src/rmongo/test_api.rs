@@ -1,6 +1,8 @@
 use super::*;
 // use futures_util::stream::stream::StreamExt;
+use crate::init_modules;
 use mongodb::bson::{doc, Bson, Document};
+use mongodb::options::{Acknowledgment, ReadConcern, TransactionOptions, WriteConcern};
 use mongodb::Client;
 use serde::{de::DeserializeOwned, Deserialize, Serialize};
 use std::default::Default;
@@ -71,7 +73,7 @@ impl From<Document> for User {
 //     }
 // }
 
-async fn test_init() -> Result<(), Box<dyn std::error::Error>> {
+async fn test_init() -> anyhow::Result<()> {
     let cfg: Config = Default::default();
     init(&cfg).await
 }
@@ -498,5 +500,42 @@ async fn aggre_min_1() -> Result<(), Box<dyn std::error::Error>> {
     let r: f64 = sum("telinfo", "tel_chat", doc! {}, "_id").await?;
     println!("---sum--------{}-----------", r);
 
+    Ok(())
+}
+
+#[tokio::test]
+async fn test_tx_1() -> anyhow::Result<()> {
+    init_modules(None).await?;
+    let cnt = cnt();
+    let db = cnt.database("test");
+    let mut session = cnt.start_session(None).await?;
+    let options = TransactionOptions::builder()
+        .read_concern(ReadConcern::majority())
+        .write_concern(WriteConcern::builder().w(Acknowledgment::Majority).build())
+        .build();
+    session.start_transaction(options).await?;
+    // db.collection("abc").insert_one_with_session();
+    Ok(())
+}
+
+#[tokio::test]
+async fn test_tx_2() -> anyhow::Result<()> {
+    init_modules(None).await?;
+    let mut tx = get_tx().await?;
+    //
+
+    let doc: Document = User {
+        id: Some(888),
+        title: Some("5 title".to_string()),
+        author: Some("5 author".to_string()),
+    }
+    .into();
+
+    let r = tx_raw_insert_one("test", "aa", doc, None, &mut tx).await;
+    println!("----test_cnt.rs---{r:#?}----");
+    let r = tx.commit_transaction().await?;
+    println!("-----------{r:?}-----------",);
+
+    //
     Ok(())
 }

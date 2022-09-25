@@ -61,7 +61,7 @@ pub fn create_cnt(cfg: Config) -> Result<RedisClient, Box<dyn std::error::Error>
     Ok(c)
 }
 
-pub fn init(cfg: &Config) -> Result<(), Box<dyn std::error::Error>> {
+pub fn init(cfg: &Config) -> anyhow::Result<()> {
     debug!("-----rred(is) init start----");
 
     let mgr = Manager {

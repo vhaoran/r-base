@@ -1,0 +1,114 @@
+2022-09-25 19:00:28:643102000 [DEBUG] <r_base::rlog::init:33>:..log..module init ok.....
+2022-09-25 19:00:28:643622000 [INFO] <r_base::module_init:112>:##### redis init start ####
+2022-09-25 19:00:28:643681000 [DEBUG] <r_base::rred::init:65>:-----rred(is) init start----
+2022-09-25 19:00:28:643858000 [DEBUG] <r_base::rred::init:77>:-----rred(is) init ok----
+2022-09-25 19:00:28:643913000 [INFO] <r_base::module_init:117>:##### mongo init start ####
+2022-09-25 19:00:28:643975000 [DEBUG] <r_base::rmongo::init:15>:-----rmongo init start ----
+2022-09-25 19:00:28:663260000 [DEBUG] <r_base::rmongo::init:30>:-----rmongo init ok----
+2022-09-25 19:00:28:663356000 [INFO] <r_base::module_init:123>:##### es init start ####
+2022-09-25 19:00:28:663418000 [DEBUG] <r_base::res::init:18>:-----res init start----
+2022-09-25 19:00:28:663868000 [DEBUG] <r_base::res::init:27>:-----res init ok----
+2022-09-25 19:00:28:663931000 [INFO] <r_base::module_init:134>:##### mq-nats init start ####
+2022-09-25 19:00:29:507936000 [INFO] <r_base::module_init:136>:##### mq-nats init ok ####
+2022-09-25 19:03:14:363792000 [DEBUG] <r_base::rlog::init:33>:..log..module init ok.....
+2022-09-25 19:03:14:364286000 [INFO] <r_base::module_init:112>:##### redis init start ####
+2022-09-25 19:03:14:364346000 [DEBUG] <r_base::rred::init:65>:-----rred(is) init start----
+2022-09-25 19:03:14:364517000 [DEBUG] <r_base::rred::init:77>:-----rred(is) init ok----
+2022-09-25 19:03:14:364572000 [INFO] <r_base::module_init:117>:##### mongo init start ####
+2022-09-25 19:03:14:364637000 [DEBUG] <r_base::rmongo::init:15>:-----rmongo init start ----
+2022-09-25 19:03:14:377775000 [DEBUG] <r_base::rmongo::init:30>:-----rmongo init ok----
+2022-09-25 19:03:14:377881000 [INFO] <r_base::module_init:123>:##### es init start ####
+2022-09-25 19:03:14:377945000 [DEBUG] <r_base::res::init:18>:-----res init start----
+2022-09-25 19:03:14:378390000 [DEBUG] <r_base::res::init:27>:-----res init ok----
+2022-09-25 19:03:14:378454000 [INFO] <r_base::module_init:134>:##### mq-nats init start ####
+2022-09-25 19:03:15:357238000 [INFO] <r_base::module_init:136>:##### mq-nats init ok ####
+2022-09-25 19:04:05:762586000 [DEBUG] <r_base::rlog::init:33>:..log..module init ok.....
+2022-09-25 19:04:05:763040000 [INFO] <r_base::module_init:112>:##### redis init start ####
+2022-09-25 19:04:05:763095000 [DEBUG] <r_base::rred::init:65>:-----rred(is) init start----
+2022-09-25 19:04:05:763252000 [DEBUG] <r_base::rred::init:77>:-----rred(is) init ok----
+2022-09-25 19:04:05:763304000 [INFO] <r_base::module_init:117>:##### mongo init start ####
+2022-09-25 19:04:05:763368000 [DEBUG] <r_base::rmongo::init:15>:-----rmongo init start ----
+2022-09-25 19:07:49:668465000 [DEBUG] <r_base::rlog::init:33>:..log..module init ok.....
+2022-09-25 19:07:49:669002000 [INFO] <r_base::module_init:112>:##### redis init start ####
+2022-09-25 19:07:49:669061000 [DEBUG] <r_base::rred::init:65>:-----rred(is) init start----
+2022-09-25 19:07:49:669257000 [DEBUG] <r_base::rred::init:77>:-----rred(is) init ok----
+2022-09-25 19:07:49:669313000 [INFO] <r_base::module_init:117>:##### mongo init start ####
+2022-09-25 19:07:49:669383000 [DEBUG] <r_base::rmongo::init:15>:-----rmongo init start ----
+2022-09-25 19:07:49:682034000 [DEBUG] <r_base::rmongo::init:32>:-----rmongo init ok----
+2022-09-25 19:07:49:682129000 [INFO] <r_base::module_init:123>:##### es init start ####
+2022-09-25 19:07:49:682191000 [DEBUG] <r_base::res::init:18>:-----res init start----
+2022-09-25 19:07:49:682620000 [DEBUG] <r_base::res::init:27>:-----res init ok----
+2022-09-25 19:07:49:682685000 [INFO] <r_base::module_init:134>:##### mq-nats init start ####
+2022-09-25 19:07:51:097964000 [INFO] <r_base::module_init:136>:##### mq-nats init ok ####
+2022-09-25 19:09:52:211498000 [DEBUG] <r_base::rlog::init:33>:..log..module init ok.....
+2022-09-25 19:09:52:212077000 [INFO] <r_base::module_init:112>:##### redis init start ####
+2022-09-25 19:09:52:212134000 [DEBUG] <r_base::rred::init:65>:-----rred(is) init start----
+2022-09-25 19:09:52:212319000 [DEBUG] <r_base::rred::init:77>:-----rred(is) init ok----
+2022-09-25 19:09:52:212387000 [INFO] <r_base::module_init:117>:##### mongo init start ####
+2022-09-25 19:09:52:212450000 [DEBUG] <r_base::rmongo::init:15>:-----rmongo init start ----
+2022-09-25 19:09:52:223902000 [DEBUG] <r_base::rmongo::init:32>:-----rmongo init ok----
+2022-09-25 19:09:52:223993000 [INFO] <r_base::module_init:123>:##### es init start ####
+2022-09-25 19:09:52:224051000 [DEBUG] <r_base::res::init:18>:-----res init start----
+2022-09-25 19:09:52:224472000 [DEBUG] <r_base::res::init:27>:-----res init ok----
+2022-09-25 19:09:52:224531000 [INFO] <r_base::module_init:134>:##### mq-nats init start ####
+2022-09-25 19:09:52:862969000 [INFO] <r_base::module_init:136>:##### mq-nats init ok ####
+2022-09-25 19:11:20:794848000 [DEBUG] <r_base::rlog::init:33>:..log..module init ok.....
+2022-09-25 19:11:20:795392000 [INFO] <r_base::module_init:112>:##### redis init start ####
+2022-09-25 19:11:20:795449000 [DEBUG] <r_base::rred::init:65>:-----rred(is) init start----
+2022-09-25 19:11:20:795647000 [DEBUG] <r_base::rred::init:77>:-----rred(is) init ok----
+2022-09-25 19:11:20:795742000 [INFO] <r_base::module_init:117>:##### mongo init start ####
+2022-09-25 19:11:20:795819000 [DEBUG] <r_base::rmongo::init:15>:-----rmongo init start ----
+2022-09-25 19:11:20:807822000 [DEBUG] <r_base::rmongo::init:32>:-----rmongo init ok----
+2022-09-25 19:11:20:807918000 [INFO] <r_base::module_init:123>:##### es init start ####
+2022-09-25 19:11:20:807980000 [DEBUG] <r_base::res::init:18>:-----res init start----
+2022-09-25 19:11:20:808399000 [DEBUG] <r_base::res::init:27>:-----res init ok----
+2022-09-25 19:11:20:808462000 [INFO] <r_base::module_init:134>:##### mq-nats init start ####
+2022-09-25 19:11:21:464738000 [INFO] <r_base::module_init:136>:##### mq-nats init ok ####
+2022-09-25 19:19:16:003589000 [DEBUG] <r_base::rlog::init:33>:..log..module init ok.....
+2022-09-25 19:19:16:006535000 [INFO] <r_base::module_init:112>:##### redis init start ####
+2022-09-25 19:19:16:006600000 [DEBUG] <r_base::rred::init:65>:-----rred(is) init start----
+2022-09-25 19:19:16:006797000 [DEBUG] <r_base::rred::init:77>:-----rred(is) init ok----
+2022-09-25 19:19:16:006853000 [INFO] <r_base::module_init:117>:##### mongo init start ####
+2022-09-25 19:19:16:006923000 [DEBUG] <r_base::rmongo::init:15>:-----rmongo init start ----
+2022-09-25 19:19:16:044810000 [DEBUG] <r_base::rmongo::init:32>:-----rmongo init ok----
+2022-09-25 19:19:16:044908000 [INFO] <r_base::module_init:123>:##### es init start ####
+2022-09-25 19:19:16:044972000 [DEBUG] <r_base::res::init:18>:-----res init start----
+2022-09-25 19:19:16:045417000 [DEBUG] <r_base::res::init:27>:-----res init ok----
+2022-09-25 19:19:16:045479000 [INFO] <r_base::module_init:134>:##### mq-nats init start ####
+2022-09-25 19:19:16:861468000 [INFO] <r_base::module_init:136>:##### mq-nats init ok ####
+2022-09-25 19:19:50:148824000 [DEBUG] <r_base::rlog::init:33>:..log..module init ok.....
+2022-09-25 19:19:50:149329000 [INFO] <r_base::module_init:112>:##### redis init start ####
+2022-09-25 19:19:50:149385000 [DEBUG] <r_base::rred::init:65>:-----rred(is) init start----
+2022-09-25 19:19:50:149569000 [DEBUG] <r_base::rred::init:77>:-----rred(is) init ok----
+2022-09-25 19:19:50:149623000 [INFO] <r_base::module_init:117>:##### mongo init start ####
+2022-09-25 19:19:50:149688000 [DEBUG] <r_base::rmongo::init:15>:-----rmongo init start ----
+2022-09-25 19:19:50:163507000 [DEBUG] <r_base::rmongo::init:32>:-----rmongo init ok----
+2022-09-25 19:19:50:163606000 [INFO] <r_base::module_init:123>:##### es init start ####
+2022-09-25 19:19:50:163668000 [DEBUG] <r_base::res::init:18>:-----res init start----
+2022-09-25 19:19:50:164094000 [DEBUG] <r_base::res::init:27>:-----res init ok----
+2022-09-25 19:19:50:164158000 [INFO] <r_base::module_init:134>:##### mq-nats init start ####
+2022-09-25 19:19:50:765656000 [INFO] <r_base::module_init:136>:##### mq-nats init ok ####
+2022-09-25 19:21:04:996656000 [DEBUG] <r_base::rlog::init:33>:..log..module init ok.....
+2022-09-25 19:21:04:997543000 [INFO] <r_base::module_init:112>:##### redis init start ####
+2022-09-25 19:21:04:997616000 [DEBUG] <r_base::rred::init:65>:-----rred(is) init start----
+2022-09-25 19:21:04:997784000 [DEBUG] <r_base::rred::init:77>:-----rred(is) init ok----
+2022-09-25 19:21:04:997835000 [INFO] <r_base::module_init:117>:##### mongo init start ####
+2022-09-25 19:21:04:997900000 [DEBUG] <r_base::rmongo::init:15>:-----rmongo init start ----
+2022-09-25 19:21:05:014869000 [DEBUG] <r_base::rmongo::init:32>:-----rmongo init ok----
+2022-09-25 19:21:05:014968000 [INFO] <r_base::module_init:123>:##### es init start ####
+2022-09-25 19:21:05:015027000 [DEBUG] <r_base::res::init:18>:-----res init start----
+2022-09-25 19:21:05:015467000 [DEBUG] <r_base::res::init:27>:-----res init ok----
+2022-09-25 19:21:05:015528000 [INFO] <r_base::module_init:134>:##### mq-nats init start ####
+2022-09-25 19:21:06:291262000 [INFO] <r_base::module_init:136>:##### mq-nats init ok ####
+2022-09-25 19:23:05:047852000 [DEBUG] <r_base::rlog::init:33>:..log..module init ok.....
+2022-09-25 19:23:05:048634000 [INFO] <r_base::module_init:112>:##### redis init start ####
+2022-09-25 19:23:05:048694000 [DEBUG] <r_base::rred::init:65>:-----rred(is) init start----
+2022-09-25 19:23:05:048894000 [DEBUG] <r_base::rred::init:77>:-----rred(is) init ok----
+2022-09-25 19:23:05:048945000 [INFO] <r_base::module_init:117>:##### mongo init start ####
+2022-09-25 19:23:05:049010000 [DEBUG] <r_base::rmongo::init:15>:-----rmongo init start ----
+2022-09-25 19:23:05:063376000 [DEBUG] <r_base::rmongo::init:33>:-----rmongo init ok----
+2022-09-25 19:23:05:063471000 [INFO] <r_base::module_init:123>:##### es init start ####
+2022-09-25 19:23:05:063532000 [DEBUG] <r_base::res::init:18>:-----res init start----
+2022-09-25 19:23:05:063963000 [DEBUG] <r_base::res::init:27>:-----res init ok----
+2022-09-25 19:23:05:064024000 [INFO] <r_base::module_init:134>:##### mq-nats init start ####
+2022-09-25 19:23:06:215251000 [INFO] <r_base::module_init:136>:##### mq-nats init ok ####

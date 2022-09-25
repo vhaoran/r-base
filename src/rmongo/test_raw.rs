@@ -51,7 +51,7 @@ impl User {
 async fn mongo_1() -> Result<(), Box<dyn std::error::Error>> {
     println!("----aaaa--a----");
 
-    let client = Client::with_uri_str("mongodb://192.168.0.99").await?;
+    let client = Client::with_uri_str("mongodb://w5").await?;
     let c = client.clone();
 
     let l = c.list_database_names(None, None).await?;

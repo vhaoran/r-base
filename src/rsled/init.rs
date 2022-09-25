@@ -17,7 +17,7 @@ pub(crate) static INSTANCE: OnceCell<Arc<Mutex<sled::Db>>> = OnceCell::new();
 // const SECS: i64 = 60 * 2;
 
 //-----------install action--------------------------
-pub fn init(cfg: Config) -> std::result::Result<(), Box<dyn std::error::Error>> {
+pub fn init(cfg: Config) -> anyhow::Result<()> {
     let path = cfg.path.unwrap_or("./sled.db".to_string());
     let db = {
         let db = sled::open(path.to_string())?;
