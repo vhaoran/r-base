@@ -1,4 +1,4 @@
-fn md5_of_file(path: &str) -> std::result::Result<String, Box<dyn std::error::Error>> {
+fn md5_of_file(path: &str) -> anyhow::Result<String> {
     let r = std::fs::read(path)?;
     // println!("---------after read-------------");
     // let s = std::str::from_utf8(r.as_slice())?;

@@ -112,3 +112,660 @@
 2022-09-25 19:23:05:063963000 [DEBUG] <r_base::res::init:27>:-----res init ok----
 2022-09-25 19:23:05:064024000 [INFO] <r_base::module_init:134>:##### mq-nats init start ####
 2022-09-25 19:23:06:215251000 [INFO] <r_base::module_init:136>:##### mq-nats init ok ####
+2022-09-26 10:49:56:532264000 [DEBUG] <r_base::rlog::init:33>:..log..module init ok.....
+2022-09-26 10:49:56:532944000 [INFO] <r_base::module_init:112>:##### redis init start ####
+2022-09-26 10:49:56:533005000 [DEBUG] <r_base::rred::init:65>:-----rred(is) init start----
+2022-09-26 10:49:56:533176000 [DEBUG] <r_base::rred::init:77>:-----rred(is) init ok----
+2022-09-26 10:49:56:533232000 [INFO] <r_base::module_init:117>:##### mongo init start ####
+2022-09-26 10:49:56:533300000 [DEBUG] <r_base::rmongo::init:15>:-----rmongo init start ----
+2022-09-26 10:49:56:551586000 [DEBUG] <r_base::rmongo::init:33>:-----rmongo init ok----
+2022-09-26 10:49:56:551681000 [INFO] <r_base::module_init:123>:##### es init start ####
+2022-09-26 10:49:56:551747000 [DEBUG] <r_base::res::init:18>:-----res init start----
+2022-09-26 10:49:56:552164000 [DEBUG] <r_base::res::init:27>:-----res init ok----
+2022-09-26 10:49:56:552224000 [INFO] <r_base::module_init:134>:##### mq-nats init start ####
+2022-09-26 10:49:57:421855000 [INFO] <r_base::module_init:136>:##### mq-nats init ok ####
+2022-09-26 14:27:39:972270000 [DEBUG] <r_base::rlog::init:33>:..log..module init ok.....
+2022-09-26 14:27:39:975434000 [INFO] <r_base::module_init:112>:##### redis init start ####
+2022-09-26 14:27:39:976027000 [DEBUG] <r_base::rred::init:65>:-----rred(is) init start----
+2022-09-26 14:27:39:982079000 [DEBUG] <r_base::rred::init:77>:-----rred(is) init ok----
+2022-09-26 14:27:39:982181000 [INFO] <r_base::module_init:117>:##### mongo init start ####
+2022-09-26 14:27:39:982525000 [DEBUG] <r_base::rmongo::init:15>:-----rmongo init start ----
+2022-09-26 14:36:15:788873000 [DEBUG] <r_base::rlog::init:33>:..log..module init ok.....
+2022-09-26 14:36:15:789614000 [INFO] <r_base::module_init:112>:##### redis init start ####
+2022-09-26 14:36:15:789674000 [DEBUG] <r_base::rred::init:65>:-----rred(is) init start----
+2022-09-26 14:36:15:789872000 [DEBUG] <r_base::rred::init:77>:-----rred(is) init ok----
+2022-09-26 14:36:15:789926000 [INFO] <r_base::module_init:117>:##### mongo init start ####
+2022-09-26 14:36:15:789993000 [DEBUG] <r_base::rmongo::init:15>:-----rmongo init start ----
+2022-09-26 14:38:40:625371000 [DEBUG] <r_base::rlog::init:33>:..log..module init ok.....
+2022-09-26 14:38:40:625948000 [INFO] <r_base::module_init:112>:##### redis init start ####
+2022-09-26 14:38:40:626003000 [DEBUG] <r_base::rred::init:65>:-----rred(is) init start----
+2022-09-26 14:38:40:626194000 [DEBUG] <r_base::rred::init:77>:-----rred(is) init ok----
+2022-09-26 14:38:40:626247000 [INFO] <r_base::module_init:117>:##### mongo init start ####
+2022-09-26 14:38:40:626313000 [DEBUG] <r_base::rmongo::init:15>:-----rmongo init start ----
+2022-09-26 14:53:14:705658000 [DEBUG] <r_base::rlog::init:33>:..log..module init ok.....
+2022-09-26 14:53:14:706431000 [INFO] <r_base::module_init:112>:##### redis init start ####
+2022-09-26 14:53:14:706492000 [DEBUG] <r_base::rred::init:65>:-----rred(is) init start----
+2022-09-26 14:53:14:706667000 [DEBUG] <r_base::rred::init:77>:-----rred(is) init ok----
+2022-09-26 14:53:14:706729000 [INFO] <r_base::module_init:117>:##### mongo init start ####
+2022-09-26 14:53:14:706800000 [DEBUG] <r_base::rmongo::init:15>:-----rmongo init start ----
+2022-09-26 14:53:14:725210000 [DEBUG] <r_base::rmongo::init:39>:-----rmongo init ok----
+2022-09-26 14:53:14:725307000 [INFO] <r_base::module_init:123>:##### es init start ####
+2022-09-26 14:53:14:725368000 [DEBUG] <r_base::res::init:18>:-----res init start----
+2022-09-26 14:53:14:725811000 [DEBUG] <r_base::res::init:27>:-----res init ok----
+2022-09-26 14:53:14:725873000 [INFO] <r_base::module_init:134>:##### mq-nats init start ####
+2022-09-26 14:53:15:453099000 [INFO] <r_base::module_init:136>:##### mq-nats init ok ####
+2022-09-26 14:53:15:461508000 [DEBUG] <r_base::rmongo::test_api:526>:--after get_tx-------
+2022-09-26 14:54:33:865960000 [DEBUG] <r_base::rlog::init:33>:..log..module init ok.....
+2022-09-26 14:54:33:866645000 [INFO] <r_base::module_init:112>:##### redis init start ####
+2022-09-26 14:54:33:866707000 [DEBUG] <r_base::rred::init:65>:-----rred(is) init start----
+2022-09-26 14:54:33:866877000 [DEBUG] <r_base::rred::init:77>:-----rred(is) init ok----
+2022-09-26 14:54:33:866930000 [INFO] <r_base::module_init:117>:##### mongo init start ####
+2022-09-26 14:54:33:866998000 [DEBUG] <r_base::rmongo::init:15>:-----rmongo init start ----
+2022-09-26 14:54:33:883156000 [DEBUG] <r_base::rmongo::init:39>:-----rmongo init ok----
+2022-09-26 14:54:33:883256000 [INFO] <r_base::module_init:123>:##### es init start ####
+2022-09-26 14:54:33:883317000 [DEBUG] <r_base::res::init:18>:-----res init start----
+2022-09-26 14:54:33:883760000 [DEBUG] <r_base::res::init:27>:-----res init ok----
+2022-09-26 14:54:33:883823000 [INFO] <r_base::module_init:134>:##### mq-nats init start ####
+2022-09-26 14:54:34:672932000 [INFO] <r_base::module_init:136>:##### mq-nats init ok ####
+2022-09-26 14:54:34:682324000 [DEBUG] <r_base::rmongo::test_api:526>:--after get_tx-------
+2022-09-26 14:56:32:759052000 [DEBUG] <r_base::rlog::init:33>:..log..module init ok.....
+2022-09-26 14:56:32:759819000 [INFO] <r_base::module_init:112>:##### redis init start ####
+2022-09-26 14:56:32:759879000 [DEBUG] <r_base::rred::init:65>:-----rred(is) init start----
+2022-09-26 14:56:32:760058000 [DEBUG] <r_base::rred::init:77>:-----rred(is) init ok----
+2022-09-26 14:56:32:760111000 [INFO] <r_base::module_init:117>:##### mongo init start ####
+2022-09-26 14:56:32:760181000 [DEBUG] <r_base::rmongo::init:15>:-----rmongo init start ----
+2022-09-26 14:56:32:776151000 [DEBUG] <r_base::rmongo::init:39>:-----rmongo init ok----
+2022-09-26 14:56:32:776251000 [INFO] <r_base::module_init:123>:##### es init start ####
+2022-09-26 14:56:32:776310000 [DEBUG] <r_base::res::init:18>:-----res init start----
+2022-09-26 14:56:32:776746000 [DEBUG] <r_base::res::init:27>:-----res init ok----
+2022-09-26 14:56:32:776806000 [INFO] <r_base::module_init:134>:##### mq-nats init start ####
+2022-09-26 14:56:33:718961000 [INFO] <r_base::module_init:136>:##### mq-nats init ok ####
+2022-09-26 14:56:33:728019000 [DEBUG] <r_base::rmongo::test_api:527>:--after get_tx-------
+2022-09-26 14:59:06:348297000 [DEBUG] <r_base::rlog::init:33>:..log..module init ok.....
+2022-09-26 14:59:06:349000000 [INFO] <r_base::module_init:112>:##### redis init start ####
+2022-09-26 14:59:06:349058000 [DEBUG] <r_base::rred::init:65>:-----rred(is) init start----
+2022-09-26 14:59:06:349297000 [DEBUG] <r_base::rred::init:77>:-----rred(is) init ok----
+2022-09-26 14:59:06:349362000 [INFO] <r_base::module_init:117>:##### mongo init start ####
+2022-09-26 14:59:06:349428000 [DEBUG] <r_base::rmongo::init:15>:-----rmongo init start ----
+2022-09-26 14:59:06:362587000 [DEBUG] <r_base::rmongo::init:39>:-----rmongo init ok----
+2022-09-26 14:59:06:362683000 [INFO] <r_base::module_init:123>:##### es init start ####
+2022-09-26 14:59:06:362741000 [DEBUG] <r_base::res::init:18>:-----res init start----
+2022-09-26 14:59:06:363184000 [DEBUG] <r_base::res::init:27>:-----res init ok----
+2022-09-26 14:59:06:363243000 [INFO] <r_base::module_init:134>:##### mq-nats init start ####
+2022-09-26 14:59:07:597234000 [INFO] <r_base::module_init:136>:##### mq-nats init ok ####
+2022-09-26 14:59:07:607210000 [DEBUG] <r_base::rmongo::test_api:527>:--after get_tx-------
+2022-09-26 14:59:46:842223000 [DEBUG] <r_base::rlog::init:33>:..log..module init ok.....
+2022-09-26 14:59:46:842868000 [INFO] <r_base::module_init:112>:##### redis init start ####
+2022-09-26 14:59:46:842929000 [DEBUG] <r_base::rred::init:65>:-----rred(is) init start----
+2022-09-26 14:59:46:843096000 [DEBUG] <r_base::rred::init:77>:-----rred(is) init ok----
+2022-09-26 14:59:46:843150000 [INFO] <r_base::module_init:117>:##### mongo init start ####
+2022-09-26 14:59:46:843218000 [DEBUG] <r_base::rmongo::init:15>:-----rmongo init start ----
+2022-09-26 14:59:46:856077000 [DEBUG] <r_base::rmongo::init:39>:-----rmongo init ok----
+2022-09-26 14:59:46:856173000 [INFO] <r_base::module_init:123>:##### es init start ####
+2022-09-26 14:59:46:856234000 [DEBUG] <r_base::res::init:18>:-----res init start----
+2022-09-26 14:59:46:856668000 [DEBUG] <r_base::res::init:27>:-----res init ok----
+2022-09-26 14:59:46:856727000 [INFO] <r_base::module_init:134>:##### mq-nats init start ####
+2022-09-26 14:59:47:762838000 [INFO] <r_base::module_init:136>:##### mq-nats init ok ####
+2022-09-26 14:59:47:771794000 [DEBUG] <r_base::rmongo::test_api:527>:--after get_tx-------
+2022-09-26 15:01:20:692879000 [DEBUG] <r_base::rlog::init:33>:..log..module init ok.....
+2022-09-26 15:01:20:693366000 [INFO] <r_base::module_init:112>:##### redis init start ####
+2022-09-26 15:01:20:693420000 [DEBUG] <r_base::rred::init:65>:-----rred(is) init start----
+2022-09-26 15:01:20:693596000 [DEBUG] <r_base::rred::init:77>:-----rred(is) init ok----
+2022-09-26 15:01:20:693650000 [INFO] <r_base::module_init:117>:##### mongo init start ####
+2022-09-26 15:01:20:693716000 [DEBUG] <r_base::rmongo::init:15>:-----rmongo init start ----
+2022-09-26 15:01:20:705753000 [DEBUG] <r_base::rmongo::init:39>:-----rmongo init ok----
+2022-09-26 15:01:20:705851000 [INFO] <r_base::module_init:123>:##### es init start ####
+2022-09-26 15:01:20:705912000 [DEBUG] <r_base::res::init:18>:-----res init start----
+2022-09-26 15:01:20:706337000 [DEBUG] <r_base::res::init:27>:-----res init ok----
+2022-09-26 15:01:20:706398000 [INFO] <r_base::module_init:134>:##### mq-nats init start ####
+2022-09-26 15:01:21:017429000 [INFO] <r_base::module_init:136>:##### mq-nats init ok ####
+2022-09-26 15:01:21:024997000 [DEBUG] <r_base::rmongo::test_api:527>:--after get_tx-------
+2022-09-26 15:01:36:229938000 [DEBUG] <r_base::rlog::init:33>:..log..module init ok.....
+2022-09-26 15:01:36:230479000 [INFO] <r_base::module_init:112>:##### redis init start ####
+2022-09-26 15:01:36:230534000 [DEBUG] <r_base::rred::init:65>:-----rred(is) init start----
+2022-09-26 15:01:36:230733000 [DEBUG] <r_base::rred::init:77>:-----rred(is) init ok----
+2022-09-26 15:01:36:230790000 [INFO] <r_base::module_init:117>:##### mongo init start ####
+2022-09-26 15:01:36:230859000 [DEBUG] <r_base::rmongo::init:15>:-----rmongo init start ----
+2022-09-26 15:01:36:243857000 [DEBUG] <r_base::rmongo::init:39>:-----rmongo init ok----
+2022-09-26 15:01:36:243958000 [INFO] <r_base::module_init:123>:##### es init start ####
+2022-09-26 15:01:36:244046000 [DEBUG] <r_base::res::init:18>:-----res init start----
+2022-09-26 15:01:36:244476000 [DEBUG] <r_base::res::init:27>:-----res init ok----
+2022-09-26 15:01:36:244536000 [INFO] <r_base::module_init:134>:##### mq-nats init start ####
+2022-09-26 15:01:36:845216000 [INFO] <r_base::module_init:136>:##### mq-nats init ok ####
+2022-09-26 15:01:36:853685000 [DEBUG] <r_base::rmongo::test_api:527>:--after get_tx-------
+2022-09-26 15:03:23:802580000 [DEBUG] <r_base::rlog::init:33>:..log..module init ok.....
+2022-09-26 15:03:23:803295000 [INFO] <r_base::module_init:112>:##### redis init start ####
+2022-09-26 15:03:23:803355000 [DEBUG] <r_base::rred::init:65>:-----rred(is) init start----
+2022-09-26 15:03:23:803544000 [DEBUG] <r_base::rred::init:77>:-----rred(is) init ok----
+2022-09-26 15:03:23:803599000 [INFO] <r_base::module_init:117>:##### mongo init start ####
+2022-09-26 15:03:23:803666000 [DEBUG] <r_base::rmongo::init:15>:-----rmongo init start ----
+2022-09-26 15:03:23:817427000 [DEBUG] <r_base::rmongo::init:39>:-----rmongo init ok----
+2022-09-26 15:03:23:817536000 [INFO] <r_base::module_init:123>:##### es init start ####
+2022-09-26 15:03:23:817601000 [DEBUG] <r_base::res::init:18>:-----res init start----
+2022-09-26 15:03:23:818060000 [DEBUG] <r_base::res::init:27>:-----res init ok----
+2022-09-26 15:03:23:818124000 [INFO] <r_base::module_init:134>:##### mq-nats init start ####
+2022-09-26 15:03:25:163676000 [INFO] <r_base::module_init:136>:##### mq-nats init ok ####
+2022-09-26 15:03:25:173189000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:53:986725000 [DEBUG] <r_base::rlog::init:33>:..log..module init ok.....
+2022-09-26 15:03:53:987385000 [INFO] <r_base::module_init:112>:##### redis init start ####
+2022-09-26 15:03:53:987449000 [DEBUG] <r_base::rred::init:65>:-----rred(is) init start----
+2022-09-26 15:03:53:987621000 [DEBUG] <r_base::rred::init:77>:-----rred(is) init ok----
+2022-09-26 15:03:53:987674000 [INFO] <r_base::module_init:117>:##### mongo init start ####
+2022-09-26 15:03:53:987742000 [DEBUG] <r_base::rmongo::init:15>:-----rmongo init start ----
+2022-09-26 15:03:54:002936000 [DEBUG] <r_base::rmongo::init:39>:-----rmongo init ok----
+2022-09-26 15:03:54:003047000 [INFO] <r_base::module_init:123>:##### es init start ####
+2022-09-26 15:03:54:003108000 [DEBUG] <r_base::res::init:18>:-----res init start----
+2022-09-26 15:03:54:003553000 [DEBUG] <r_base::res::init:27>:-----res init ok----
+2022-09-26 15:03:54:003615000 [INFO] <r_base::module_init:134>:##### mq-nats init start ####
+2022-09-26 15:03:55:218312000 [INFO] <r_base::module_init:136>:##### mq-nats init ok ####
+2022-09-26 15:03:55:227040000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:55:651880000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:55:671224000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:55:684940000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:55:693823000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:55:702493000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:55:711726000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:55:720349000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:55:728356000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:55:739764000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:55:745207000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:55:750346000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:55:757525000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:55:762865000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:55:768939000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:55:773789000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:55:779087000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:55:785000000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:55:791612000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:55:797421000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:55:802256000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:55:808526000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:55:814391000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:55:819822000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:55:825569000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:55:831576000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:55:836795000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:55:841763000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:55:866074000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:55:885841000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:55:894068000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:55:902529000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:55:913328000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:55:920765000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:55:927259000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:55:933868000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:55:940998000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:55:947484000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:55:954047000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:55:960153000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:55:966666000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:55:974356000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:55:981251000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:55:989956000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:55:998726000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:007217000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:015552000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:023823000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:032307000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:039581000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:047040000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:053802000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:060797000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:067624000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:074527000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:081721000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:088564000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:095906000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:103139000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:111284000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:119483000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:127110000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:134466000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:140873000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:147918000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:154730000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:161630000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:169115000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:175882000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:182190000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:188414000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:195334000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:202211000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:209365000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:216632000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:223852000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:231289000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:236550000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:241855000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:246159000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:251664000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:255826000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:260322000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:264550000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:269099000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:273631000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:278099000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:283042000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:287557000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:292083000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:296048000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:300491000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:305718000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:311515000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:317034000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:322219000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:327675000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:332445000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:337349000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:342438000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:347652000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:352542000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:358092000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:362520000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:367611000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:373267000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:378127000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:383392000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:388514000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:393003000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:398963000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:404261000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:410419000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:415626000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:421475000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:427205000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:432343000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:437469000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:443355000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:448272000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:454494000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:461290000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:467688000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:474386000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:481468000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:487668000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:495367000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:502270000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:509859000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:516482000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:523761000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:531752000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:539312000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:547108000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:553945000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:560631000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:567061000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:573952000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:580678000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:587029000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:594327000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:601188000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:607789000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:613992000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:620114000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:626042000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:631735000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:637443000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:643783000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:650820000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:660070000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:672449000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:680283000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:689846000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:698025000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:708837000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:717542000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:728804000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:738924000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:746624000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:754193000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:761607000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:766990000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:773703000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:779832000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:785978000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:791974000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:798601000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:804344000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:810370000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:816911000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:823097000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:829264000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:834969000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:841171000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:847719000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:854226000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:860473000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:866723000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:872693000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:879358000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:885341000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:891928000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:898213000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:904868000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:911433000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:917936000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:924049000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:929617000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:937329000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:952825000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:964756000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:974799000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:982239000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:989624000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:56:996939000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:003520000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:009871000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:017251000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:024366000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:031133000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:038208000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:045450000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:052649000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:060646000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:068960000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:076820000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:084258000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:091941000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:099967000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:107888000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:115532000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:123114000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:130631000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:138694000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:146079000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:154372000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:161189000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:168416000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:175569000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:184112000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:192257000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:199366000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:207733000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:216950000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:224395000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:233254000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:241960000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:249188000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:257654000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:269618000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:278645000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:286783000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:294421000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:302539000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:311579000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:319281000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:326606000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:334804000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:342435000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:349739000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:357351000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:364219000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:371782000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:380183000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:388085000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:395597000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:402949000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:409698000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:416751000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:424068000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:431529000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:438705000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:445927000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:453565000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:460943000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:468701000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:476376000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:484292000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:491787000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:499212000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:506406000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:513754000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:519540000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:525338000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:531462000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:538602000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:544733000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:550964000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:557406000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:563266000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:568748000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:575593000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:582121000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:587601000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:594494000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:599547000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:606375000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:612744000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:618790000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:624431000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:630761000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:636176000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:642650000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:648348000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:654563000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:661172000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:667662000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:674580000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:683743000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:690486000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:697461000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:704547000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:711012000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:717362000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:723219000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:728861000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:735216000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:741501000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:748269000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:755077000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:761321000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:766399000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:772644000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:778915000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:785713000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:791658000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:798016000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:804583000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:811621000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:818632000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:825501000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:832291000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:838889000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:845479000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:852637000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:859389000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:866061000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:873068000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:879217000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:885592000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:891623000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:897161000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:902978000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:909393000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:915777000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:921885000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:928394000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:935517000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:941972000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:948871000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:955963000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:962587000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:969543000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:976280000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:57:982427000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:083754000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:153595000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:162922000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:170928000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:179594000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:188161000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:195477000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:202565000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:209966000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:217714000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:225716000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:233855000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:241716000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:249823000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:259090000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:267902000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:277694000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:287958000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:298062000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:308107000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:317783000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:338076000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:348622000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:358954000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:367765000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:377622000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:387018000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:395693000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:403837000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:412414000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:422424000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:432473000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:441715000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:451082000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:459897000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:469667000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:480244000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:490642000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:501092000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:510954000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:520472000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:530068000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:539665000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:548965000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:558386000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:567632000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:576733000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:586149000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:595315000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:603533000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:611944000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:620420000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:628739000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:637731000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:646921000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:655798000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:663441000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:671289000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:680142000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:688956000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:697653000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:706912000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:716495000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:725797000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:734522000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:743397000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:751942000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:761654000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:771456000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:780621000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:789945000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:798057000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:805851000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:813743000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:822845000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:830854000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:838777000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:847261000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:856231000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:865465000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:873915000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:882255000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:889801000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:896894000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:903173000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:909060000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:915702000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:921924000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:929414000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:935139000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:941429000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:948209000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:955225000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:961945000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:967644000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:973630000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:980854000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:988102000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:58:994933000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:59:001350000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:59:007266000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:59:014539000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:59:021804000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:59:028206000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:59:034604000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:59:040725000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:59:047784000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:59:055322000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:59:062363000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:59:069733000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:59:076738000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:59:082777000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:59:089746000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:59:096678000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:59:103866000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:59:110681000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:59:117323000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:59:123436000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:59:130057000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:59:136640000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:59:143344000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:59:149871000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:59:156514000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:59:163237000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:59:170327000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:59:176538000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:59:182998000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:59:189921000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:59:196789000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:59:203115000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:59:208970000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:59:215290000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:59:220825000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:59:226500000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:59:232087000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:59:237855000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:59:244459000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:59:250495000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:59:257205000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:59:263587000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:59:270471000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:59:278744000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:59:285547000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:59:293151000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:59:300836000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:59:308570000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:59:316753000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:59:323829000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:59:330966000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:59:338282000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:59:345379000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:59:353012000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:59:360613000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:59:367325000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:59:374363000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:59:382068000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:59:389447000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:59:397126000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:59:404685000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:59:411973000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:59:417906000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 15:03:59:424497000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2022-09-26 16:15:50:115094000 [DEBUG] <r_base::rlog::init:33>:..log..module init ok.....
+2022-09-26 16:15:50:115861000 [INFO] <r_base::module_init:112>:##### redis init start ####
+2022-09-26 16:15:50:115921000 [DEBUG] <r_base::rred::init:65>:-----rred(is) init start----
+2022-09-26 16:15:50:116094000 [DEBUG] <r_base::rred::init:77>:-----rred(is) init ok----
+2022-09-26 16:15:50:116146000 [INFO] <r_base::module_init:117>:##### mongo init start ####
+2022-09-26 16:15:50:116209000 [DEBUG] <r_base::rmongo::init:15>:-----rmongo init start ----
+2022-09-26 16:15:50:137594000 [DEBUG] <r_base::rmongo::init:39>:-----rmongo init ok----
+2022-09-26 16:15:50:137692000 [INFO] <r_base::module_init:123>:##### es init start ####
+2022-09-26 16:15:50:137752000 [DEBUG] <r_base::res::init:18>:-----res init start----
+2022-09-26 16:15:50:138199000 [DEBUG] <r_base::res::init:27>:-----res init ok----
+2022-09-26 16:15:50:138259000 [INFO] <r_base::module_init:134>:##### mq-nats init start ####
+2022-09-26 16:15:50:467067000 [INFO] <r_base::module_init:136>:##### mq-nats init ok ####
+2022-09-26 16:15:50:475724000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------

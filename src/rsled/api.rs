@@ -1,10 +1,11 @@
 use super::*;
+use anyhow::anyhow;
 use log::debug;
 use serde::de::DeserializeOwned;
 use serde::Serialize;
 use std::fmt::Debug;
 
-pub async fn set_str(key: &str, v: &str) -> std::result::Result<(), Box<dyn std::error::Error>> {
+pub async fn set_str(key: &str, v: &str) -> anyhow::Result<()> {
     let a = INSTANCE.get().unwrap().clone();
     let mut db = a.lock().await;
     //
@@ -12,7 +13,7 @@ pub async fn set_str(key: &str, v: &str) -> std::result::Result<(), Box<dyn std:
     Ok(())
 }
 
-pub async fn remove(key: &str) -> std::result::Result<(), Box<dyn std::error::Error>> {
+pub async fn remove(key: &str) -> anyhow::Result<()> {
     let a = INSTANCE.get().unwrap().clone();
     let mut db = a.lock().await;
     //
@@ -20,14 +21,14 @@ pub async fn remove(key: &str) -> std::result::Result<(), Box<dyn std::error::Er
     Ok(())
 }
 
-pub async fn flush() -> std::result::Result<(), Box<dyn std::error::Error>> {
+pub async fn flush() -> anyhow::Result<()> {
     let a = INSTANCE.get().unwrap().clone();
     let mut db = a.lock().await;
     db.flush();
     Ok(())
 }
 
-pub async fn show_all() -> std::result::Result<String, Box<dyn std::error::Error>> {
+pub async fn show_all() -> anyhow::Result<String> {
     let a = INSTANCE.get().unwrap().clone();
     let mut db = a.lock().await;
     //
@@ -47,12 +48,12 @@ pub async fn show_all() -> std::result::Result<String, Box<dyn std::error::Error
     Ok("".to_string())
 }
 
-pub async fn get_str(key: &str) -> std::result::Result<String, Box<dyn std::error::Error>> {
+pub async fn get_str(key: &str) -> anyhow::Result<String> {
     let a = INSTANCE.get().unwrap().clone();
     let mut db = a.lock().await;
 
     //
-    let l = db.get(key)?.ok_or("")?.to_vec();
+    let l = db.get(key)?.ok_or(anyhow!(""))?.to_vec();
     let s = String::from_utf8(l)?;
     Ok(s)
 }
@@ -66,7 +67,7 @@ pub async fn get_i64(key: &str, default_value: Option<i64>) -> i64 {
     s.trim().parse::<i64>().unwrap_or(0)
 }
 
-pub async fn set_json<T>(key: &str, v: T) -> std::result::Result<(), Box<dyn std::error::Error>>
+pub async fn set_json<T>(key: &str, v: T) -> anyhow::Result<()>
 where
     T: Serialize + DeserializeOwned + Debug,
 {
@@ -75,7 +76,7 @@ where
     Ok(())
 }
 
-pub async fn get_json<T>(key: &str) -> std::result::Result<T, Box<dyn std::error::Error>>
+pub async fn get_json<T>(key: &str) -> anyhow::Result<T>
 where
     T: Serialize + DeserializeOwned + Debug,
 {

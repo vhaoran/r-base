@@ -10,10 +10,12 @@ extern crate lazy_static;
 // extern crate sqlx;
 
 //----pub fn/struct--------------------------
-pub use self::rerr::*;
 
+#[macro_use]
+use anyhow::anyhow;
 pub use module_cfg::*;
 pub use module_init::*;
+use std::error::Error;
 
 //--------macro--------------------------
 pub mod audios;
@@ -35,7 +37,6 @@ extern crate serde_json;
 
 //--------pub--module------------------------
 pub mod g;
-pub mod rerr;
 pub mod res;
 pub mod rlog;
 pub mod rmongo;

@@ -1,4 +1,5 @@
 use super::*;
+use anyhow::anyhow;
 
 use super::*;
 use futures::stream::StreamExt;
@@ -28,7 +29,7 @@ impl Default for User {
 }
 
 #[tokio::test]
-async fn mq_publish_1() -> Result<(), Box<dyn std::error::Error>> {
+async fn mq_publish_1() -> anyhow::Result<()> {
     log::set_max_level(LevelFilter::Debug);
 
     let cfg: Config = std::default::Default::default();
@@ -59,7 +60,7 @@ async fn mq_publish_1() -> Result<(), Box<dyn std::error::Error>> {
 }
 
 #[tokio::test]
-async fn mq_consume_queue_1() -> Result<(), Box<dyn std::error::Error>> {
+async fn mq_consume_queue_1() -> anyhow::Result<()> {
     log::set_max_level(LevelFilter::Debug);
 
     let cfg: Config = std::default::Default::default();
@@ -105,7 +106,7 @@ async fn mq_consume_queue_1() -> Result<(), Box<dyn std::error::Error>> {
 }
 
 #[tokio::test]
-async fn mq_consume_queue_2() -> Result<(), Box<dyn std::error::Error>> {
+async fn mq_consume_queue_2() -> anyhow::Result<()> {
     log::set_max_level(LevelFilter::Debug);
     let cfg: Config = std::default::Default::default();
     let _ = init(&cfg).await?;
@@ -118,13 +119,13 @@ async fn mq_consume_queue_2() -> Result<(), Box<dyn std::error::Error>> {
     }
 }
 
-pub async fn loop_single() -> Result<(), Box<dyn std::error::Error>> {
+pub async fn loop_single() -> anyhow::Result<()> {
     loop {
         println!("--start doing-------");
         let mut c = consumer_of_queue(QUEUE_TEST).await?;
         while let Some(delivery) = c.next().await {
             if delivery.is_err() {
-                return Err(crate::err(""));
+                return Err(anyhow!(""));
             }
 
             let delivery = delivery.unwrap();
@@ -146,7 +147,7 @@ pub async fn loop_single() -> Result<(), Box<dyn std::error::Error>> {
 }
 
 #[tokio::test]
-async fn mq_api_publish_1() -> Result<(), Box<dyn std::error::Error>> {
+async fn mq_api_publish_1() -> anyhow::Result<()> {
     log::set_max_level(LevelFilter::Debug);
 
     let cfg: Config = std::default::Default::default();
@@ -195,7 +196,7 @@ fn str_marshal_1() {
 }
 
 #[tokio::test]
-async fn mq_api_fan_out_1() -> Result<(), Box<dyn std::error::Error>> {
+async fn mq_api_fan_out_1() -> anyhow::Result<()> {
     log::set_max_level(LevelFilter::Debug);
 
     let cfg: Config = Config::default();

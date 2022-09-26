@@ -1,5 +1,8 @@
+use anyhow::anyhow;
+
 #[test]
 fn macro_1() {
+    // anyhow!();
     macro_rules! four {
         () => {
             1 + 3
@@ -117,7 +120,7 @@ fn t_is_none() {
     // use ::no_none;
     // use mongodb::bson::doc;
 
-    fn f() -> Result<(), Box<dyn std::error::Error>> {
+    fn f() -> anyhow::Result<()> {
         let c: Option<i32> = None;
         super::v_no_none!("全部要有值", Some(3), Some(4), c, None as Option<u8>)?;
         Ok(())
@@ -128,11 +131,11 @@ fn t_is_none() {
 
 #[test]
 fn t_num() {
-    fn f() -> Result<String, Box<dyn std::error::Error>> {
+    fn f() -> anyhow::Result<String> {
         super::v_num!(">3", ">=", 3, 4, 5, 1, 2)?;
         Ok("OK".to_string())
     }
-    fn f1() -> Result<String, Box<dyn std::error::Error>> {
+    fn f1() -> anyhow::Result<String> {
         super::v_num!(">3", ">=", 3, 4, 5, 7, 8)?;
         Ok("OK".to_string())
     }
@@ -142,11 +145,11 @@ fn t_num() {
 
 #[test]
 fn t_v_num() {
-    fn f() -> Result<String, Box<dyn std::error::Error>> {
+    fn f() -> anyhow::Result<String> {
         super::v_opt_num!(">3", ">", 3, Some(4), Some(7))?;
         Ok("OK".to_string())
     }
-    fn f1() -> Result<String, Box<dyn std::error::Error>> {
+    fn f1() -> anyhow::Result<String> {
         crate::v_opt_num!(">2", ">=", 2, None as Option<i32>, Some(5))?;
         Ok("OK".to_string())
     }
@@ -156,11 +159,11 @@ fn t_v_num() {
 
 #[test]
 fn t_v_len() {
-    fn f() -> Result<String, Box<dyn std::error::Error>> {
+    fn f() -> anyhow::Result<String> {
         super::v_len!("v_len >=3", ">", 3, "aaaa", "bbbb", "ssdsaf".to_string())?;
         Ok("OK".to_string())
     }
-    fn f1() -> Result<String, Box<dyn std::error::Error>> {
+    fn f1() -> anyhow::Result<String> {
         super::v_len!("v_len >=3", ">", 3, "aa", "bbbb", "ssdsaf".to_string())?;
         Ok("OK".to_string())
     }

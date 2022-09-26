@@ -8,12 +8,9 @@ use lapin::{
 use serde::{Deserialize, Serialize};
 // use serde_json::*;
 
-type Callback = fn(delivery: &Delivery, body: &str) -> Result<(), Box<dyn std::error::Error>>;
+type Callback = fn(delivery: &Delivery, body: &str) -> anyhow::Result<()>;
 
-pub async fn publish_basic_json<T>(
-    queue_name: &str,
-    body: T,
-) -> Result<(), Box<dyn std::error::Error>>
+pub async fn publish_basic_json<T>(queue_name: &str, body: T) -> anyhow::Result<()>
 where
     T: Serialize,
 {
@@ -25,7 +22,7 @@ where
     // Ok(())
 }
 
-pub async fn publish_basic(queue_name: &str, body: &str) -> Result<(), Box<dyn std::error::Error>> {
+pub async fn publish_basic(queue_name: &str, body: &str) -> anyhow::Result<()> {
     let conn = conn().await;
     //
     let ch = conn.create_channel().await?;
@@ -62,7 +59,7 @@ pub async fn publish_basic(queue_name: &str, body: &str) -> Result<(), Box<dyn s
 // pub async fn consume_basic(
 //     queue_name: &str,
 //     callback: Callback,
-// ) -> Result<(), Box<dyn std::error::Error>> {
+// ) anyhow::Result<()> {
 //     let conn = cnt().await;
 //     //
 //     let ch = conn.create_channel().await?;
@@ -114,9 +111,7 @@ pub async fn publish_basic(queue_name: &str, body: &str) -> Result<(), Box<dyn s
 //     Ok(())
 // }
 
-pub async fn consumer_of_queue(
-    queue_name: &str,
-) -> Result<lapin::Consumer, Box<dyn std::error::Error>> {
+pub async fn consumer_of_queue(queue_name: &str) -> anyhow::Result<lapin::Consumer> {
     let conn = conn().await;
     //
     let ch = conn.create_channel().await?;
@@ -150,9 +145,7 @@ pub async fn consumer_of_queue(
         .await?;
     Ok(c)
 }
-pub async fn consumer_of_queue_ack(
-    queue_name: &str,
-) -> Result<lapin::Consumer, Box<dyn std::error::Error>> {
+pub async fn consumer_of_queue_ack(queue_name: &str) -> anyhow::Result<lapin::Consumer> {
     let conn = conn().await;
     //
     let ch = conn.create_channel().await?;

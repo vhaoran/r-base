@@ -12,7 +12,7 @@
 //     "CREATE TABLE person (id INTEGER PRIMARY KEY, name TEXT, age INTEGER)";
 //
 // #[tokio::test]
-// async fn test_1() -> Result<(), Box<dyn std::error::Error>> {
+// async fn test_1() anyhow::Result<()> {
 //     /// Start by making a database connection.
 //     let mut conn = ormlite::SqliteConnection::connect(":memory:").await?;
 //

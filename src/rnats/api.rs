@@ -4,7 +4,7 @@ use log::*;
 use serde::{Deserialize, Serialize};
 use serde_json::*;
 
-pub fn publish_json<T>(topic: &str, body: T) -> std::result::Result<(), Box<dyn std::error::Error>>
+pub fn publish_json<T>(topic: &str, body: T) -> anyhow::Result<()>
 where
     T: Serialize,
 {
@@ -14,10 +14,7 @@ where
     Ok(())
 }
 
-pub async fn publish_json_async<T, TP>(
-    topic: TP,
-    body: T,
-) -> std::result::Result<(), Box<dyn std::error::Error>>
+pub async fn publish_json_async<T, TP>(topic: TP, body: T) -> anyhow::Result<()>
 where
     T: Serialize,
     TP: AsRef<str> + std::fmt::Display,
@@ -39,7 +36,7 @@ where
     Ok(())
 }
 
-pub fn publish<T>(topic: T, body: &str) -> std::result::Result<(), Box<dyn std::error::Error>>
+pub fn publish<T>(topic: T, body: &str) -> anyhow::Result<()>
 where
     T: AsRef<str> + std::fmt::Display,
 {

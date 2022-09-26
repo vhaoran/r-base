@@ -32,7 +32,7 @@ pub struct AdHis {
 }
 
 #[tokio::test]
-async fn es_1() -> Result<(), Box<dyn std::error::Error>> {
+async fn es_1() -> anyhow::Result<()> {
     println!("---- 1 -----");
     let transport = Transport::single_node("http://192.168.0.99:9200")?;
     println!("---- 2 -----");
@@ -69,7 +69,7 @@ async fn es_1() -> Result<(), Box<dyn std::error::Error>> {
 }
 
 #[tokio::test]
-async fn es_add() -> Result<(), Box<dyn std::error::Error>> {
+async fn es_add() -> anyhow::Result<()> {
     println!("---- 1 -----");
     let transport = Transport::single_node("http://192.168.0.99:9200")?;
     println!("---- 2 -----");
@@ -97,7 +97,7 @@ async fn es_add() -> Result<(), Box<dyn std::error::Error>> {
 }
 
 #[tokio::test]
-async fn es_get() -> Result<(), Box<dyn std::error::Error>> {
+async fn es_get() -> anyhow::Result<()> {
     println!("---- 1 -----");
     let transport = Transport::single_node("http://192.168.0.99:9200")?;
     println!("---- 2 -----");

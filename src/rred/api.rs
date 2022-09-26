@@ -1,4 +1,5 @@
 use super::*;
+use anyhow::anyhow;
 use redisclient::error::RedisError;
 
 pub async fn get_bool<T>(key: T) -> bool
@@ -42,7 +43,7 @@ where
         .unwrap_or(default_value.unwrap_or(0_f64))
 }
 
-pub async fn get<T>(key: T) -> Result<String, Box<dyn std::error::Error>>
+pub async fn get<T>(key: T) -> anyhow::Result<String>
 where
     T: AsRef<str> + std::fmt::Display,
 {
@@ -56,7 +57,7 @@ where
     Ok(s.to_string())
 }
 
-pub async fn set<K, V>(key: K, v: V) -> Result<(), Box<dyn std::error::Error>>
+pub async fn set<K, V>(key: K, v: V) -> anyhow::Result<()>
 where
     K: AsRef<str> + std::fmt::Display,
     V: AsRef<str> + std::fmt::Display,
@@ -70,11 +71,7 @@ where
     Ok(a)
 }
 
-pub async fn set_x<K, V>(
-    key: K,
-    v: V,
-    expire_secs: usize,
-) -> Result<bool, Box<dyn std::error::Error>>
+pub async fn set_x<K, V>(key: K, v: V, expire_secs: usize) -> anyhow::Result<bool>
 where
     K: AsRef<str> + std::fmt::Display,
     V: AsRef<str> + std::fmt::Display,
@@ -88,7 +85,7 @@ where
     Ok(true)
 }
 
-pub async fn incr<T>(key: T) -> Result<i64, Box<dyn std::error::Error>>
+pub async fn incr<T>(key: T) -> anyhow::Result<i64>
 where
     T: AsRef<str> + std::fmt::Display,
 {
@@ -100,7 +97,7 @@ where
     Ok(i)
 }
 
-pub async fn incr_by<T>(key: T, i: i64) -> Result<i64, Box<dyn std::error::Error>>
+pub async fn incr_by<T>(key: T, i: i64) -> anyhow::Result<i64>
 where
     T: AsRef<str> + std::fmt::Display,
 {
@@ -112,7 +109,7 @@ where
     Ok(r)
 }
 
-pub async fn expire<T>(key: T, expire_secs: usize) -> Result<(), Box<dyn std::error::Error>>
+pub async fn expire<T>(key: T, expire_secs: usize) -> anyhow::Result<()>
 where
     T: AsRef<str> + std::fmt::Display,
 {
@@ -124,7 +121,7 @@ where
     Ok(())
 }
 
-pub async fn del<T>(key: T) -> Result<(), Box<dyn std::error::Error>>
+pub async fn del<T>(key: T) -> anyhow::Result<()>
 where
     T: AsRef<str> + std::fmt::Display,
 {
@@ -139,9 +136,9 @@ where
     Ok(())
 }
 
-pub async fn del_many(keys: Vec<String>) -> Result<(), Box<dyn std::error::Error>> {
+pub async fn del_many(keys: Vec<String>) -> anyhow::Result<()> {
     if keys.len() == 0 {
-        return Err(crate::err("no keys to delete...."));
+        return Err(anyhow!("no keys to delete...."));
     }
 
     let a = INSTANCE.get().unwrap().clone();

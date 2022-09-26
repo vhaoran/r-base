@@ -2,6 +2,7 @@ use log::*;
 use once_cell::sync::OnceCell;
 use tokio::sync::Mutex;
 
+use anyhow::anyhow;
 use lapin::{
     message::DeliveryResult, options::*, publisher_confirm::Confirmation, types::FieldTable,
     BasicProperties, Connection, ConnectionProperties,
@@ -24,7 +25,7 @@ pub async fn init(cfg: &Config) -> anyhow::Result<()> {
     Ok(())
 }
 
-pub async fn init_instance(cfg: Config) -> Result<(), Box<dyn std::error::Error>> {
+pub async fn init_instance(cfg: Config) -> anyhow::Result<()> {
     // let addr = "amqp://root:password@192.168.0.99:5672/%2f";
     let addr = cfg.url.as_str();
     let conn = Connection::connect(&addr, ConnectionProperties::default()).await?;
@@ -38,7 +39,7 @@ pub async fn init_instance(cfg: Config) -> Result<(), Box<dyn std::error::Error>
         let i = INSTANCE.get().unwrap();
         let mut m = i.lock().await;
         *m = a;
-        return Err(crate::err("set error"));
+        return Err(anyhow!("set error"));
     }
 
     Ok(())

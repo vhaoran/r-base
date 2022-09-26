@@ -32,7 +32,7 @@ impl Module {
     }
 
     #[cfg(feature = "rmy")]
-    pub async fn init_mysql(&self) -> Result<Self, Box<dyn std::error::Error>> {
+    pub async fn init_mysql(&self) -> anyhow::Result<Self> {
         debug!("--init_my_sql_enter-------");
 
         Ok(self.clone())

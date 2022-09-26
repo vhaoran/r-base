@@ -2,7 +2,7 @@ use super::*;
 use log::*;
 
 #[tokio::test]
-async fn init_module_test() -> Result<(), Box<dyn std::error::Error>> {
+async fn init_module_test() -> anyhow::Result<()> {
     println!("test begin ");
     let r = super::init_modules(None).await;
     match r {

@@ -33,7 +33,7 @@
 // }
 //
 // #[tokio::test]
-// async fn rb_1() -> Result<(), Box<dyn std::error::Error>> {
+// async fn rb_1() anyhow::Result<()> {
 //     //
 //     let conn = self::cnt().await?;
 //     /// customize connection pool parameters (optional)
@@ -118,7 +118,7 @@
 // }
 //
 // #[tokio::test]
-// async fn test_add_2() -> Result<(), Box<dyn std::error::Error>> {
+// async fn test_add_2() anyhow::Result<()> {
 //     let conn = self::cnt().await?;
 //     /// customize connection pool parameters (optional)
 //     let activity = BizActivity {
@@ -137,7 +137,7 @@
 // }
 //
 // #[tokio::test]
-// async fn test_ch_3() -> Result<(), Box<dyn std::error::Error>> {
+// async fn test_ch_3() anyhow::Result<()> {
 //     let conn = self::cnt().await?;
 //     /// customize connection pool parameters (optional)
 //     let activity = BizActivity {
@@ -156,7 +156,7 @@
 //     Ok(())
 // }
 // #[tokio::test]
-// async fn test_wrapper_4() -> Result<(), Box<dyn std::error::Error>> {
+// async fn test_wrapper_4() anyhow::Result<()> {
 //     let conn = self::cnt().await?;
 //     let w = conn
 //         .new_wrapper()
@@ -173,7 +173,7 @@
 // }
 //
 // #[tokio::test]
-// async fn test_raw_sql_5() -> Result<(), Box<dyn std::error::Error>> {
+// async fn test_raw_sql_5() anyhow::Result<()> {
 //     let conn = self::cnt().await?;
 //     let r: Vec<HashMap<String, Bson>> = conn
 //         .fetch(

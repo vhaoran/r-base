@@ -4,7 +4,7 @@ static TB: &str = "my_table";
 // use mongodb::bson::{doc, Bson, Document};
 
 #[tokio::test]
-async fn aaa() -> Result<(), Box<dyn std::error::Error>> {
+async fn aaa() -> anyhow::Result<()> {
     // r_base::init_modules().await;
 
     use crate::rmongo::test_api::User;

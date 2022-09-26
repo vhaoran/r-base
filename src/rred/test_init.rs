@@ -2,7 +2,7 @@ use super::*;
 use std::time;
 
 #[tokio::test]
-async fn red_1() -> Result<(), Box<dyn std::error::Error>> {
+async fn red_1() -> anyhow::Result<()> {
     let cfg: super::Config = Default::default();
     super::init(&cfg)?;
 
@@ -26,7 +26,7 @@ async fn red_1() -> Result<(), Box<dyn std::error::Error>> {
 }
 
 #[tokio::test]
-async fn red_2() -> Result<(), Box<dyn std::error::Error>> {
+async fn red_2() -> anyhow::Result<()> {
     let cfg: super::Config = Default::default();
     super::init(&cfg)?;
     println!("----init successful-----");
@@ -64,7 +64,7 @@ async fn red_2() -> Result<(), Box<dyn std::error::Error>> {
 }
 
 #[tokio::test]
-async fn red_3() -> Result<(), Box<dyn std::error::Error>> {
+async fn red_3() -> anyhow::Result<()> {
     let cfg: super::Config = Default::default();
     super::init(&cfg)?;
 

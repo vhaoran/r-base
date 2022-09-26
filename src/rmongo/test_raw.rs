@@ -8,7 +8,7 @@ use mongodb::{options::ClientOptions, Client};
 
 use futures::stream::{StreamExt, TryStreamExt};
 
-async fn cnt() -> Result<Client, Box<dyn std::error::Error>> {
+async fn cnt() -> anyhow::Result<Client> {
     let client = Client::with_uri_str("mongodb://root:password@192.168.0.99").await?;
     Ok(client.clone())
 }
@@ -48,7 +48,7 @@ impl User {
 
 #[tokio::test]
 // async fn mongo_1()->mongodb::error::Result<()> {
-async fn mongo_1() -> Result<(), Box<dyn std::error::Error>> {
+async fn mongo_1() -> anyhow::Result<()> {
     println!("----aaaa--a----");
 
     let client = Client::with_uri_str("mongodb://w5").await?;
@@ -106,7 +106,7 @@ async fn mongo_3() -> mongodb::error::Result<()> {
 }
 
 #[tokio::test]
-async fn mi_one() -> Result<(), Box<dyn std::error::Error>> {
+async fn mi_one() -> anyhow::Result<()> {
     use mongodb::bson::{doc, Document};
     let cnt = cnt().await?;
     let db = cnt.database("test");
@@ -127,7 +127,7 @@ async fn mi_one() -> Result<(), Box<dyn std::error::Error>> {
 }
 
 #[tokio::test]
-async fn mi_one_1() -> Result<(), Box<dyn std::error::Error>> {
+async fn mi_one_1() -> anyhow::Result<()> {
     use mongodb::bson::{doc, Document};
     let cnt = cnt().await?;
     let db = cnt.database("test");
@@ -148,7 +148,7 @@ async fn mi_one_1() -> Result<(), Box<dyn std::error::Error>> {
 }
 
 #[tokio::test]
-async fn m_find_1() -> Result<(), Box<dyn std::error::Error>> {
+async fn m_find_1() -> anyhow::Result<()> {
     use mongodb::bson::{doc, Document};
     let cnt = cnt().await?;
     let db = cnt.database("test");
@@ -166,7 +166,7 @@ async fn m_find_1() -> Result<(), Box<dyn std::error::Error>> {
 }
 
 #[tokio::test]
-async fn mi_one_2() -> Result<(), Box<dyn std::error::Error>> {
+async fn mi_one_2() -> anyhow::Result<()> {
     use mongodb::bson::{doc, Document};
     let cnt = cnt().await?;
     let db = cnt.database("test");
@@ -189,7 +189,7 @@ async fn mi_one_2() -> Result<(), Box<dyn std::error::Error>> {
 }
 
 #[tokio::test]
-async fn mi_one_3() -> Result<(), Box<dyn std::error::Error>> {
+async fn mi_one_3() -> anyhow::Result<()> {
     use mongodb::bson::{doc, Document};
     let cnt = cnt().await?;
     let db = cnt.database("test");
@@ -211,7 +211,7 @@ async fn mi_one_3() -> Result<(), Box<dyn std::error::Error>> {
 }
 
 #[tokio::test]
-async fn cnt_op_1() -> Result<(), Box<dyn std::error::Error>> {
+async fn cnt_op_1() -> anyhow::Result<()> {
     use mongodb::{options::ClientOptions, Client};
 
     let mut opt = ClientOptions::parse("mongodb://root:password@192.168.0.99:27017").await?;
@@ -239,7 +239,7 @@ async fn cnt_op_1() -> Result<(), Box<dyn std::error::Error>> {
 }
 
 #[tokio::test]
-async fn m_agg_1() -> Result<(), Box<dyn std::error::Error>> {
+async fn m_agg_1() -> anyhow::Result<()> {
     use futures::stream::{StreamExt, TryStreamExt};
     use mongodb::bson::{doc, Document};
     // use std::pin::Pin;

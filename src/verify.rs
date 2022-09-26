@@ -4,14 +4,14 @@
 macro_rules! v_no_none {
         ($msg:expr,$x:expr)=>(
             if $x.is_none(){
-                Err($crate::err(concat!("[",$msg,"]不满足要求")))
+                Err(anyhow!(concat!("[",$msg,"]不满足要求")))
             }else{
                 Ok(())
             }
         );
         ($msg:expr,$x:expr,$($y:expr),+) => {
             if $x.is_none() {
-                Err($crate::err(concat!("[",$msg,"]不满足要求")))
+                Err(anyhow!(concat!("[",$msg,"]不满足要求")))
             } else {
                 v_no_none!($msg,$($y),+)
             }
@@ -46,7 +46,7 @@ macro_rules! v_num {
         let ok = n_cmp!($sign,$n,$x);
 
         if !ok {
-            Err($crate::err(concat!("[",$msg,$sign,$n,"]不满足要求")))
+            Err(anyhow!(concat!("[",$msg,$sign,$n,"]不满足要求")))
         } else {
             Ok(true)
         }
@@ -55,7 +55,7 @@ macro_rules! v_num {
         let ok = v_num!($msg ,$sign, $n,$x).unwrap_or(false);
 
         if !ok {
-            Err($crate::err(concat!("[",$msg,$sign,$n,"]不满足要求")))
+            Err(anyhow!(concat!("[",$msg,$sign,$n,"]不满足要求")))
         } else {
             v_num!($msg ,$sign, $n,$($y),+)
         }
@@ -71,7 +71,7 @@ macro_rules! v_opt_num {
         }
 
         if !ok{
-            Err($crate::err(concat!("[",$msg,"]不满足要求")))
+            Err(anyhow!(concat!("[",$msg,"]不满足要求")))
         }else{
             Ok(true)
         }
@@ -80,7 +80,7 @@ macro_rules! v_opt_num {
         let ok = v_opt_num!($msg ,$sign, $n,$x).unwrap_or(false);
 
         if !ok {
-            Err($crate::err(concat!("[",$msg,"]不满足要求")))
+            Err(anyhow!(concat!("[",$msg,"]不满足要求")))
         }else{
             v_opt_num!($msg ,$sign, $n,$($y),+)
         }
@@ -93,7 +93,7 @@ macro_rules! v_len {
         let ok = n_cmp!($sign,$n,$x.len());
 
         if !ok {
-            Err($crate::err(concat!("[",$msg,"]不满足要求")))
+            Err(anyhow!(concat!("[",$msg,"]不满足要求")))
         } else {
             Ok(true)
         }
@@ -102,7 +102,7 @@ macro_rules! v_len {
         let ok = v_len!($msg ,$sign, $n,$x).unwrap_or(false);
 
         if !ok {
-            Err($crate::err(concat!("[",$msg,"]不满足要求")))
+            Err(anyhow!(concat!("[",$msg,"]不满足要求")))
         } else {
             v_len!($msg ,$sign, $n,$($y),+)
         }
@@ -118,7 +118,7 @@ macro_rules! v_opt_len {
         };
 
         if !ok {
-            Err($crate::err(concat!("[",$msg,"]不满足要求")))
+            Err(anyhow!(concat!("[",$msg,"]不满足要求")))
         } else {
             Ok(true)
         }
@@ -127,7 +127,7 @@ macro_rules! v_opt_len {
         let ok = v_opt_len!($msg ,$sign, $n,$x).unwrap_or(false);
 
         if !ok {
-            Err($crate::err(concat!("[",$msg,"]不满足要求")))
+            Err(anyhow!(concat!("[",$msg,"]不满足要求")))
         } else {
             v_opt_len!($msg ,$sign, $n,$($y),+)
         }
@@ -140,14 +140,14 @@ macro_rules! v_opt_len {
 macro_rules! v_true {
     ($msg:expr, $v:expr) => {{
         if !$v {
-            Err($crate::err(concat!("[", $msg, "必须为真值]不满足要求")))
+            Err(anyhow!(concat!("[", $msg, "必须为真值]不满足要求")))
         }else{
             Ok(true)
         }
     }};
     ($msg:expr,$v:expr, $($y:expr),+) => {{
         if !$v {
-            Err($crate::err(concat!("[", $msg, "必须为真值]不满足要求")))
+            Err(anyhow!(concat!("[", $msg, "必须为真值]不满足要求")))
         }else{
             v_true!($msg,$($y),+)
         }
@@ -162,7 +162,7 @@ macro_rules! v_opt_true {
     ($msg:expr, $v:expr) => {{
         let ok = $v.clone().unwrap_or(false);
         if !ok {
-            Err($crate::err(concat!("[", $msg, "必须为真值]不满足要求")))
+            Err(anyhow!(concat!("[", $msg, "必须为真值]不满足要求")))
         }else{
             Ok(true)
         }
@@ -170,7 +170,7 @@ macro_rules! v_opt_true {
     ($msg:expr,$v:expr, $($y:expr),+) => {{
         let ok = $v.clone().unwrap_or(false);
         if !ok {
-            Err($crate::err(concat!("[", $msg, "必须为真值]不满足要求")))
+            Err(anyhow!(concat!("[", $msg, "必须为真值]不满足要求")))
         }else{
             v_opt_true!($msg,$($y),+)
         }
@@ -185,14 +185,14 @@ v_false!(" must is false,", false, false)
 macro_rules! v_false {
     ($msg:expr, $v:expr) => {{
         if $v {
-            Err($crate::err(concat!("[", $msg, "必须为假值]不满足要求")))
+            Err(anyhow!(concat!("[", $msg, "必须为假值]不满足要求")))
         }else{
             Ok(true)
         }
     }};
     ($msg:expr,$v:expr, $($y:expr),+) => {{
         if $v {
-            Err($crate::err(concat!("[", $msg, "必须为假值]不满足要求")))
+            Err(anyhow!(concat!("[", $msg, "必须为假值]不满足要求")))
         }else{
             v_true!($msg,$($y),+)
         }
@@ -205,7 +205,7 @@ macro_rules! v_opt_false{
     ($msg:expr, $v:expr) => {{
         let ok = $v.clone().unwrap_or(true);
         if ok {
-            Err($crate::err(concat!("[", $msg, "必须为假值]不满足要求")))
+            Err(anyhow!(concat!("[", $msg, "必须为假值]不满足要求")))
         }else{
             Ok(true)
         }
@@ -213,7 +213,7 @@ macro_rules! v_opt_false{
     ($msg:expr,$v:expr, $($y:expr),+) => {{
         let ok = $v.clone().unwrap_or(true);
         if ok {
-            Err($crate::err(concat!("[", $msg, "必须为假值]不满足要求")))
+            Err(anyhow!(concat!("[", $msg, "必须为假值]不满足要求")))
         }else{
             v_opt_true!($msg,$($y),+)
         }
@@ -225,7 +225,7 @@ macro_rules! v_opt_false{
 macro_rules! v_in {
     ($msg:expr, $v:expr,$vec:expr) => {{
         $vec.iter().find(|&&x| x == $v.clone()).map_or_else(
-            || Err($crate::err(concat!("[", $msg, "]不满足要求"))),
+            || Err(anyhow!(concat!("[", $msg, "]不满足要求"))),
             |_x| Ok(true),
         )
     }};
@@ -235,11 +235,11 @@ macro_rules! v_in {
 macro_rules! v_opt_in {
     ($msg:expr, $v:expr,$vec:expr) => {{
         if $vec.is_none() {
-            Err($crate::err(concat!("[", $msg, "]不满足要求")))
+            Err(anyhow!(concat!("[", $msg, "]不满足要求")))
         } else {
             let l = $vec.clone().unwrap();
             l.iter().find(|&&x| x == $v.clone()).map_or_else(
-                || Err($crate::err(concat!("[", $msg, "]不满足要求"))),
+                || Err(anyhow!(concat!("[", $msg, "]不满足要求"))),
                 |_x| Ok(true),
             )
         }

@@ -68,7 +68,7 @@ pub fn to_n250(n: i64) -> String {
     s
 }
 
-pub fn from_n250(s: &str) -> std::result::Result<i64, Box<dyn std::error::Error>> {
+pub fn from_n250(s: &str) -> anyhow::Result<i64> {
     let high: usize = pat().len();
 
     let mut negative = false;

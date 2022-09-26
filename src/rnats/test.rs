@@ -1,5 +1,5 @@
 #[tokio::test]
-async fn cnt_1() -> Result<(), Box<dyn std::error::Error>> {
+async fn cnt_1() -> anyhow::Result<()> {
     //
     const TOPIC: &str = "topic-test";
     const SECS: u64 = 5;
@@ -57,7 +57,7 @@ async fn cnt_1() -> Result<(), Box<dyn std::error::Error>> {
 }
 
 #[tokio::test]
-async fn cnt_2() -> Result<(), Box<dyn std::error::Error>> {
+async fn cnt_2() -> anyhow::Result<()> {
     const TOPIC: &str = "topic-test-1";
     const SECS: u64 = 5;
     const SECS_LOW: u64 = 2;

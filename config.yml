@@ -14,7 +14,8 @@ redis:
   user_name: ""
   password: ""
 mongo:
-  url: "mongodb://root:password@w5:27017/?retryWrites=false"
+#  url: "mongodb://w5:27017,root:password@w5:27018,root:password@w5:27019/"
+  url: "mongodb://w5:27017,w5:27018,w5:27019/"
   max_idle_time: 1800
   max_pool_size: 10
   min_pool_size: 5

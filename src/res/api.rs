@@ -18,7 +18,7 @@ use std::env;
 use std::fmt::Debug;
 use std::vec::Vec;
 
-pub async fn get<T>(db: &str, id_str: &str) -> Result<T, Box<dyn std::error::Error>>
+pub async fn get<T>(db: &str, id_str: &str) -> anyhow::Result<T>
 where
     T: Serialize + DeserializeOwned,
 {
@@ -38,7 +38,7 @@ where
     Ok(bean)
 }
 
-pub async fn add<T>(db: &str, id: &str, src: T) -> Result<bool, Box<dyn std::error::Error>>
+pub async fn add<T>(db: &str, id: &str, src: T) -> anyhow::Result<bool>
 where
     T: Serialize + DeserializeOwned,
 {
@@ -52,7 +52,7 @@ where
     Ok(r.status_code() == StatusCode::OK)
 }
 
-pub async fn del(db: &str, id: &str) -> Result<bool, Box<dyn std::error::Error>> {
+pub async fn del(db: &str, id: &str) -> anyhow::Result<bool> {
     let c = cnt();
     let r = c
         .delete(DeleteParts::IndexId(db, id))
@@ -62,7 +62,7 @@ pub async fn del(db: &str, id: &str) -> Result<bool, Box<dyn std::error::Error>>
     Ok(r.status_code() == StatusCode::OK)
 }
 
-pub async fn count(db: &str) -> Result<usize, Box<dyn std::error::Error>> {
+pub async fn count(db: &str) -> anyhow::Result<usize> {
     #[derive(Serialize, Deserialize, Clone, Debug)]
     pub struct ResultCount {
         pub count: Option<usize>,
@@ -90,7 +90,7 @@ pub async fn exist(db: &str, id_str: &str) -> bool {
     }
 }
 
-pub async fn page<T>(db: &str, pb: Page<T>) -> Result<Page<T>, Box<dyn std::error::Error>>
+pub async fn page<T>(db: &str, pb: Page<T>) -> anyhow::Result<Page<T>>
 where
     T: SetESID + Serialize + DeserializeOwned + Clone + Debug,
 {

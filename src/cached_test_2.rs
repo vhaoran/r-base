@@ -110,7 +110,7 @@ fn test_timed_sized_cache_2() {
 }
 
 #[tokio::test]
-async fn test_2() -> Result<(), Box<dyn std::error::Error>> {
+async fn test_2() -> anyhow::Result<()> {
     let c: Mutex<TimedSizedCache<(u32, u32), u32>> =
         Mutex::new(TimedSizedCache::with_size_and_lifespan(30, 20));
     let mut c = c.lock().await;

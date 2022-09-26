@@ -1,6 +1,6 @@
 use std::{env, thread};
 #[tokio::test]
-async fn mq_raw_1() -> Result<(), Box<dyn std::error::Error>> {
+async fn mq_raw_1() -> anyhow::Result<()> {
     use lapin::{
         message::DeliveryResult, options::*, publisher_confirm::Confirmation, types::FieldTable,
         BasicProperties, Connection, ConnectionProperties, Result,

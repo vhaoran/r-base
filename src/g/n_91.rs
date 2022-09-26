@@ -1,3 +1,4 @@
+use anyhow::anyhow;
 use std::ops::Index;
 
 const PAT: &str =
@@ -39,7 +40,7 @@ pub fn to_n91(n: i64) -> String {
     s
 }
 
-pub fn from_n91(s: &str) -> std::result::Result<i64, Box<dyn std::error::Error>> {
+pub fn from_n91(s: &str) -> anyhow::Result<i64> {
     let high: usize = PAT.len();
 
     let mut negative = false;
@@ -63,7 +64,7 @@ pub fn from_n91(s: &str) -> std::result::Result<i64, Box<dyn std::error::Error>>
         //find each position value
         let n = PAT.find(c);
         if n.is_none() {
-            return Err(crate::err("error format"));
+            return Err(anyhow!("error format"));
         }
         let n = n.unwrap();
 

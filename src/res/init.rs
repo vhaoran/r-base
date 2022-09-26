@@ -43,7 +43,7 @@ pub fn get_client(path: &str) -> anyhow::Result<Elasticsearch> {
     Ok(Elasticsearch::new(transport))
 }
 
-pub fn get_client_bak(path: &str) -> Result<Elasticsearch, Box<dyn std::error::Error>> {
+pub fn get_client_bak(path: &str) -> anyhow::Result<Elasticsearch> {
     let mut url = Url::parse(path)?;
 
     // if the url is https and specifies a username and password, remove from the url and set credentials

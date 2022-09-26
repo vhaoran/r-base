@@ -11,7 +11,7 @@
 // }
 //
 // #[tokio::test]
-// async fn my_1() -> Result<(), Box<dyn std::error::Error>> {
+// async fn my_1() anyhow::Result<()> {
 //     let conn = self::cnt().await?;
 //     // println!("-----------{:#?}-----------", pool);
 //     //-------------------------------------
@@ -26,7 +26,7 @@
 // }
 //
 // #[tokio::test]
-// async fn my_2() -> Result<(), Box<dyn std::error::Error>> {
+// async fn my_2() anyhow::Result<()> {
 //     let conn = self::cnt().await?;
 //     // println!("-----------{:#?}-----------", pool);
 //     //-------------------------------------
@@ -37,7 +37,7 @@
 // }
 //
 // #[tokio::test]
-// async fn my_3() -> Result<(), Box<dyn std::error::Error>> {
+// async fn my_3() anyhow::Result<()> {
 //     let conn = self::cnt().await?;
 //     // println!("-----------{:#?}-----------", pool);
 //     //-------------------------------------

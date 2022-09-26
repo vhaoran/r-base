@@ -55,7 +55,7 @@ pub async fn cache_set(key: i64, v: i64, live_secs: i64) {
 }
 
 #[tokio::test]
-async fn test_c_1() -> Result<(), Box<dyn std::error::Error>> {
+async fn test_c_1() -> anyhow::Result<()> {
     //
     tokio::spawn(async move {
         for i in 0..100 {

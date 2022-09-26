@@ -1,6 +1,7 @@
 use super::*;
 // use futures_util::stream::stream::StreamExt;
 use crate::init_modules;
+use log::debug;
 use mongodb::bson::{doc, Bson, Document};
 use mongodb::options::{Acknowledgment, ReadConcern, TransactionOptions, WriteConcern};
 use mongodb::Client;
@@ -79,7 +80,7 @@ async fn test_init() -> anyhow::Result<()> {
 }
 
 #[tokio::test]
-async fn mc_1() -> Result<(), Box<dyn std::error::Error>> {
+async fn mc_1() -> anyhow::Result<()> {
     let cfg: Config = Default::default();
     init(&cfg).await?;
 
@@ -118,7 +119,7 @@ async fn mc_1() -> Result<(), Box<dyn std::error::Error>> {
 }
 
 #[tokio::test]
-async fn mc_2() -> Result<(), Box<dyn std::error::Error>> {
+async fn mc_2() -> anyhow::Result<()> {
     test_init().await?;
 
     let r: mongodb::error::Result<Option<Document>> = raw_find_one(
@@ -136,7 +137,7 @@ async fn mc_2() -> Result<(), Box<dyn std::error::Error>> {
 }
 
 #[tokio::test]
-async fn mc_3() -> Result<(), Box<dyn std::error::Error>> {
+async fn mc_3() -> anyhow::Result<()> {
     test_init().await?;
 
     let r: mongodb::error::Result<Option<Document>> = raw_find_one(
@@ -158,7 +159,7 @@ async fn mc_3() -> Result<(), Box<dyn std::error::Error>> {
 }
 
 #[tokio::test]
-async fn mc_4() -> Result<(), Box<dyn std::error::Error>> {
+async fn mc_4() -> anyhow::Result<()> {
     test_init().await?;
 
     let r = raw_insert_one(
@@ -177,7 +178,7 @@ async fn mc_4() -> Result<(), Box<dyn std::error::Error>> {
 }
 
 #[tokio::test]
-async fn mg_insert_1() -> Result<(), Box<dyn std::error::Error>> {
+async fn mg_insert_1() -> anyhow::Result<()> {
     test_init().await?;
 
     let doc: Document = User {
@@ -194,7 +195,7 @@ async fn mg_insert_1() -> Result<(), Box<dyn std::error::Error>> {
 }
 
 #[tokio::test]
-async fn mc_6() -> Result<(), Box<dyn std::error::Error>> {
+async fn mc_6() -> anyhow::Result<()> {
     use futures::stream::{StreamExt, TryStreamExt};
 
     test_init().await?;
@@ -213,7 +214,7 @@ async fn mc_6() -> Result<(), Box<dyn std::error::Error>> {
 }
 
 #[tokio::test]
-async fn mc_7() -> Result<(), Box<dyn std::error::Error>> {
+async fn mc_7() -> anyhow::Result<()> {
     use futures::stream::{StreamExt, TryStreamExt};
     test_init().await?;
     let r: User = find_one(
@@ -231,7 +232,7 @@ async fn mc_7() -> Result<(), Box<dyn std::error::Error>> {
 }
 
 #[tokio::test]
-async fn mc_8() -> Result<(), Box<dyn std::error::Error>> {
+async fn mc_8() -> anyhow::Result<()> {
     use futures::stream::{StreamExt, TryStreamExt};
 
     test_init().await?;
@@ -255,7 +256,7 @@ async fn mc_8() -> Result<(), Box<dyn std::error::Error>> {
 
 //find_many
 #[tokio::test]
-async fn mg_find_1() -> Result<(), Box<dyn std::error::Error>> {
+async fn mg_find_1() -> anyhow::Result<()> {
     use futures::stream::{StreamExt, TryStreamExt};
 
     test_init().await?;
@@ -267,7 +268,7 @@ async fn mg_find_1() -> Result<(), Box<dyn std::error::Error>> {
 }
 
 #[tokio::test]
-async fn mc_exist_1() -> Result<(), Box<dyn std::error::Error>> {
+async fn mc_exist_1() -> anyhow::Result<()> {
     use futures::stream::{StreamExt, TryStreamExt};
 
     test_init().await?;
@@ -279,7 +280,7 @@ async fn mc_exist_1() -> Result<(), Box<dyn std::error::Error>> {
 }
 
 #[tokio::test]
-async fn mg_count_1() -> Result<(), Box<dyn std::error::Error>> {
+async fn mg_count_1() -> anyhow::Result<()> {
     use futures::stream::{StreamExt, TryStreamExt};
 
     test_init().await?;
@@ -291,7 +292,7 @@ async fn mg_count_1() -> Result<(), Box<dyn std::error::Error>> {
 }
 
 #[tokio::test]
-async fn mg_update_one_1() -> Result<(), Box<dyn std::error::Error>> {
+async fn mg_update_one_1() -> anyhow::Result<()> {
     use futures::stream::{StreamExt, TryStreamExt};
 
     test_init().await?;
@@ -309,7 +310,7 @@ async fn mg_update_one_1() -> Result<(), Box<dyn std::error::Error>> {
 }
 
 #[tokio::test]
-async fn mg_update_many_1() -> Result<(), Box<dyn std::error::Error>> {
+async fn mg_update_many_1() -> anyhow::Result<()> {
     use futures::stream::{StreamExt, TryStreamExt};
 
     test_init().await?;
@@ -336,7 +337,7 @@ async fn mg_update_many_1() -> Result<(), Box<dyn std::error::Error>> {
 
 //find_many
 #[tokio::test]
-async fn mg_page_1() -> Result<(), Box<dyn std::error::Error>> {
+async fn mg_page_1() -> anyhow::Result<()> {
     use mongodb::options::FindOptions;
 
     test_init().await?;
@@ -359,7 +360,7 @@ async fn mg_page_1() -> Result<(), Box<dyn std::error::Error>> {
 }
 
 #[tokio::test]
-async fn mc_15() -> Result<(), Box<dyn std::error::Error>> {
+async fn mc_15() -> anyhow::Result<()> {
     use mongodb::options::FindOptions;
 
     test_init().await?;
@@ -380,7 +381,7 @@ async fn mc_15() -> Result<(), Box<dyn std::error::Error>> {
 }
 
 #[tokio::test]
-async fn raw_aggre_1() -> Result<(), Box<dyn std::error::Error>> {
+async fn raw_aggre_1() -> anyhow::Result<()> {
     let cfg: Config = Default::default();
     init(&cfg).await?;
     //-------------------------------------
@@ -446,7 +447,7 @@ async fn raw_aggre_1() -> Result<(), Box<dyn std::error::Error>> {
 }
 
 #[tokio::test]
-async fn aggre_1() -> Result<(), Box<dyn std::error::Error>> {
+async fn aggre_1() -> anyhow::Result<()> {
     let cfg: Config = Default::default();
     init(&cfg).await?;
     let r: Vec<User> = aggregate(
@@ -483,7 +484,7 @@ async fn aggre_1() -> Result<(), Box<dyn std::error::Error>> {
     Ok(())
 }
 #[tokio::test]
-async fn aggre_min_1() -> Result<(), Box<dyn std::error::Error>> {
+async fn aggre_min_1() -> anyhow::Result<()> {
     let cfg: Config = Default::default();
     init(&cfg).await?;
 
@@ -521,20 +522,23 @@ async fn test_tx_1() -> anyhow::Result<()> {
 #[tokio::test]
 async fn test_tx_2() -> anyhow::Result<()> {
     init_modules(None).await?;
-    let mut tx = get_tx().await?;
-    //
 
-    let doc: Document = User {
-        id: Some(888),
-        title: Some("5 title".to_string()),
-        author: Some("5 author".to_string()),
+    for id in 1002..1500 {
+        let mut tx = get_tx().await?;
+        debug!("--after get_tx-------");
+        let doc: Document = User {
+            id: Some(id),
+            title: Some("5 title".to_string()),
+            author: Some("5 author".to_string()),
+        }
+        .into();
+
+        let r = tx_raw_insert_one("test", "aa", doc, None, &mut tx).await;
+        println!("----after insert---{r:#?}----");
+        let r = tx.commit_transaction().await?;
+        println!("----after commit {r:?}-----------",);
+        println!("-----------no: {id}-----------",);
     }
-    .into();
-
-    let r = tx_raw_insert_one("test", "aa", doc, None, &mut tx).await;
-    println!("----test_cnt.rs---{r:#?}----");
-    let r = tx.commit_transaction().await?;
-    println!("-----------{r:?}-----------",);
 
     //
     Ok(())

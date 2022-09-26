@@ -41,7 +41,7 @@ impl SetESID for AdHis {
 const TEST_KEY: &str = "key-test";
 
 #[tokio::test]
-async fn es_api_get() -> Result<(), Box<dyn std::error::Error>> {
+async fn es_api_get() -> anyhow::Result<()> {
     let cfg: Config = std::default::Default::default();
     init(&cfg).await?;
     println!("----test_api.rs---0-----");
@@ -56,7 +56,7 @@ async fn es_api_get() -> Result<(), Box<dyn std::error::Error>> {
 }
 
 #[tokio::test]
-async fn es_api_add() -> Result<(), Box<dyn std::error::Error>> {
+async fn es_api_add() -> anyhow::Result<()> {
     let cfg: Config = std::default::Default::default();
     init(&cfg).await?;
     println!("----test_api.rs---0-----");
@@ -80,7 +80,7 @@ async fn es_api_add() -> Result<(), Box<dyn std::error::Error>> {
 }
 
 #[tokio::test]
-async fn es_api_del() -> Result<(), Box<dyn std::error::Error>> {
+async fn es_api_del() -> anyhow::Result<()> {
     let cfg: Config = std::default::Default::default();
     init(&cfg).await?;
     println!("----test_api.rs---del-----");
@@ -93,7 +93,7 @@ async fn es_api_del() -> Result<(), Box<dyn std::error::Error>> {
 }
 
 #[tokio::test]
-async fn es_api_exist() -> Result<(), Box<dyn std::error::Error>> {
+async fn es_api_exist() -> anyhow::Result<()> {
     let cfg: Config = std::default::Default::default();
     init(&cfg).await?;
     println!("----test_api.rs---del-----");
@@ -106,7 +106,7 @@ async fn es_api_exist() -> Result<(), Box<dyn std::error::Error>> {
 }
 
 #[tokio::test]
-async fn es_api_page() -> Result<(), Box<dyn std::error::Error>> {
+async fn es_api_page() -> anyhow::Result<()> {
     use crate::rmongo::Page;
     use mongodb::bson::doc;
 
@@ -134,7 +134,7 @@ async fn es_api_page() -> Result<(), Box<dyn std::error::Error>> {
 }
 
 #[tokio::test]
-async fn es_count_1() -> std::result::Result<(), Box<dyn std::error::Error>> {
+async fn es_count_1() -> anyhow::Result<()> {
     // crate::init_modules(None).await;
     let cfg: Config = std::default::Default::default();
     println!("-----------{:#?}-----------", cfg);
@@ -161,7 +161,7 @@ async fn es_count_1() -> std::result::Result<(), Box<dyn std::error::Error>> {
 }
 
 #[tokio::test]
-async fn es_count_2() -> std::result::Result<(), Box<dyn std::error::Error>> {
+async fn es_count_2() -> anyhow::Result<()> {
     //---------------------
     // crate::init_modules(None).await;
     let cfg: Config = std::default::Default::default();

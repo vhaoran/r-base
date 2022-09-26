@@ -1,11 +1,12 @@
 use super::*;
+use anyhow::anyhow;
 use log::*;
 use rusty_leveldb::LdbIterator;
 use serde::de::DeserializeOwned;
 use serde::Serialize;
 use std::fmt::Debug;
 
-pub async fn set_str<TK, T>(key: TK, v: T) -> std::result::Result<(), Box<dyn std::error::Error>>
+pub async fn set_str<TK, T>(key: TK, v: T) -> anyhow::Result<()>
 where
     TK: AsRef<str> + std::fmt::Display,
     T: AsRef<str> + std::fmt::Display,
@@ -19,7 +20,7 @@ where
     Ok(())
 }
 
-pub async fn flush() -> std::result::Result<(), Box<dyn std::error::Error>> {
+pub async fn flush() -> anyhow::Result<()> {
     let a = INSTANCE.get().unwrap().clone();
     let mut db = a.lock().await;
 
@@ -39,7 +40,7 @@ where
     s.trim().parse::<i64>().unwrap_or(0)
 }
 
-pub async fn get_str<T>(key: T) -> std::result::Result<String, Box<dyn std::error::Error>>
+pub async fn get_str<T>(key: T) -> anyhow::Result<String>
 where
     T: AsRef<str> + std::fmt::Display,
 {
@@ -48,12 +49,12 @@ where
     //
     // let key = key;
     //
-    let l: Vec<u8> = db.get(key.to_string().as_bytes()).ok_or("")?;
+    let l: Vec<u8> = db.get(key.to_string().as_bytes()).ok_or(anyhow!(""))?;
     let s = String::from_utf8(l)?;
     Ok(s)
 }
 
-pub async fn set_json<TK, T>(key: TK, v: T) -> std::result::Result<(), Box<dyn std::error::Error>>
+pub async fn set_json<TK, T>(key: TK, v: T) -> anyhow::Result<()>
 where
     TK: AsRef<str> + std::fmt::Display,
     T: Serialize + DeserializeOwned + Debug,
@@ -63,7 +64,7 @@ where
     Ok(())
 }
 
-pub async fn get_json<TK, T>(key: TK) -> std::result::Result<T, Box<dyn std::error::Error>>
+pub async fn get_json<TK, T>(key: TK) -> anyhow::Result<T>
 where
     TK: AsRef<str> + std::fmt::Display,
     T: Serialize + DeserializeOwned + Debug,
@@ -74,7 +75,7 @@ where
     Ok(r)
 }
 
-pub async fn show_all() -> std::result::Result<Vec<String>, Box<dyn std::error::Error>> {
+pub async fn show_all() -> anyhow::Result<Vec<String>> {
     let a = INSTANCE.get().unwrap().clone();
     let mut db = a.lock().await;
 

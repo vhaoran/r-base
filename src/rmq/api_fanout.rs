@@ -8,13 +8,10 @@ use lapin::{
 use serde::{Deserialize, Serialize};
 // use serde_json::*;
 
-type Callback = fn(delivery: &Delivery, body: &str) -> Result<(), Box<dyn std::error::Error>>;
+type Callback = fn(delivery: &Delivery, body: &str) -> anyhow::Result<()>;
 
 // const ROUTING_KEY: &str = "tel-fan-out";
-pub async fn publish_json_fan_out<T>(
-    exchanger_name: &str,
-    body: T,
-) -> Result<(), Box<dyn std::error::Error>>
+pub async fn publish_json_fan_out<T>(exchanger_name: &str, body: T) -> anyhow::Result<()>
 where
     T: Serialize,
 {
@@ -27,10 +24,7 @@ where
     Ok(())
 }
 
-async fn publish_fan_out(
-    exchanger_name: &str,
-    body: &str,
-) -> Result<(), Box<dyn std::error::Error>> {
+async fn publish_fan_out(exchanger_name: &str, body: &str) -> anyhow::Result<()> {
     let conn = conn().await;
     //
     let ch = conn.create_channel().await?;
@@ -65,7 +59,7 @@ async fn publish_fan_out(
 //     queue_name: &str,
 //     exchanger_name: &str,
 //     callback: Callback,
-// ) -> Result<(), Box<dyn std::error::Error>> {
+// ) anyhow::Result<()> {
 //     let conn = cnt();
 //     //
 //     let ch = conn.create_channel().await?;
@@ -133,7 +127,7 @@ async fn publish_fan_out(
 pub async fn queue_of_fan_out(
     exchanger_name: &str,
     queue_name: &str,
-) -> Result<lapin::Consumer, Box<dyn std::error::Error>> {
+) -> anyhow::Result<lapin::Consumer> {
     let conn = conn().await;
     //
     let ch = conn.create_channel().await?;

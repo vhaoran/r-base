@@ -7,7 +7,7 @@ use lapin::{
 use log::*;
 
 #[tokio::test]
-async fn mq_cnt_1() -> Result<(), Box<dyn std::error::Error>> {
+async fn mq_cnt_1() -> anyhow::Result<()> {
     let cfg: Config = std::default::Default::default();
     init(&cfg).await?;
     let conn = conn().await;

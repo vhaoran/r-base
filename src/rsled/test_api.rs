@@ -2,7 +2,7 @@ use super::*;
 use crate::g::date;
 
 #[tokio::test]
-async fn test_1() -> Result<(), Box<dyn std::error::Error>> {
+async fn test_1() -> anyhow::Result<()> {
     let cfg = Config::default();
     super::init(cfg)?;
     println!("-----------after init-----------");
@@ -20,7 +20,7 @@ async fn test_1() -> Result<(), Box<dyn std::error::Error>> {
     Ok(())
 }
 #[tokio::test]
-async fn test_read_1() -> Result<(), Box<dyn std::error::Error>> {
+async fn test_read_1() -> anyhow::Result<()> {
     let cfg = Config::default();
     super::init(cfg)?;
     println!("-----------after init-----------");
@@ -30,7 +30,7 @@ async fn test_read_1() -> Result<(), Box<dyn std::error::Error>> {
 }
 
 #[tokio::test]
-async fn test_2() -> Result<(), Box<dyn std::error::Error>> {
+async fn test_2() -> anyhow::Result<()> {
     let cfg = Config::default();
     super::init(cfg)?;
     println!("-----------after init-----------");
@@ -47,7 +47,7 @@ async fn test_2() -> Result<(), Box<dyn std::error::Error>> {
 }
 
 #[tokio::test]
-async fn test_3() -> Result<(), Box<dyn std::error::Error>> {
+async fn test_3() -> anyhow::Result<()> {
     let cfg = Config::default();
     super::init(cfg)?;
     println!("-----------after init-----------");
@@ -63,7 +63,7 @@ async fn test_3() -> Result<(), Box<dyn std::error::Error>> {
 }
 
 #[tokio::test]
-async fn test_4() -> Result<(), Box<dyn std::error::Error>> {
+async fn test_4() -> anyhow::Result<()> {
     let cfg = Config::default();
     super::init(cfg)?;
     println!("-----------after init-----------");

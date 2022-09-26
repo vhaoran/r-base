@@ -12,7 +12,7 @@ use serde_json::Value;
 use std::env;
 
 #[tokio::test]
-async fn es_cnt_1() -> Result<(), Box<dyn std::error::Error>> {
+async fn es_cnt_1() -> anyhow::Result<()> {
     // let cfg : Config = std::default::Default();
     let url = "http://192.168.0.99:9200";
     let c = get_client(url)?;
@@ -39,7 +39,7 @@ async fn es_cnt_1() -> Result<(), Box<dyn std::error::Error>> {
     Ok(())
 }
 #[tokio::test]
-async fn es_cnt_11() -> Result<(), Box<dyn std::error::Error>> {
+async fn es_cnt_11() -> anyhow::Result<()> {
     let cfg: Config = std::default::Default::default();
     init(&cfg).await?;
     let client = cnt();
@@ -66,7 +66,7 @@ async fn es_cnt_11() -> Result<(), Box<dyn std::error::Error>> {
 }
 
 #[tokio::test]
-async fn es_cnt_2() -> Result<(), Box<dyn std::error::Error>> {
+async fn es_cnt_2() -> anyhow::Result<()> {
     // let cfg : Config = std::default::Default();
     let url = "http://192.168.0.99:9200";
     let c = get_client(url)?;
@@ -98,7 +98,7 @@ async fn es_cnt_2() -> Result<(), Box<dyn std::error::Error>> {
 }
 
 #[tokio::test]
-async fn es_cnt_3() -> Result<(), Box<dyn std::error::Error>> {
+async fn es_cnt_3() -> anyhow::Result<()> {
     // let cfg : Config = std::default::Default();
     // let url = "http://192.168.0.99:9200";
     let cfg: Config = std::default::Default::default();
@@ -131,7 +131,7 @@ async fn es_cnt_3() -> Result<(), Box<dyn std::error::Error>> {
 }
 
 #[tokio::test]
-async fn es_cnt_4() -> Result<(), Box<dyn std::error::Error>> {
+async fn es_cnt_4() -> anyhow::Result<()> {
     let cfg: Config = std::default::Default::default();
     init(&cfg).await?;
 

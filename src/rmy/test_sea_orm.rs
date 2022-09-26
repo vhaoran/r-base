@@ -23,7 +23,7 @@
 // }
 //
 // #[tokio::test]
-// async fn my_crate_1() -> Result<(), Box<dyn std::error::Error>> {
+// async fn my_crate_1() anyhow::Result<()> {
 //     let db = cnt().await?;
 //     println!("----db-cnt-------{:#?}-----------", db);
 //     //

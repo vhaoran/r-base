@@ -84,7 +84,7 @@ macro_rules! cache_wrapper {
 
 mod test {
     #[tokio::test]
-    async fn test_1() -> Result<(), Box<dyn std::error::Error>> {
+    async fn test_1() -> anyhow::Result<()> {
         cache_wrapper!(i64, i64, 1000_usize, 600_i64);
 
         //---------------------
@@ -110,7 +110,7 @@ mod test {
     }
 
     #[tokio::test]
-    async fn benchmark_1() -> Result<(), Box<dyn std::error::Error>> {
+    async fn benchmark_1() -> anyhow::Result<()> {
         cache_wrapper!(i64, i64, 1000_usize, 600_i64);
 
         for i in 0..100 {

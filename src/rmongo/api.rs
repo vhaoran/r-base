@@ -595,7 +595,7 @@ where
             let s = serde_json::to_string(&v)?;
             let r = gjson::get(s.as_str(), "col");
             let s = format!("{}", r);
-            let i = s.parse::<T>().map_err(|e| crate::err(""))?;
+            let i = s.parse::<T>().map_err(|e| anyhow!(""))?;
             Ok(i)
         }
         _ => Err(anyhow!("无法解析到数据")),
@@ -641,7 +641,7 @@ where
             let s = serde_json::to_string(&v)?;
             let r = gjson::get(s.as_str(), "col");
             let s = format!("{}", r);
-            let i = s.parse::<T>().map_err(|e| crate::err(""))?;
+            let i = s.parse::<T>().map_err(|e| anyhow!("error"))?;
             Ok(i)
         }
         _ => Err(anyhow!("无法解析到数据")),
