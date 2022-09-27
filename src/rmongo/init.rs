@@ -14,10 +14,16 @@ static INSTANCE: OnceCell<Arc<Client>> = OnceCell::new();
 pub async fn init(cfg: &Config) -> anyhow::Result<()> {
     debug!("-----rmongo init start ----");
 
-    let auth = Credential::builder()
-        .username("root".to_string())
-        .password("password".to_string())
-        .build();
+    let auth = if cfg.password.is_some() || cfg.user_name.is_some() {
+        Some(
+            Credential::builder()
+                .username("root".to_string())
+                .password("password".to_string())
+                .build(),
+        )
+    } else {
+        None
+    };
 
     let mut opt = ClientOptions::parse(cfg.url.as_str()).await?;
     opt.min_pool_size = cfg.min_pool_size;
@@ -25,7 +31,7 @@ pub async fn init(cfg: &Config) -> anyhow::Result<()> {
     opt.max_idle_time = Some(Duration::from_secs(cfg.max_idle_time.unwrap_or(1800) as u64));
     opt.retry_writes = Some(false);
     opt.retry_reads = Some(false);
-    opt.credential = Some(auth);
+    opt.credential = auth;
     opt.write_concern = Some(WriteConcern::builder().w(Acknowledgment::Nodes(1)).build());
     opt.app_name = Some("telgram".to_string());
 
