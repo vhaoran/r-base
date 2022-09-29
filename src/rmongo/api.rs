@@ -33,7 +33,7 @@ where
         return Ok(data);
     }
 
-    Err(anyhow!("no data"))
+    Err(anyhow!("没有查询到数据"))
 }
 pub async fn tx_find_one<T>(
     db: &str,
@@ -50,7 +50,7 @@ where
         return Ok(data);
     }
 
-    Err(anyhow!("no data"))
+    Err(anyhow!("没有查询到数据"))
 }
 
 pub async fn exist(
