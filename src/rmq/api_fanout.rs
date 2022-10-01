@@ -175,7 +175,7 @@ pub async fn queue_of_fan_out(
 // pub async fn consumer_of_queue_fan_out_ack(
 //     queue_name: &str,
 //     exchanger_name: &str,
-// ) -> Result<lapin::Consumer, Box<dyn std::error::Error>> {
+// ) -> anyhow::<lapin::Consumer, Box<dyn std::error::Error>> {
 //     let conn = cnt();
 //     //
 //     let ch = conn.create_channel().await?;

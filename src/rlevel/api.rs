@@ -1,10 +1,12 @@
-use super::*;
+use std::fmt::Debug;
+
 use anyhow::anyhow;
 use log::*;
 use rusty_leveldb::LdbIterator;
 use serde::de::DeserializeOwned;
 use serde::Serialize;
-use std::fmt::Debug;
+
+use super::*;
 
 pub async fn set_str<TK, T>(key: TK, v: T) -> anyhow::Result<()>
 where
@@ -16,7 +18,17 @@ where
     // let key = key.to_string();
     // let v = v.to_string();
     //
-    db.put(key.to_string().as_bytes(), v.to_string().as_bytes());
+    let _ = db.put(key.to_string().as_bytes(), v.to_string().as_bytes());
+    Ok(())
+}
+
+pub async fn remove(key: &str) -> anyhow::Result<()> {
+    let a = INSTANCE.get().unwrap().clone();
+    let mut db = a.lock().await;
+    //
+
+    //
+    let _ = db.delete(key.as_bytes());
     Ok(())
 }
 
@@ -24,7 +36,7 @@ pub async fn flush() -> anyhow::Result<()> {
     let a = INSTANCE.get().unwrap().clone();
     let mut db = a.lock().await;
 
-    db.flush();
+    let _ = db.flush();
     Ok(())
 }
 
@@ -81,7 +93,7 @@ pub async fn show_all() -> anyhow::Result<Vec<String>> {
 
     debug!("--enter_show_all-------");
 
-    let mut l: Vec<String> = Vec::new();
+    let l: Vec<String> = Vec::new();
     let mut iter = db
         .new_iter()
         .map_err(|e| {
@@ -98,8 +110,10 @@ pub async fn show_all() -> anyhow::Result<Vec<String>> {
         let a = String::from_utf8(k.clone()).unwrap_or("".to_string());
         let b = String::from_utf8(v.clone()).unwrap_or("".to_string());
         debug!("---level_db: {a} : {b}-----------");
+        println!("---level_db: {a} : {b}-----------");
     }
     debug!("--show_all_after_loop-------");
+    println!("--show_all_after_loop-------");
 
     Ok(l)
 }

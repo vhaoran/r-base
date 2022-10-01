@@ -2,8 +2,8 @@ use super::Config;
 use log::*;
 use std::sync::Arc;
 
-#[cfg(any(feature = "native-tls", feature = "rustls-tls"))]
-use elasticsearch::cert::CertificateValidation;
+// #[cfg(any(feature = "native-tls", feature = "rustls-tls"))]
+// use elasticsearch::cert::CertificateValidation;
 use elasticsearch::{
     auth::Credentials,
     cat::CatIndicesParts,

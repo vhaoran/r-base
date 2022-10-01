@@ -1,15 +1,17 @@
-use super::*;
+use crate::g::date;
 use log::*;
-
 use serde::{Deserialize, Serialize};
 use serde_json::*;
 
-pub fn publish_json<T>(topic: &str, body: T) -> anyhow::Result<()>
+use super::*;
+
+pub fn publish_json<Q, T>(topic: Q, body: T) -> anyhow::Result<()>
 where
     T: Serialize,
+    Q: AsRef<str> + std::fmt::Display,
 {
+    // let topic = topic.to_string();
     let s = serde_json::to_string(&body)?;
-
     let _ = self::publish(topic, s.as_str())?;
     Ok(())
 }
@@ -30,6 +32,7 @@ where
             })
             .map(|data| {
                 debug!("--publish msg-ok ---{:?}---", s);
+                data
             });
     });
 
@@ -40,13 +43,20 @@ pub fn publish<T>(topic: T, body: &str) -> anyhow::Result<()>
 where
     T: AsRef<str> + std::fmt::Display,
 {
-    debug!("---start publish------");
-    let topic = topic.to_string();
+    // debug!("--enter_nats_publish-------");
 
+    let topic = topic.to_string();
     let conn = super::cnt();
 
-    debug!("topic: {}  publish : {}", topic, body);
-    let _ = conn.publish(topic.as_str(), body)?;
+    let start = date::now().timestamp_millis();
+
+    let _ = conn.publish(topic.as_str(), body).map_err(|e| {
+        error!("---nats_publish_error---{}-", e.to_string());
+        e
+    })?;
+
+    let _offset = date::now().timestamp_millis() - start;
+    // debug!("nats published : ms: {offset} topic: {topic} body {body}");
 
     Ok(())
 }

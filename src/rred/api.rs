@@ -48,8 +48,8 @@ where
     T: AsRef<str> + std::fmt::Display,
 {
     let a = INSTANCE.get().unwrap().clone();
-    let pool = a.lock().await;
-    let mut c = pool.get().await.unwrap();
+    let mut c = a.lock().await;
+    // let c = pool.get().await.unwrap();
 
     // let mut c = c.lock().await;
     //
@@ -63,8 +63,8 @@ where
     V: AsRef<str> + std::fmt::Display,
 {
     let a = INSTANCE.get().unwrap().clone();
-    let pool = a.lock().await;
-    let mut c = pool.get().await.unwrap();
+    let mut c = a.lock().await;
+    // let mut c = pool.get().await.unwrap();
 
     //
     let a = c.simple_set(key.to_string(), v.to_string())?;
@@ -77,8 +77,7 @@ where
     V: AsRef<str> + std::fmt::Display,
 {
     let a = INSTANCE.get().unwrap().clone();
-    let pool = a.lock().await;
-    let mut c = pool.get().await.unwrap();
+    let mut c = a.lock().await;
 
     let _a = c.simple_set(key.to_string().as_str(), v.to_string().as_str())?;
     let _a = c.expire(key.to_string().as_str(), expire_secs)?;
@@ -90,8 +89,7 @@ where
     T: AsRef<str> + std::fmt::Display,
 {
     let a = INSTANCE.get().unwrap().clone();
-    let pool = a.lock().await;
-    let mut c = pool.get().await.unwrap();
+    let mut c = a.lock().await;
 
     let i = c.incr(key.to_string().as_str())?;
     Ok(i)
@@ -102,8 +100,7 @@ where
     T: AsRef<str> + std::fmt::Display,
 {
     let a = INSTANCE.get().unwrap().clone();
-    let pool = a.lock().await;
-    let mut c = pool.get().await.unwrap();
+    let mut c = a.lock().await;
 
     let r = c.incrby(key.to_string().as_str(), i)?;
     Ok(r)
@@ -114,8 +111,7 @@ where
     T: AsRef<str> + std::fmt::Display,
 {
     let a = INSTANCE.get().unwrap().clone();
-    let pool = a.lock().await;
-    let mut c = pool.get().await.unwrap();
+    let mut c = a.lock().await;
 
     let _a = c.expire(key.to_string().as_str(), expire_secs)?;
     Ok(())
@@ -126,8 +122,7 @@ where
     T: AsRef<str> + std::fmt::Display,
 {
     let a = INSTANCE.get().unwrap().clone();
-    let pool = a.lock().await;
-    let mut c = pool.get().await.unwrap();
+    let mut c = a.lock().await;
 
     let mut l: Vec<String> = Vec::new();
     l.push(key.to_string());
@@ -142,8 +137,7 @@ pub async fn del_many(keys: Vec<String>) -> anyhow::Result<()> {
     }
 
     let a = INSTANCE.get().unwrap().clone();
-    let pool = a.lock().await;
-    let mut c = pool.get().await.unwrap();
+    let mut c = a.lock().await;
 
     let _a = c.del(keys)?;
     Ok(())

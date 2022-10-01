@@ -8,7 +8,7 @@ pub struct Config {
 impl Default for Config {
     fn default() -> Self {
         Config {
-            path: Some("./sled-storage.db".to_string()),
+            path: Some("./sled.db".to_string()),
         }
     }
 }

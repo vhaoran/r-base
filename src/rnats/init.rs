@@ -18,15 +18,16 @@ pub async fn init(cfg: &Config) -> anyhow::Result<()> {
 
     let conn = nats::Options::with_user_pass(user_name.as_str(), pwd.as_str())
         .with_name("My Rust NATS App")
-        .max_reconnects(20000)
-        .reconnect_buffer_size(60 * 1024)
-        .disconnect_callback(|| println!("***********connection has been lost**********"))
-        .reconnect_callback(|| println!(".....connecting........"))
+        // .max_reconnects(3)
+        .max_reconnects(3)
+        .reconnect_buffer_size(64 * 1024)
+        .disconnect_callback(|| debug!("***********connection has been lost**********"))
+        .reconnect_callback(|| debug!(".....connecting........"))
         .connect(host.as_str())?;
 
     let a = Arc::new(conn);
     if let Err(_) = INSTANCE.set(a) {
-        panic!("nats init error");
+        error!("nats init error");
     }
 
     Ok(())

@@ -1,5 +1,5 @@
-use log::*;
 use serde_json::*;
+use log::*;
 
 use super::Config;
 
@@ -21,7 +21,8 @@ fn log_2() {
     cfg.size = 1;
     let _ = super::init(&cfg);
 
-    for i in 0..1032 {
-        info!(" {} info t est ", i);
+    for i in 0..100 {
+        debug!(" pk {i}");
     }
+    println!("-----------ok-----------",);
 }

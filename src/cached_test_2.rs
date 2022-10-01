@@ -102,6 +102,7 @@ fn test_timed_sized_cache_2() {
     let _ = c.cache_set(4, 1);
     let _ = c.cache_set(5, 1);
     let r = c.cache_get(&1);
+
     println!("--------1---{:?}-----------", r);
     let r = c.cache_get(&2);
     // c.cache_remove();
@@ -124,5 +125,6 @@ async fn test_2() -> anyhow::Result<()> {
     let r = c.cache_get(&(1, 1));
     println!("--------2---{:?}-----------", r);
 
+    //2079.95
     Ok(())
 }

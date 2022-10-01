@@ -54,7 +54,7 @@ async fn mq_cnt_1() -> anyhow::Result<()> {
         }
     });
 
-    let payload = b"Hello world!";
+    // let payload = b"Hello world!";
 
     for i in 0..100u16 {
         println!(" {:?}", i);

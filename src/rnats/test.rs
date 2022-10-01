@@ -20,9 +20,9 @@ async fn cnt_1() -> anyhow::Result<()> {
         let c = conn.clone();
 
         for i in 0..10000000 {
-            let s = format!("{}_msg....hello", i);
+            // let s = format!("{}_msg....hello", i);
             let s2 = format!("** 2 cnt publish: {}_msg....hello", i);
-            let r = conn.publish(TOPIC, s.as_str()).expect("no conn");
+            // let r = conn.publish(TOPIC, s.as_str()).expect("no conn");
             let r = c.publish(TOPIC, s2.as_str()).expect("no conn");
 
             println!("--------{}---publish ---{:?}--------", i, r);
@@ -30,7 +30,7 @@ async fn cnt_1() -> anyhow::Result<()> {
         }
     });
 
-    tokio::spawn(async move {
+    let _ = tokio::spawn(async move {
         println!("----after sleep-----");
         let nc = nats::Options::with_user_pass("root", PWD)
             .with_name("My Rust NATS App")
@@ -51,7 +51,7 @@ async fn cnt_1() -> anyhow::Result<()> {
             tokio::time::sleep(std::time::Duration::from_secs(SECS_LOW)).await;
         }
     })
-    .await;
+        .await;
 
     Ok(())
 }
@@ -75,18 +75,18 @@ async fn cnt_2() -> anyhow::Result<()> {
             .expect("no conn**************");
 
         for i in 0..300 {
-            let s = format!("{}_msg....hello", i);
+            // let s = format!("{}_msg....hello", i);
             let reply = conn.new_inbox();
-            let rsub = conn.subscribe(&reply).unwrap();
+            let _rsub = conn.subscribe(&reply).unwrap();
 
-            let s = format!("msg_{}__", i);
-            let r = conn.publish_request(TOPIC, &reply, s.as_str()).unwrap();
-            let response = rsub.iter().take(1);
+            let _s = format!("msg_{}__", i);
+            // let r = conn.publish_request(TOPIC, &reply, s.as_str()).unwrap();
+            // let response = rsub.iter().take(1);
         }
         tokio::time::sleep(std::time::Duration::from_secs(SECS)).await;
     });
 
-    tokio::spawn(async move {
+    let _ = tokio::spawn(async move {
         println!("----enter  subscribe task-----");
         let nc = nats::Options::with_user_pass("root", PWD)
             .with_name("My Rust NATS App")
@@ -101,12 +101,12 @@ async fn cnt_2() -> anyhow::Result<()> {
                     "---####---receive: ---------{:?}-------",
                     std::str::from_utf8(msg.data.as_slice())
                 );
-                msg.ack();
+                let _ = msg.ack();
             }
             tokio::time::sleep(std::time::Duration::from_secs(SECS_LOW)).await;
         }
     })
-    .await;
+        .await;
 
     Ok(())
 }

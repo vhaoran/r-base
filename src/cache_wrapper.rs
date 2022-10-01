@@ -21,7 +21,7 @@ macro_rules! cache_wrapper {
         fn instance() -> &'static Arc<Mutex<TimedSizedCache<$K, $V>>> {
             static INSTANCE: OnceCell<Arc<Mutex<TimedSizedCache<$K, $V>>>> = OnceCell::new();
             INSTANCE.get_or_init(|| {
-                let mut m =
+                let  m =
                     TimedSizedCache::with_size_and_lifespan($CACHE_SIZE, $SPAN_SECS_i64 as u64);
                 Arc::new(Mutex::new(m))
             })
@@ -48,11 +48,11 @@ macro_rules! cache_wrapper {
             if r.is_some() {
                 return Some(r.unwrap().clone());
             }
-            println!(
-                "-size: {:?} capacity: {:?}------",
-                m.cache_size(),
-                m.cache_capacity()
-            );
+            // println!(
+            //     "-size: {:?} capacity: {:?}------",
+            //     m.cache_size(),
+            //     m.cache_capacity()
+            // );
 
             None
         }
@@ -68,15 +68,15 @@ macro_rules! cache_wrapper {
             let a = instance().clone();
             let mut m = a.lock().await;
             m.cache_set(key, v);
-            println!(
-                "-size: {:?} capacity: {:?}------",
-                m.cache_size(),
-                m.cache_capacity()
-            );
+            // println!(
+            //     "-size: {:?} capacity: {:?}------",
+            //     m.cache_size(),
+            //     m.cache_capacity()
+            // );
         }
         pub async fn cache_count() -> usize {
             let a = instance().clone();
-            let mut m = a.lock().await;
+            let m = a.lock().await;
             m.cache_size()
         }
     };
@@ -89,17 +89,17 @@ mod test {
 
         //---------------------
         for i in 0..10_i64 {
-            let key = format!("{i}_key");
+            // let key = format!("{i}_key");
             cache_set(i, i % 10).await;
         }
 
         for i in 0..10_i64 {
-            let key = format!("{i}_key");
+            // let key = format!("{i}_key");
             let r = cache_get(i).await;
             println!("-----{i} = {:?}-----------", r);
         }
         for i in 0..10_i64 {
-            let key = format!("{i}_key");
+            // let key = format!("{i}_key");
             let r = cache_contains(i).await;
             println!("---contains: {i} = {:?}-----------", r);
         }
@@ -113,18 +113,18 @@ mod test {
     async fn benchmark_1() -> anyhow::Result<()> {
         cache_wrapper!(i64, i64, 1000_usize, 600_i64);
 
-        for i in 0..100 {
+        for _ in 0..100 {
             tokio::spawn(async move {
                 println!("----after sleep-----");
 
                 for i in 0..1000000_i64 {
-                    let key = format!("{i}_key");
+                    // let key = format!("{i}_key");
                     cache_set(i, i % 10).await;
                 }
 
                 for i in 0..1000000_i64 {
-                    let key = format!("{i}_key");
-                    let r = cache_get(i).await;
+                    // let key = format!("{i}_key");
+                    // let r = cache_get(i).await;
                     let r = cache_remove(i).await;
                     println!("-----{i} = {:?}-----------", r);
                     println!("-----count: {} ----------", cache_count().await);
@@ -137,6 +137,6 @@ mod test {
             tokio::time::sleep(std::time::Duration::from_secs(5)).await;
         }
 
-        Ok(())
+        // Ok(())
     }
 }

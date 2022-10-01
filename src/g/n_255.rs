@@ -21,6 +21,7 @@ fn to_char(i: u8) -> u8 {
     let l = pat();
     l.get(i as usize).unwrap().clone()
 }
+
 fn to_index(i: u8) -> u8 {
     let l = pat();
     let mut j = 0;
@@ -45,10 +46,10 @@ pub fn to_n250(n: i64) -> String {
     //
     let high = pat().len();
     let md = high as i64;
-    let mut s = "".to_string();
+    // s = "".to_string();
     let mut rate = n / md;
-    let mut m = n % md;
-    s = format!("{}", to_char(m as u8) as char);
+    let  m = n % md;
+    let mut s = format!("{}", to_char(m as u8) as char);
 
     while rate >= high as i64 {
         let m = rate % md;

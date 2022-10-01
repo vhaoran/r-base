@@ -1,3 +1,4 @@
+use log::*;
 use mongodb::bson::{doc, Document};
 use mongodb::options::{
     AggregateOptions, CountOptions, DeleteOptions, FindOneOptions, FindOptions, InsertManyOptions,
@@ -20,13 +21,14 @@ pub async fn raw_find_one<T>(
     tb: &str,
     filter: impl Into<Option<Document>>,
     options: impl Into<Option<FindOneOptions>>,
-) -> Result<Option<T>>
+) -> anyhow::Result<Option<T>>
 where
     T: Serialize + DeserializeOwned + Unpin + Debug + std::marker::Send + Sync,
 {
     let c = cnt();
     let tb = c.database(db).collection::<T>(tb);
-    tb.find_one(filter, options).await
+    let r = tb.find_one(filter, options).await?;
+    Ok(r)
 }
 
 pub async fn tx_raw_find_one<T>(
@@ -35,16 +37,21 @@ pub async fn tx_raw_find_one<T>(
     filter: impl Into<Option<Document>>,
     options: impl Into<Option<FindOneOptions>>,
     tx: &mut ClientSession,
-) -> Result<Option<T>>
+) -> anyhow::Result<Option<T>>
 where
     T: Serialize + DeserializeOwned + Unpin + Debug + std::marker::Send + Sync,
 {
     let c = cnt();
     let tb = c.database(db).collection::<T>(tb);
-    tb.find_one_with_session(filter, options, tx).await
+    let r = tb.find_one_with_session(filter, options, tx).await?;
+    Ok(r)
 }
 
-pub async fn raw_exist(db: &str, tb: &str, filter: impl Into<Option<Document>>) -> Result<bool> {
+pub async fn raw_exist(
+    db: &str,
+    tb: &str,
+    filter: impl Into<Option<Document>>,
+) -> anyhow::Result<bool> {
     let r: Option<Document> = raw_find_one(db, tb, filter, None).await?;
     Ok(r.is_some())
 }
@@ -54,7 +61,7 @@ pub async fn tx_raw_exist(
     tb: &str,
     filter: impl Into<Option<Document>>,
     tx: &mut ClientSession,
-) -> Result<bool> {
+) -> anyhow::Result<bool> {
     let r: Option<Document> = tx_raw_find_one(db, tb, filter, None, tx).await?;
     Ok(r.is_some())
 }
@@ -64,7 +71,7 @@ pub async fn raw_count(
     tb: &str,
     filter: impl Into<Option<Document>>,
     options: impl Into<Option<CountOptions>>,
-) -> Result<u64> {
+) -> anyhow::Result<u64> {
     let c = cnt();
     let tb = c.database(db).collection::<Document>(tb);
     let c = tb.count_documents(filter, options).await?;
@@ -77,7 +84,7 @@ pub async fn tx_raw_count(
     filter: impl Into<Option<Document>>,
     options: impl Into<Option<CountOptions>>,
     tx: &mut ClientSession,
-) -> Result<u64> {
+) -> anyhow::Result<u64> {
     let c = cnt();
     let tb = c.database(db).collection::<Document>(tb);
     let c = tb.count_documents_with_session(filter, options, tx).await?;
@@ -89,13 +96,14 @@ pub async fn raw_find_many<T>(
     tb: &str,
     filter: impl Into<Option<Document>>,
     options: impl Into<Option<FindOptions>>,
-) -> Result<mongodb::Cursor<T>>
+) -> anyhow::Result<mongodb::Cursor<T>>
 where
     T: Serialize + DeserializeOwned + Unpin + Debug + Send + Sync,
 {
     let c = cnt();
     let tb = c.database(db).collection::<T>(tb);
-    tb.find(filter, options).await
+    let r = tb.find(filter, options).await?;
+    Ok(r)
 }
 
 pub async fn tx_raw_find_many<T>(
@@ -104,13 +112,14 @@ pub async fn tx_raw_find_many<T>(
     filter: impl Into<Option<Document>>,
     options: impl Into<Option<FindOptions>>,
     tx: &mut ClientSession,
-) -> Result<mongodb::SessionCursor<T>>
+) -> anyhow::Result<mongodb::SessionCursor<T>>
 where
     T: Serialize + DeserializeOwned + Unpin + Debug + Send + Sync,
 {
     let c = cnt();
     let tb = c.database(db).collection::<T>(tb);
-    tb.find_with_session(filter, options, tx).await
+    let r = tb.find_with_session(filter, options, tx).await?;
+    Ok(r)
 }
 
 pub async fn raw_find_many_doc(
@@ -118,7 +127,7 @@ pub async fn raw_find_many_doc(
     tb: &str,
     filter: impl Into<Option<Document>>,
     options: impl Into<Option<FindOptions>>,
-) -> Result<Vec<Document>> {
+) -> anyhow::Result<Vec<Document>> {
     use futures::stream::{StreamExt, TryStreamExt};
 
     let mut c = raw_find_many(db, tb, filter, options).await?;
@@ -138,7 +147,7 @@ pub async fn tx_raw_find_many_doc(
     filter: impl Into<Option<Document>>,
     options: impl Into<Option<FindOptions>>,
     tx: &mut ClientSession,
-) -> Result<Vec<Document>> {
+) -> anyhow::Result<Vec<Document>> {
     use futures::stream::{StreamExt, TryStreamExt};
 
     let mut c = tx_raw_find_many(db, tb, filter, options, tx).await?;
@@ -157,13 +166,14 @@ pub async fn raw_insert_one<T>(
     tb: &str,
     doc: T,
     options: impl Into<Option<InsertOneOptions>>,
-) -> Result<InsertOneResult>
+) -> anyhow::Result<InsertOneResult>
 where
     T: Serialize + DeserializeOwned + Unpin + Debug,
 {
     let c = cnt();
     let tb = c.database(db).collection::<T>(tb);
-    tb.insert_one(doc, options).await
+    let r = tb.insert_one(doc, options).await?;
+    Ok(r)
 }
 pub async fn tx_raw_insert_one<T>(
     db: &str,
@@ -171,13 +181,14 @@ pub async fn tx_raw_insert_one<T>(
     doc: T,
     options: impl Into<Option<InsertOneOptions>>,
     tx: &mut ClientSession,
-) -> Result<InsertOneResult>
+) -> anyhow::Result<InsertOneResult>
 where
     T: Serialize + DeserializeOwned + Unpin + Debug,
 {
     let c = cnt();
     let tb = c.database(db).collection::<T>(tb);
-    tb.insert_one_with_session(doc, options, tx).await
+    let r = tb.insert_one_with_session(doc, options, tx).await?;
+    Ok(r)
 }
 
 pub async fn raw_insert_many<T>(
@@ -185,13 +196,14 @@ pub async fn raw_insert_many<T>(
     tb: &str,
     doc: Vec<T>,
     options: impl Into<Option<InsertManyOptions>>,
-) -> Result<InsertManyResult>
+) -> anyhow::Result<InsertManyResult>
 where
     T: Serialize + DeserializeOwned + Unpin + Debug,
 {
     let c = cnt();
     let tb = c.database(db).collection::<T>(tb);
-    tb.insert_many(doc, options).await
+    let r = tb.insert_many(doc, options).await?;
+    Ok(r)
 }
 
 pub async fn tx_raw_insert_many<T>(
@@ -200,13 +212,14 @@ pub async fn tx_raw_insert_many<T>(
     doc: Vec<T>,
     options: impl Into<Option<InsertManyOptions>>,
     tx: &mut ClientSession,
-) -> Result<InsertManyResult>
+) -> anyhow::Result<InsertManyResult>
 where
     T: Serialize + DeserializeOwned + Unpin + Debug,
 {
     let c = cnt();
     let tb = c.database(db).collection::<T>(tb);
-    tb.insert_many_with_session(doc, options, tx).await
+    let r = tb.insert_many_with_session(doc, options, tx).await?;
+    Ok(r)
 }
 
 pub async fn raw_delete_one(
@@ -214,10 +227,11 @@ pub async fn raw_delete_one(
     tb: &str,
     doc: Document,
     options: impl Into<Option<DeleteOptions>>,
-) -> Result<DeleteResult> {
+) -> anyhow::Result<DeleteResult> {
     let c = cnt();
     let tb = c.database(db).collection::<Document>(tb);
-    tb.delete_one(doc, options).await
+    let r = tb.delete_one(doc, options).await?;
+    Ok(r)
 }
 
 pub async fn tx_raw_delete_one(
@@ -226,10 +240,11 @@ pub async fn tx_raw_delete_one(
     doc: Document,
     options: impl Into<Option<DeleteOptions>>,
     tx: &mut ClientSession,
-) -> Result<DeleteResult> {
+) -> anyhow::Result<DeleteResult> {
     let c = cnt();
     let tb = c.database(db).collection::<Document>(tb);
-    tb.delete_one_with_session(doc, options, tx).await
+    let r = tb.delete_one_with_session(doc, options, tx).await?;
+    Ok(r)
 }
 
 pub async fn raw_delete_many(
@@ -237,10 +252,11 @@ pub async fn raw_delete_many(
     tb: &str,
     doc: Document,
     options: impl Into<Option<DeleteOptions>>,
-) -> Result<DeleteResult> {
+) -> anyhow::Result<DeleteResult> {
     let c = cnt();
     let tb = c.database(db).collection::<Document>(tb);
-    tb.delete_many(doc, options).await
+    let r = tb.delete_many(doc, options).await?;
+    Ok(r)
 }
 
 pub async fn tx_raw_delete_many(
@@ -249,10 +265,11 @@ pub async fn tx_raw_delete_many(
     doc: Document,
     options: impl Into<Option<DeleteOptions>>,
     tx: &mut ClientSession,
-) -> Result<DeleteResult> {
+) -> anyhow::Result<DeleteResult> {
     let c = cnt();
     let tb = c.database(db).collection::<Document>(tb);
-    tb.delete_many_with_session(doc, options, tx).await
+    let r = tb.delete_many_with_session(doc, options, tx).await?;
+    Ok(r)
 }
 
 pub async fn raw_update_one(
@@ -261,10 +278,11 @@ pub async fn raw_update_one(
     doc: Document,
     update: impl Into<UpdateModifications>,
     options: impl Into<Option<UpdateOptions>>,
-) -> Result<UpdateResult> {
+) -> anyhow::Result<UpdateResult> {
     let c = cnt();
     let tb = c.database(db).collection::<Document>(tb);
-    tb.update_one(doc, update, options).await
+    let r = tb.update_one(doc, update, options).await?;
+    Ok(r)
 }
 
 pub async fn tx_raw_update_one(
@@ -274,10 +292,11 @@ pub async fn tx_raw_update_one(
     update: impl Into<UpdateModifications>,
     options: impl Into<Option<UpdateOptions>>,
     tx: &mut ClientSession,
-) -> Result<UpdateResult> {
+) -> anyhow::Result<UpdateResult> {
     let c = cnt();
     let tb = c.database(db).collection::<Document>(tb);
-    tb.update_one_with_session(doc, update, options, tx).await
+    let r = tb.update_one_with_session(doc, update, options, tx).await?;
+    Ok(r)
 }
 
 pub async fn raw_update_many(
@@ -286,10 +305,11 @@ pub async fn raw_update_many(
     doc: Document,
     update: impl Into<UpdateModifications>,
     options: impl Into<Option<UpdateOptions>>,
-) -> Result<UpdateResult> {
+) -> anyhow::Result<UpdateResult> {
     let c = cnt();
     let tb = c.database(db).collection::<Document>(tb);
-    tb.update_many(doc, update, options).await
+    let r = tb.update_many(doc, update, options).await?;
+    Ok(r)
 }
 pub async fn tx_raw_update_many(
     db: &str,
@@ -298,10 +318,13 @@ pub async fn tx_raw_update_many(
     update: impl Into<UpdateModifications>,
     options: impl Into<Option<UpdateOptions>>,
     tx: &mut ClientSession,
-) -> Result<UpdateResult> {
+) -> anyhow::Result<UpdateResult> {
     let c = cnt();
     let tb = c.database(db).collection::<Document>(tb);
-    tb.update_many_with_session(doc, update, options, tx).await
+    let r = tb
+        .update_many_with_session(doc, update, options, tx)
+        .await?;
+    Ok(r)
 }
 
 pub async fn raw_aggregate(
@@ -309,7 +332,7 @@ pub async fn raw_aggregate(
     tb: &str,
     pipeline: impl IntoIterator<Item = Document>,
     options: impl Into<Option<AggregateOptions>>,
-) -> Result<Vec<Document>> {
+) -> anyhow::Result<Vec<Document>> {
     let c = cnt();
     let tb = c.database(db).collection::<Document>(tb);
     let mut cursor = tb.aggregate(pipeline, options).await?;
@@ -321,6 +344,8 @@ pub async fn raw_aggregate(
         }
     }
 
+    debug!("--raw_aggregate: {l:#?}-------");
+
     Ok(l)
 }
 
@@ -330,7 +355,7 @@ pub async fn tx_raw_aggregate(
     pipeline: impl IntoIterator<Item = Document>,
     options: impl Into<Option<AggregateOptions>>,
     tx: &mut ClientSession,
-) -> Result<Vec<Document>> {
+) -> anyhow::Result<Vec<Document>> {
     let c = cnt();
     let tb = c.database(db).collection::<Document>(tb);
     let mut cursor = tb.aggregate_with_session(pipeline, options, tx).await?;

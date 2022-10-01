@@ -2,7 +2,13 @@
 #![allow(dead_code)]
 
 #[macro_use]
+extern crate anyhow;
+#[macro_use]
+extern crate cached;
+#[macro_use]
 extern crate lazy_static;
+#[macro_use]
+extern crate serde_json;
 
 // #[macro_use]
 // extern crate ormlite;
@@ -11,11 +17,10 @@ extern crate lazy_static;
 
 //----pub fn/struct--------------------------
 
-#[macro_use]
-use anyhow::anyhow;
+use std::error::Error;
+
 pub use module_cfg::*;
 pub use module_init::*;
-use std::error::Error;
 
 //--------macro--------------------------
 pub mod audios;
@@ -23,13 +28,12 @@ pub mod audios;
 pub mod verify;
 #[macro_use]
 pub mod m_dao;
-#[macro_use]
-pub mod cache_wrapper;
-#[macro_use]
-extern crate cached;
 
 #[macro_use]
-extern crate serde_json;
+mod m_dyn_dao;
+
+#[macro_use]
+pub mod cache_wrapper;
 
 // #[cfg(feature = "rmy")]
 // #[macro_use]
@@ -41,6 +45,8 @@ pub mod res;
 pub mod rlog;
 pub mod rmongo;
 pub mod rmq;
+pub mod rpolo;
+// pub mod rr;
 
 // #[cfg(feature = "rmy")]
 // pub mod rmy;
@@ -60,3 +66,10 @@ mod cached_test_2;
 mod test_m_dao;
 mod test_module;
 mod test_verify;
+#[macro_use]
+pub mod polo_dao;
+pub mod storages;
+mod test_polo_dao;
+#[macro_use]
+pub mod store_kv_utils;
+mod test_store_kv;

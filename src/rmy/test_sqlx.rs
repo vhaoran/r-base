@@ -3,7 +3,7 @@
 // use sqlx::Connection;
 // use sqlx::MySqlPool;
 //
-// pub async fn cnt() -> Result<MySqlPool, Box<dyn std::error::Error>> {
+// pub async fn cnt() -> anyhow::<MySqlPool, Box<dyn std::error::Error>> {
 //     let url = "mysql://root:password@192.168.0.99/test";
 //     let mut pool = MySqlPool::connect(url).await?;
 //     // let pool = MySqlPool::connect_with(MySqlConnectOptions::new()).await?;

@@ -14,8 +14,8 @@ async fn test_1() -> anyhow::Result<()> {
     println!("-----------{:?}-----------", r);
 
     println!("-----------begin_show_all-----------",);
-    self::flush().await;
-    self::show_all().await;
+    let _ = self::flush().await;
+    let _ = self::show_all().await;
 
     Ok(())
 }
@@ -24,7 +24,7 @@ async fn test_read_1() -> anyhow::Result<()> {
     let cfg = Config::default();
     super::init(cfg)?;
     println!("-----------after init-----------");
-    self::show_all().await;
+    let _ = self::show_all().await;
 
     Ok(())
 }
@@ -77,12 +77,69 @@ async fn test_4() -> anyhow::Result<()> {
     }
     let i = date::now().timestamp_millis() - i;
     //
-    self::set_str(key, s.as_str()).await;
+    let _ = self::set_str(key, s.as_str()).await;
     let r = self::get_str(key).await?;
 
     // println!("-----------{:?}-----------", r);
     println!("-----------{}-----------", r.len());
     println!("-----------millis: {i}-----------",);
+
+    Ok(())
+}
+
+#[tokio::test]
+async fn test_write_41() -> anyhow::Result<()> {
+    let cfg = Config::default();
+    super::init(cfg)?;
+    println!("-----------after init-----------");
+    //
+
+    let i0 = date::now().timestamp_millis();
+    for i in 0..1_000_000 {
+        let key = format!("json_{i}",);
+        let s = format!("json_value_{i}",);
+        let _ = self::set_str(key.as_str(), s.as_str()).await;
+        // let r = self::get_str(key.as_str()).await;
+
+        if i % 10000 == 0 {
+            println!(
+                "----sled: {i}----ms: {}-----------",
+                date::now().timestamp_millis() - i0
+            );
+        }
+    }
+    self::flush().await;
+
+    println!(
+        "--------sled---ms: {}-----------",
+        date::now().timestamp_millis() - i0
+    );
+
+    Ok(())
+}
+#[tokio::test]
+async fn test_read_41() -> anyhow::Result<()> {
+    let cfg = Config::default();
+    super::init(cfg)?;
+    println!("-----------after init-----------");
+    //
+
+    let i0 = date::now().timestamp_millis();
+    for i in 0..100_000 {
+        let key = format!("json_{i}",);
+        let r = self::get_str(key.as_str()).await;
+        // let r = self::get_str(key.as_str()).await;
+
+        if i % 10000 == 0 {
+            println!("-----------{r:#?}-----------",);
+        }
+    }
+    // self::flush().await;
+
+    println!(
+        "--------sled---ms: {}-----------",
+        date::now().timestamp_millis() - i0
+    );
 
     Ok(())
 }

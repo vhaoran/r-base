@@ -17,6 +17,12 @@ impl Module {
         rmongo::init(cfg).await?;
         Ok(self.clone())
     }
+
+    pub async fn init_polo(&self, cfg: &rpolo::Config) -> anyhow::Result<Self> {
+        rpolo::init(cfg)?;
+        Ok(self.clone())
+    }
+
     pub async fn init_mq(&self, cfg: &rmq::Config) -> anyhow::Result<Self> {
         rmq::init(cfg).await?;
         Ok(self.clone())
@@ -57,6 +63,7 @@ impl Module {
 pub struct ModuleConfig {
     pub redis: Option<rred::Config>,
     pub mongo: Option<rmongo::Config>,
+    pub polo: Option<rpolo::Config>,
     pub es: Option<res::Config>,
     pub mq: Option<rmq::Config>,
     pub nats: Option<rnats::Config>,
@@ -96,7 +103,7 @@ pub async fn init_module_n(
     //
     if load_log {
         if let Some(cfg) = cfg.log {
-            print!("##### log init start ####");
+            print!("##### log init starting ####");
             Module.init_log(&cfg)?;
             print!("----------- log init 完成 -----------");
             if !load_other {
@@ -109,47 +116,61 @@ pub async fn init_module_n(
     Module.init_mysql().await?;
 
     if let Some(cfg) = cfg.redis {
-        info!("##### redis init start ####");
+        info!("##### redis init starting ####");
         Module.init_redis(&cfg)?;
         print!("-----------  init 完成 -----------");
     }
     if let Some(cfg) = cfg.mongo {
-        info!("##### mongo init start ####");
+        info!("##### mongo init starting ####");
         Module.init_mongo(&cfg).await?;
-        print!("-----------  init 完成 -----------");
+        debug!("-----------  init 完成 -----------");
+    }
+    if let Some(cfg) = cfg.polo {
+        info!("##### mongo init starting ####");
+        Module.init_polo(&cfg).await?;
+        debug!("-----------  init 完成 -----------");
     }
 
     if let Some(cfg) = cfg.es {
-        info!("##### es init start ####");
+        info!("##### es init starting ####");
         Module.init_es(&cfg).await?;
         print!("-----------  init 完成 -----------");
     }
     if let Some(cfg) = cfg.mq {
-        info!("##### rabbitMQ init start ####");
+        info!("##### rabbitMQ init starting ####");
         Module.init_mq(&cfg).await?;
         print!("-----------rabbitMQ  init 完成 -----------");
     }
+    debug!("--after init mongo-------");
 
     if let Some(cfg) = cfg.nats {
-        info!("##### mq-nats init start ####");
+        info!("##### mq-nats init starting ####");
         Module.init_nats(&cfg).await?;
         info!("##### mq-nats init ok ####");
     }
+    debug!("--after init nats-------");
+
     //-----------sled--------------------------
     if let Some(cfg) = cfg.sled {
-        info!("##### sled init start ####");
+        info!("##### sled init starting ####");
         Module.init_sled(&cfg)?;
         info!("##### sled init ok ####");
     }
+    debug!("--after init sled-------");
+
     if let Some(cfg) = cfg.level {
-        info!("##### level-db init start ####");
+        info!("##### level-db init starting ####");
         Module.init_level(&cfg)?;
         info!("##### level-db init ok ####");
     }
 
+    debug!("--after init level-------");
+
+    debug!("--before leave init-------");
     if load_other {
         Ok(config)
     } else {
+        error!("--init error-------");
         Err(anyhow!("not load options"))
     }
 }

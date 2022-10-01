@@ -1,5 +1,5 @@
 use chrono::prelude::*;
-
+use chrono::LocalResult;
 // unix time stamp
 pub fn unix_sec() -> i64 {
     //chrono::prelude::Local::now().timestamp()
@@ -45,8 +45,22 @@ pub fn from_date_str(s: &str) -> Option<DateTime<Local>> {
     }
     //
 
-    let now: DateTime<Local> = Local.ymd(year, month, day).and_hms(0, 0, 0);
-    Some(now)
+    // let now: DateTime<Local> = Local.ymd(year, month, day).and_hms(0, 0, 0);
+    let r: LocalResult<DateTime<Local>> = Local.with_ymd_and_hms(year, month, day, 0, 0, 0);
+    match r {
+        LocalResult::Single(v) => Some(v),
+        _ => None,
+    }
+
+    // let r: LocalResult<Date<Local>> = Local.ymd_opt(year, month, day);
+    // match r {
+    //     LocalResult::Single(v) => {
+    //         DateTime<Local>::
+    //     },
+    //     _ => None,
+    // }
+
+    // Some(now)
 }
 //2012-12-31 12:31:48
 pub fn from_datetime_str(s: &str) -> Option<DateTime<Local>> {
@@ -88,8 +102,14 @@ pub fn from_datetime_str(s: &str) -> Option<DateTime<Local>> {
     }
     //
     if right.len() == 0 {
-        let now: DateTime<Local> = Local.ymd(year, month, day).and_hms(0, 0, 0);
-        return Some(now);
+        // let now: DateTime<Local> = Local.ymd(year, month, day).and_hms(0, 0, 0);
+        // return Some(now);
+
+        let r: LocalResult<DateTime<Local>> = Local.with_ymd_and_hms(year, month, day, 0, 0, 0);
+        return match r {
+            LocalResult::Single(v) => Some(v),
+            _ => None,
+        };
     }
 
     //------------------------------------------
@@ -108,23 +128,42 @@ pub fn from_datetime_str(s: &str) -> Option<DateTime<Local>> {
         sec = l.get(2).clone()?.parse::<u32>().unwrap_or(0);
     }
 
-    let now: DateTime<Local> = Local.ymd(year, month, day).and_hms(h, m, sec);
-    Some(now)
+    // let now: DateTime<Local> = Local.ymd(year, month, day).and_hms(h, m, sec);
+    // Some(now)
+    let r: LocalResult<DateTime<Local>> = Local.with_ymd_and_hms(year, month, day, h, m, sec);
+    return match r {
+        LocalResult::Single(v) => Some(v),
+        _ => None,
+    };
 }
 
 pub fn today() -> DateTime<Local> {
     let now = self::now();
-    let now: DateTime<Local> = Local
-        .ymd(now.year(), now.month(), now.day())
-        .and_hms(0, 0, 0);
-    now
+    // let now: DateTime<Local> = Local
+    //     .ymd(now.year(), now.month(), now.day())
+    //     .and_hms(0, 0, 0);
+    // now
+
+    let r: LocalResult<DateTime<Local>> =
+        Local.with_ymd_and_hms(now.year(), now.month(), now.day(), 0, 0, 0);
+    // return match r {
+    //     LocalResult::Single(v) => Some(v),
+    //     _ => None,
+    // };
+    r.unwrap()
 }
 
 /// 指定日期所在月的1号的时间
 pub fn month_first_day(dt: DateTime<Local>) -> DateTime<Local> {
     let d = dt;
-    let now: DateTime<Local> = Local.ymd(d.year(), d.month(), 1_u32).and_hms(0, 0, 0);
-    now
+    // let now: DateTime<Local> = Local.ymd(d.year(), d.month(), 1_u32).and_hms(0, 0, 0);
+    // now
+    let r: LocalResult<DateTime<Local>> = Local.with_ymd_and_hms(d.year(), d.month(), 1, 0, 0, 0);
+    // return match r {
+    //     LocalResult::Single(v) => Some(v),
+    //     _ => None,
+    // };
+    r.unwrap()
 }
 
 pub fn prior_month_first_day(dt: DateTime<Local>) -> DateTime<Local> {
@@ -136,8 +175,14 @@ pub fn prior_month_first_day(dt: DateTime<Local>) -> DateTime<Local> {
 
 pub fn month_first_day_of_now() -> DateTime<Local> {
     let d = self::now();
-    let now: DateTime<Local> = Local.ymd(d.year(), d.month(), 1_u32).and_hms(0, 0, 0);
-    now
+    // let now: DateTime<Local> = Local.ymd(d.year(), d.month(), 1_u32).and_hms(0, 0, 0);
+    // now
+    let r: LocalResult<DateTime<Local>> = Local.with_ymd_and_hms(d.year(), d.month(), 1, 0, 0, 0);
+    // return match r {
+    //     LocalResult::Single(v) => Some(v),
+    //     _ => None,
+    // };
+    r.unwrap()
 }
 
 /// 上个月的第一天
@@ -147,9 +192,16 @@ pub fn prior_month_first_day_of_now() -> DateTime<Local> {
 }
 
 pub fn from_ymd(year: i32, month: u32, day: u32) -> DateTime<Local> {
-    let now = self::now();
-    let now: DateTime<Local> = Local.ymd(year, month, day).and_hms(0, 0, 0);
-    now
+    // let now = self::now();
+    // let now: DateTime<Local> = Local.ymd(year, month, day).and_hms(0, 0, 0);
+    // now
+    let r: LocalResult<DateTime<Local>> = Local.with_ymd_and_hms(year, month, day, 0, 0, 0);
+    // return match r {
+    //     LocalResult::Single(v) => Some(v),
+    //     _ => None,
+    // };
+
+    r.unwrap()
 }
 
 pub fn from_ymd_hms(
@@ -160,26 +212,60 @@ pub fn from_ymd_hms(
     minute: u32,
     sec: u32,
 ) -> DateTime<Local> {
-    let now = self::now();
-    let now: DateTime<Local> = Local.ymd(year, month, day).and_hms(hour, minute, sec);
-    now
+    // let now = self::now();
+    // let now: DateTime<Local> = Local.ymd(year, month, day).and_hms(hour, minute, sec);
+    // now
+
+    let r: LocalResult<DateTime<Local>> =
+        Local.with_ymd_and_hms(year, month, day, hour, minute, sec);
+    // return match r {
+    //     LocalResult::Single(v) => Some(v),
+    //     _ => None,
+    // };
+    r.unwrap()
 }
 
 pub fn yesterday() -> DateTime<Local> {
     self::add(&self::today(), -86400)
 }
 
+pub fn tomorrom() -> DateTime<Local> {
+    self::add(&self::today(), 86400)
+}
+
+pub fn next_day(i: i64) -> DateTime<Local> {
+    let dt = from_timestamp(i);
+    let dt = to_date(&dt);
+    self::add(&dt, 86400)
+}
+
+pub fn prior_day(i: i64) -> DateTime<Local> {
+    let dt = from_timestamp(i);
+    let dt = to_date(&dt);
+    self::add(&dt, -86400)
+}
+
 pub fn to_date(dt: &DateTime<Local>) -> DateTime<Local> {
-    let now: DateTime<Local> = Local.ymd(dt.year(), dt.month(), dt.day()).and_hms(0, 0, 0);
-    now
+    // let now: DateTime<Local> = Local.ymd(dt.year(), dt.month(), dt.day()).and_hms(0, 0, 0);
+    // now
+    let r: LocalResult<DateTime<Local>> =
+        Local.with_ymd_and_hms(dt.year(), dt.month(), dt.day(), 0, 0, 0);
+    // return match r {
+    //     LocalResult::Single(v) => Some(v),
+    //     _ => None,
+    // };
+    r.unwrap()
 }
 
 pub fn from_timestamp(timestamp: i64) -> DateTime<Local> {
-    Local.timestamp(timestamp, 0)
+    let r = Local.timestamp_opt(timestamp, 0);
+    r.unwrap()
 }
 
 pub fn add(dt: &DateTime<Local>, secs: i64) -> DateTime<Local> {
-    Local.timestamp(dt.timestamp() + secs, 0)
+    // Local.timestamp(dt.timestamp() + secs, 0)
+    let r = Local.timestamp_opt(dt.timestamp() + secs, 0);
+    r.unwrap()
 }
 
 //local now to str
@@ -205,6 +291,12 @@ pub fn date_str_of_timestamp(timestamp: i64) -> String {
 }
 
 pub fn datetime_str_of_timestamp(timestamp: i64) -> String {
+    self::datetime_str(self::from_timestamp(timestamp))
+}
+
+/// output is a date_time_str
+/// similar: 2022-12-31 12:38:46
+pub fn timestamp_str(timestamp: i64) -> String {
     self::datetime_str(self::from_timestamp(timestamp))
 }
 

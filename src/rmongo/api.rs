@@ -1,21 +1,21 @@
-use log::*;
-use mongodb::bson::{doc, Document};
-use mongodb::options::{
-    CountOptions, FindOneOptions, FindOptions, InsertManyOptions, InsertOneOptions,
-};
-use mongodb::results::{InsertManyResult, InsertOneResult};
+use std::any::Any;
 use std::borrow::Borrow;
+use std::default::Default;
+use std::fmt::Debug;
 use std::str::FromStr;
 
 use anyhow::anyhow;
 use futures::stream::{StreamExt, TryStreamExt};
+use mongodb::bson::{doc, Document};
 use mongodb::options::{AggregateOptions, DeleteOptions, UpdateModifications, UpdateOptions};
+use mongodb::options::{
+    CountOptions, FindOneOptions, FindOptions, InsertManyOptions, InsertOneOptions,
+};
 use mongodb::results::{DeleteResult, UpdateResult};
+use mongodb::results::{InsertManyResult, InsertOneResult};
 use mongodb::{options::ClientOptions, Client, ClientSession};
 use serde::{de::DeserializeOwned, Deserialize, Serialize};
-use std::any::Any;
-use std::default::Default;
-use std::fmt::Debug;
+use log::*;
 
 use super::*;
 
@@ -35,6 +35,7 @@ where
 
     Err(anyhow!("没有查询到数据"))
 }
+
 pub async fn tx_find_one<T>(
     db: &str,
     tb: &str,
@@ -61,6 +62,7 @@ pub async fn exist(
     let r = raw_exist(db, tb, filter).await?;
     Ok(r)
 }
+
 pub async fn tx_exist(
     db: &str,
     tb: &str,
@@ -80,6 +82,7 @@ pub async fn count(
     let c = raw_count(db, tb, filter, options).await?;
     Ok(c)
 }
+
 pub async fn tx_count(
     db: &str,
     tb: &str,
@@ -323,6 +326,7 @@ pub async fn update_one(
     let r = raw_update_one(db, tb, doc, update, options).await?;
     Ok(r)
 }
+
 pub async fn tx_update_one(
     db: &str,
     tb: &str,
@@ -595,7 +599,7 @@ where
             let s = serde_json::to_string(&v)?;
             let r = gjson::get(s.as_str(), "col");
             let s = format!("{}", r);
-            let i = s.parse::<T>().map_err(|e| anyhow!(""))?;
+            let i = s.parse::<T>().map_err(|_| anyhow!("parse error"))?;
             Ok(i)
         }
         _ => Err(anyhow!("无法解析到数据")),
@@ -641,7 +645,7 @@ where
             let s = serde_json::to_string(&v)?;
             let r = gjson::get(s.as_str(), "col");
             let s = format!("{}", r);
-            let i = s.parse::<T>().map_err(|e| anyhow!("error"))?;
+            let i = s.parse::<T>().map_err(|_| anyhow!("[arse int error"))?;
             Ok(i)
         }
         _ => Err(anyhow!("无法解析到数据")),

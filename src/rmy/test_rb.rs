@@ -15,7 +15,7 @@
 // // this macro will create impl BizActivity{ pub fn id()->&str ..... }
 // impl_field_name_method!(BizActivity { id, name });
 //
-// pub async fn cnt() -> Result<Rbatis, Box<dyn std::error::Error>> {
+// pub async fn cnt() -> anyhow::<Rbatis, Box<dyn std::error::Error>> {
 //     fast_log::init(fast_log::config::Config::new().console());
 //     // initialize rbatis. May use `lazy_static` crate to define rbatis as a global variable because rbatis is thread safe
 //

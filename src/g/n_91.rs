@@ -1,5 +1,6 @@
-use anyhow::anyhow;
 use std::ops::Index;
+
+use anyhow::anyhow;
 
 const PAT: &str =
     "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ`\"\' =~!@#$%^&*()_+;,./:[]{}\\|>?";
@@ -15,10 +16,9 @@ pub fn to_n91(n: i64) -> String {
     //
     let high = PAT.len();
     let md = high as i64;
-    let mut s = "".to_string();
     let mut rate = n / md;
-    let mut m = n % md;
-    s = format!("{}", PAT.get(m as usize..(m as usize) + 1).unwrap());
+    let m = n % md;
+    let mut s = format!("{}", PAT.get(m as usize..(m as usize) + 1).unwrap());
     while rate >= high as i64 {
         let m = rate % md;
         s = format!("{}{}", PAT.get(m as usize..m as usize + 1).unwrap(), s);
@@ -56,7 +56,7 @@ pub fn from_n91(s: &str) -> anyhow::Result<i64> {
     let list = s.as_bytes();
 
     let mut j = 0_usize;
-    for v in list {
+    for _v in list {
         let c = list.get(j).unwrap().clone() as char;
         let p = list.len() - j - 1;
         j += 1;

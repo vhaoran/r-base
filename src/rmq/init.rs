@@ -1,27 +1,27 @@
-use log::*;
-use once_cell::sync::OnceCell;
-use tokio::sync::Mutex;
+use std::sync::Arc;
 
 use anyhow::anyhow;
 use lapin::{
     message::DeliveryResult, options::*, publisher_confirm::Confirmation, types::FieldTable,
     BasicProperties, Connection, ConnectionProperties,
 };
-use std::sync::Arc;
-// use tokio::sync::Mutex ;
-
+use once_cell::sync::OnceCell;
+use tokio::sync::Mutex;
 use log::info;
+use log::*;
 // use nats::connect;
 use tokio_amqp::*;
 
 use super::Config;
 
+// use tokio::sync::Mutex ;
+
 static INSTANCE: OnceCell<Mutex<Arc<Connection>>> = OnceCell::new();
 
 pub async fn init(cfg: &Config) -> anyhow::Result<()> {
-    let r = self::init_instance(cfg.clone()).await;
+    let _ = self::init_instance(cfg.clone()).await;
     //
-    self::watch_spawn(cfg.clone()).await;
+    let _ = self::watch_spawn(cfg.clone()).await;
     Ok(())
 }
 
@@ -34,12 +34,12 @@ pub async fn init_instance(cfg: Config) -> anyhow::Result<()> {
     let m = Mutex::new(a.clone());
 
     //first set
-    if let Err(e) = INSTANCE.set(m) {
+    if let Err(_) = INSTANCE.set(m) {
         //second set
         let i = INSTANCE.get().unwrap();
         let mut m = i.lock().await;
         *m = a;
-        return Err(anyhow!("set error"));
+        return Err(anyhow!("set error "));
     }
 
     Ok(())
@@ -53,6 +53,7 @@ pub async fn conn() -> Arc<Connection> {
 
 async fn watch_spawn(cfg: Config) {
     tokio::spawn(async move {
+        tokio::time::sleep(std::time::Duration::from_secs(60)).await;
         loop {
             let cfg = cfg.clone();
             // debug!("--loop_check_rabbit_connection-------");
@@ -64,7 +65,7 @@ async fn watch_spawn(cfg: Config) {
                 debug!("--cnt is error,after 5 seconds will  reconnecting...");
                 println!("--cnt is error,after 5 seconds will  reconnecting...");
                 tokio::time::sleep(std::time::Duration::from_secs(1)).await;
-                self::init_instance(cfg.clone()).await;
+                let _ = self::init_instance(cfg.clone()).await;
                 continue;
             }
             tokio::time::sleep(std::time::Duration::from_secs(5)).await;

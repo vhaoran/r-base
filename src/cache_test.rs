@@ -1,6 +1,7 @@
-use once_cell::sync::OnceCell;
 use std::collections::HashMap;
 use std::sync::Arc;
+
+use once_cell::sync::OnceCell;
 use tokio::sync::Mutex;
 
 #[derive(Clone, Default, Debug)]
@@ -15,7 +16,7 @@ struct Wrapper<T> {
 fn instance() -> &'static Arc<Mutex<HashMap<i64, Wrapper<i64>>>> {
     static INSTANCE: OnceCell<Arc<Mutex<HashMap<i64, Wrapper<i64>>>>> = OnceCell::new();
     INSTANCE.get_or_init(|| {
-        let mut m = HashMap::new();
+        let m = HashMap::new();
         Arc::new(Mutex::new(m))
     })
 }
@@ -26,7 +27,7 @@ pub async fn cache_clear() {
     m.clear();
 }
 
-pub async fn cache_get(key: i64, v: i64, live_secs: i64) -> Option<i64> {
+pub async fn cache_get(key: i64) -> Option<i64> {
     let a = self::instance().clone();
     let mut m = a.lock().await;
     if m.contains_key(&key) {
@@ -66,7 +67,7 @@ async fn test_c_1() -> anyhow::Result<()> {
     tokio::spawn(async move {
         for i in 0..100 {
             tokio::time::sleep(std::time::Duration::from_secs(1)).await;
-            let a = self::cache_get(i, i * 100, 30).await;
+            let a = self::cache_get(i).await;
             println!("-----------{:?}-----------", a);
         }
     });

@@ -19,9 +19,9 @@ pub fn truncate_of_ascii_width(s: &str, high: usize) -> String {
     }
     //
     let mut l = "".to_string();
-    let mut old = "".to_string();
+    // let mut old = "".to_string();
     for v in s.chars() {
-        old = l.clone();
+        let old = l.clone();
         l.push(v);
         if self::ascii_width(l.as_str()) > high {
             return old;
@@ -71,9 +71,9 @@ pub fn truncate_n_bytes(s: &str, high: usize) -> String {
     }
     //
     let mut l = "".to_string();
-    let mut old = "".to_string();
+    // let mut old = "".to_string();
     for v in s.chars() {
-        old = l.clone();
+        let old = l.clone();
         l.push(v);
         if l.bytes().len() > high {
             return old;
@@ -90,7 +90,10 @@ pub fn truncate_n_bytes(s: &str, high: usize) -> String {
 #[test]
 fn t_1() {
     //---------------------
-    let s = "blackdog12345";
-    let s = truncate_of_ascii_width(s, 8);
+    let mut s = "blackdog12345".to_string();
+    let a = &s[3..];
+    let ss = format!("good{a}");
+
     println!("-----------{s}-----------");
+    println!("-----------{ss}-----------");
 }

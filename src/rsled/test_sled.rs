@@ -1,5 +1,6 @@
-use sled::IVec;
 use std::sync::Arc;
+
+use sled::IVec;
 
 #[test]
 fn s_1() {
@@ -13,7 +14,7 @@ fn s_1() {
         .unwrap();
 
     // insert and get, similar to std's BTreeMap
-    tree.insert("KEY1", "VAL1");
+    let _ = tree.insert("KEY1", "VAL1");
     let r = tree.get(&"KEY1").unwrap().unwrap();
     //
     // r.to_vec();

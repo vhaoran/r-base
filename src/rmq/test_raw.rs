@@ -6,13 +6,13 @@ async fn mq_raw_1() -> anyhow::Result<()> {
         BasicProperties, Connection, ConnectionProperties, Result,
     };
 
-    use log::info;
     use tokio_amqp::*;
+    use log::info;
     if env::var("RUST_LOG").is_err() {
         env::set_var("RUST_LOG", "info");
     }
 
-    env_logger::init();
+    // env_logger::init();
 
     // let addr = std::env::var("AMQP_ADDR").unwrap_or_else(|_| "amqp://127.0.0.1:5672/%2f".into());
     let addr = "amqp://root:password@192.168.0.99:5672/%2f";

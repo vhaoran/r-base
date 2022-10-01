@@ -122,7 +122,7 @@ async fn mc_1() -> anyhow::Result<()> {
 async fn mc_2() -> anyhow::Result<()> {
     test_init().await?;
 
-    let r: mongodb::error::Result<Option<Document>> = raw_find_one(
+    let r: anyhow::Result<Option<Document>> = raw_find_one(
         "test",
         "a",
         doc! {
@@ -140,7 +140,7 @@ async fn mc_2() -> anyhow::Result<()> {
 async fn mc_3() -> anyhow::Result<()> {
     test_init().await?;
 
-    let r: mongodb::error::Result<Option<Document>> = raw_find_one(
+    let r: anyhow::Result<Option<Document>> = raw_find_one(
         "test",
         "a",
         doc! {
@@ -508,7 +508,7 @@ async fn aggre_min_1() -> anyhow::Result<()> {
 async fn test_tx_1() -> anyhow::Result<()> {
     init_modules(None).await?;
     let cnt = cnt();
-    let db = cnt.database("test");
+    // let db = cnt.database("test");
     let mut session = cnt.start_session(None).await?;
     let options = TransactionOptions::builder()
         .read_concern(ReadConcern::majority())

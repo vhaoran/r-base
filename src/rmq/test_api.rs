@@ -1,17 +1,16 @@
-use super::*;
 use anyhow::anyhow;
-
-use super::*;
 use futures::stream::StreamExt;
 use lapin::{
     message::Delivery, message::DeliveryResult, options::*, publisher_confirm::Confirmation,
     types::FieldTable, BasicProperties, Connection, ConnectionProperties, ConnectionStatus,
 };
+use serde::{Deserialize, Serialize};
 use log::*;
 
-const QUEUE_TEST: &str = "q_test";
+use super::*;
+use super::*;
 
-use serde::{Deserialize, Serialize};
+const QUEUE_TEST: &str = "q_test";
 
 #[derive(Serialize, Deserialize, Clone, Debug)]
 pub struct User {
@@ -30,7 +29,7 @@ impl Default for User {
 
 #[tokio::test]
 async fn mq_publish_1() -> anyhow::Result<()> {
-    log::set_max_level(LevelFilter::Debug);
+    // log::set_max_level(LevelFilter::Debug);
 
     let cfg: Config = std::default::Default::default();
     init(&cfg).await?;
@@ -56,12 +55,12 @@ async fn mq_publish_1() -> anyhow::Result<()> {
         println!("----after sleep-----");
     }
 
-    Ok(())
+    // Ok(())
 }
 
 #[tokio::test]
 async fn mq_consume_queue_1() -> anyhow::Result<()> {
-    log::set_max_level(LevelFilter::Debug);
+    // log::set_max_level(LevelFilter::Debug);
 
     let cfg: Config = std::default::Default::default();
     init(&cfg).await?;
@@ -78,7 +77,7 @@ async fn mq_consume_queue_1() -> anyhow::Result<()> {
                 return;
             }
             let delivery = delivery.unwrap();
-            if let Some((delivery)) = delivery {
+            if let Some(delivery) = delivery {
                 // delivery
                 //     .ack(BasicAckOptions::default())
                 //     .await
@@ -102,12 +101,12 @@ async fn mq_consume_queue_1() -> anyhow::Result<()> {
         println!("----after sleep-----");
     }
 
-    Ok(())
+    // Ok(())
 }
 
 #[tokio::test]
 async fn mq_consume_queue_2() -> anyhow::Result<()> {
-    log::set_max_level(LevelFilter::Debug);
+    // log::set_max_level(LevelFilter::Debug);
     let cfg: Config = std::default::Default::default();
     let _ = init(&cfg).await?;
     loop {
@@ -143,12 +142,12 @@ pub async fn loop_single() -> anyhow::Result<()> {
         println!("consume error and then reconnect ");
         tokio::time::sleep(std::time::Duration::from_secs(5)).await;
     }
-    Ok(())
+    // Ok(())
 }
 
 #[tokio::test]
 async fn mq_api_publish_1() -> anyhow::Result<()> {
-    log::set_max_level(LevelFilter::Debug);
+    // log::set_max_level(LevelFilter::Debug);
 
     let cfg: Config = std::default::Default::default();
     init(&cfg).await?;
@@ -171,7 +170,7 @@ async fn mq_api_publish_1() -> anyhow::Result<()> {
         });
     }
 
-    tokio::spawn(async move {
+    let _ = tokio::spawn(async move {
         println!("----after sleep-----");
         loop {
             tokio::time::sleep(std::time::Duration::from_secs(10)).await;
@@ -197,7 +196,7 @@ fn str_marshal_1() {
 
 #[tokio::test]
 async fn mq_api_fan_out_1() -> anyhow::Result<()> {
-    log::set_max_level(LevelFilter::Debug);
+    // log::set_max_level(LevelFilter::Debug);
 
     let cfg: Config = Config::default();
     init(&cfg).await?;
@@ -211,7 +210,7 @@ async fn mq_api_fan_out_1() -> anyhow::Result<()> {
             let q = format!("q_{}", i);
 
             let id = i;
-            let r = queue_of_fan_out(EXCHANGER_NAME, q.as_str())
+            let _ = queue_of_fan_out(EXCHANGER_NAME, q.as_str())
                 .await
                 .unwrap()
                 .set_delegate(move |delivery: lapin::message::DeliveryResult| async move {
@@ -236,7 +235,7 @@ async fn mq_api_fan_out_1() -> anyhow::Result<()> {
                 });
         }
     });
-    tokio::spawn(async move {
+    let _ = tokio::spawn(async move {
         println!("----after sleep-----");
         for i in 0..100 {
             tokio::time::sleep(std::time::Duration::from_secs(1)).await;

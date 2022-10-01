@@ -16,9 +16,19 @@ where
 {
     let s = serde_json::to_string(&body)?;
 
-    debug!("publish msg: {}", s);
+    debug!("queue: {queue_name} publish msg: {}", s);
 
-    publish_basic(queue_name, s.as_str()).await
+    publish_basic(queue_name, s.as_str())
+        .await
+        .map_err(|e| {
+            error!("-queue:{queue_name}--publish_error---{}-", e.to_string());
+            e
+        })
+        .map(|data| {
+            debug!("-queue:{queue_name}-publish_-ok ---{s}---");
+            data
+        })
+
     // Ok(())
 }
 

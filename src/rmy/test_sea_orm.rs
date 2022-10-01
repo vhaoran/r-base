@@ -14,7 +14,7 @@
 // }
 // impl ActiveModelBehavior for ActiveModel {}
 //
-// pub async fn cnt() -> Result<DatabaseConnection, Box<dyn std::error::Error>> {
+// pub async fn cnt() -> anyhow::<DatabaseConnection, Box<dyn std::error::Error>> {
 //     let url = "mysql://root:password@192.168.0.99/test";
 //     let mut opt = ConnectOptions::new(url.to_string());
 //     let db = Database::connect(opt).await?;
