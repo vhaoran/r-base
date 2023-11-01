@@ -12,7 +12,7 @@ required-features = ["rmy"]
 
 
 [dependencies]
-tokio = {version = "1" ,features=["full" ,"test-util"]}
+tokio = {version = "1.20" ,features=["full" ,"test-util"]}
 
 serde = "~1.0.136"
 serde_json = "~1.0.79"
@@ -22,8 +22,8 @@ serde_yaml = "^0.8"
 lazy_static = "^1.4.0"
 
 log = "^0.4"
-env_logger = "^0.8"
-simple-log = "^1"
+#env_logger = "0.8"
+#simple-log = "1"
 #rand = "0.8.4"
 rand = "0.8.5"
 #uuid = { version = "0.4", features = ["serde", "v4"] }
@@ -32,33 +32,29 @@ num-format = "0.4.0"
 
 url = "^2"
 # datetime
-chrono = "^0.4.19"
-once_cell = "^1.7.2"
+chrono = "0.4.23"
+once_cell = "1.7.2"
 
-deadpool = {version = "0.7" , features = ["managed"]}
+# deadpool = {version = "^0.9" , features = ["managed"]}
 async-trait = "0.1.50"
 
-#Version 2.0.0-beta
-#mongodb = "2.0.0-beta"
 mongodb = "2.3.0"
-#redis = "0.20"
-#redis_rs = "0.9"
-redisclient = "^0.1"
+redisclient = "0.1"
 elasticsearch = "7.12.0-alpha.1"
 futures = "^0.3"
-# rabbit mq /lapin
-tokio-amqp = "1.0.0"
-#lapin = "^1.6"
-lapin = "^2.1.1"
-gjson= "^0.8"
-nats = "^0.18.1"
+tokio-amqp = "2.0.0"
+lapin = "2.1.1"
+gjson= "0.8"
+nats = "0.18.1"
 
 # -----------for rbatis--begin-------
 #rbatis = {version = "^3.1.15",features = ["mysql","runtime-tokio-rustls"]}
 #rbson = "^2.0.5"
 # logging lib(required)
+#env_logger = "0.8"
+simple-log = "^1.6"
 #log = "0.4"
-fast_log="1.3"
+#fast_log="1.3"
 # -----------for rbatis--begin-------
 
 #sea-orm = {version = "0.7.1",features = ["runtime-tokio-native-tls","sqlx-mysql"]}
@@ -70,10 +66,24 @@ fast_log="1.3"
 # mp3
 mp3-metadata = "0.3.3"
 md5 = "0.7.0"
-cached = "^0.34.0"
-sled = "^0.34.7"
-rusty-leveldb = "1.0.2"
-anyhow = "^1.0.65"
+cached = "0.34.0"
+sled = "0.34.7"
+rusty-leveldb = "3.0.0"
+anyhow = "1.0.65"
+thiserror = "1.0.30"
+
+
+#---- log--------------
+#tracing-subscriber = "0.3.16"
+#tracing-appender = "0.2.2"
+#tracing = "^0.1.37"
+
+#rocksdb = "0.19.0"
+ntapi = "0.4.1"
+
+polodb_core = "4.4.0"
+#polodb_core = {path="../PoloDB/src/polodb_core"}
+
 
 [features]
 default = []
