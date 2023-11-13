@@ -27,6 +27,7 @@ pub async fn remove(key: &str) -> anyhow::Result<()> {
     let db = a.lock().await;
     //
     let _ = db.remove(key);
+    let _ = db.flush();
     Ok(())
 }
 
@@ -129,7 +130,7 @@ pub async fn all_values() -> HashMap<String, String> {
     h
 }
 
-pub async fn clear()  {
+pub async fn clear() {
     let a = INSTANCE.get().unwrap().clone();
     let db = a.lock().await;
     let _ = db.clear();
