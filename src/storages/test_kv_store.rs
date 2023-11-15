@@ -39,7 +39,7 @@ pub async fn rm(k: KType) -> anyhow::Result<()> {
     let mut m = a.lock().await;
     m.rm(k)
 }
-pub async fn clear(k: KType) -> anyhow::Result<()> {
+pub async fn clear() -> anyhow::Result<()> {
     let a = self::instance().clone();
     let mut m = a.lock().await;
     m.clear()
