@@ -39,7 +39,7 @@ macro_rules! store_kv {
             let mut m = a.lock().await;
             m.rm(k)
         }
-        pub async fn clear(k: KType) -> anyhow::Result<()> {
+        pub async fn clear() -> anyhow::Result<()> {
             let a = instance().clone();
             let mut m = a.lock().await;
             m.clear()
@@ -49,7 +49,6 @@ macro_rules! store_kv {
             let mut m = a.lock().await;
             m.store.len()
         }
-
 
         pub async fn get(k: KType) -> anyhow::Result<VType> {
             let a = instance().clone();
