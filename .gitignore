@@ -1,4 +1,6 @@
-
+sled/
+polo/
+polo.db/
 target/
 *.lock
 .idea/

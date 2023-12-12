@@ -18,28 +18,28 @@ macro_rules! polo_base {
             s
         }
 
-        pub async fn find_one<$T>(filter: impl Into<Option<Document>>) -> anyhow::Result<$T>
+        pub fn find_one<$T>(filter: impl Into<Option<Document>>) -> anyhow::Result<$T>
         where
             $T: Serialize + DeserializeOwned + Unpin + Debug + Send + Sync,
         {
-            let r = $crate::rpolo::find_one($tb, filter).await?;
+            let r = $crate::rpolo::find_one($tb, filter)?;
             Ok(r)
         }
 
-        pub async fn exist(filter: impl Into<Option<Document>>) -> bool {
-            $crate::rpolo::exist($tb, filter).await
+        pub fn exist(filter: impl Into<Option<Document>>) -> bool {
+            $crate::rpolo::exist($tb, filter)
         }
 
-        pub async fn count(filter: Document) -> anyhow::Result<i64> {
-            let r = $crate::rpolo::count($tb, filter).await?;
+        pub fn count(filter: Document) -> anyhow::Result<i64> {
+            let r = $crate::rpolo::count($tb, filter)?;
             Ok(r)
         }
 
-        pub async fn insert_one<$T>(doc: $T) -> anyhow::Result<InsertOneResult>
+        pub fn insert_one<$T>(doc: $T) -> anyhow::Result<InsertOneResult>
         where
             $T: Serialize + DeserializeOwned + Unpin + Debug,
         {
-            let r = $crate::rpolo::insert_one($tb, doc).await?;
+            let r = $crate::rpolo::insert_one($tb, doc)?;
             Ok(r)
         }
 
@@ -49,41 +49,41 @@ macro_rules! polo_base {
         // where
         //     $T: Serialize + DeserializeOwned + Unpin + Debug,
         // {
-        //     let r = $crate::rpolo::insert_many($db, $tb, doc, options).await?;
+        //     let r = $crate::rpolo::insert_many($db, $tb, doc, options)?;
         //     Ok(r)
         // }
 
-        pub async fn find_many<$T>(filter: impl Into<Option<Document>>) -> anyhow::Result<Vec<$T>>
+        pub fn find_many<$T>(filter: impl Into<Option<Document>>) -> anyhow::Result<Vec<$T>>
         where
             $T: Serialize + DeserializeOwned + Unpin + Debug + Send + Sync,
         {
-            let r = $crate::rpolo::find_many::<$T>($tb, filter).await?;
+            let r = $crate::rpolo::find_many::<$T>($tb, filter)?;
             Ok(r)
         }
 
-        pub async fn delete_one(filter: Document) -> anyhow::Result<DeleteResult> {
-            let r = $crate::rpolo::delete_one($tb, filter).await?;
+        pub fn delete_one(filter: Document) -> anyhow::Result<DeleteResult> {
+            let r = $crate::rpolo::delete_one($tb, filter)?;
             Ok(r)
         }
 
-        pub async fn delete_many(filter: Document) -> anyhow::Result<DeleteResult> {
-            let r = $crate::rpolo::delete_many($tb, filter).await?;
+        pub fn delete_many(filter: Document) -> anyhow::Result<DeleteResult> {
+            let r = $crate::rpolo::delete_many($tb, filter)?;
             Ok(r)
         }
 
-        pub async fn update_one(
+        pub fn update_one(
             filter: Document,
             update: Document,
         ) -> anyhow::Result<UpdateResult> {
-            let r = $crate::rpolo::update_one($tb, filter, update).await?;
+            let r = $crate::rpolo::update_one($tb, filter, update)?;
             Ok(r)
         }
 
-        pub async fn update_many(
+        pub fn update_many(
             filter: Document,
             update: Document,
         ) -> anyhow::Result<UpdateResult> {
-            let r = $crate::rpolo::update_many($tb, filter, update).await?;
+            let r = $crate::rpolo::update_many($tb, filter, update)?;
             Ok(r)
         }
     };

@@ -769,3 +769,32 @@
 2022-09-26 16:15:50:138259000 [INFO] <r_base::module_init:134>:##### mq-nats init start ####
 2022-09-26 16:15:50:467067000 [INFO] <r_base::module_init:136>:##### mq-nats init ok ####
 2022-09-26 16:15:50:475724000 [DEBUG] <r_base::rmongo::test_api:528>:--after get_tx-------
+2023-12-01 15:38:30.130562000 [DEBUG] <r_base::rlog::init:54>:....log module init ok.....
+2023-12-01 15:38:30.131069000 [DEBUG] <r_base::rpolo::api_raw:471>:--after init model-------
+2023-12-01 15:38:30.131113000 [DEBUG] <r_base::rpolo::init:19>:-----rpolo init start ----
+2023-12-01 15:38:30.131956000 [DEBUG] <r_base::rpolo::init:32>:-----rpolo init ok----
+2023-12-01 15:38:30.132016000 [DEBUG] <r_base::rpolo::api_raw:484>:--after init of polo-------
+2023-12-01 15:38:30.132125000 [DEBUG] <r_base::rpolo::api_raw:20>:-raw_insert_one-before_lock_polo: 8732541958840053098-------
+2023-12-01 15:38:30.132264000 [DEBUG] <r_base::rpolo::api_raw:22>:-raw_insert_one-after_lock_polo: 8732541958840053098-------
+2023-12-01 15:38:30.132880000 [DEBUG] <r_base::rpolo::api_raw:149>:-raw_count-before_lock_polo: 1591079877535489951-------
+2023-12-01 15:38:30.132937000 [DEBUG] <r_base::rpolo::api_raw:151>:-raw_count-after_lock_polo: 1591079877535489951-------
+2023-12-01 15:38:42.828986000 [DEBUG] <r_base::rlog::init:54>:....log module init ok.....
+2023-12-01 15:38:42.829300000 [DEBUG] <r_base::rpolo::api_raw:412>:--after init model-------
+2023-12-01 15:38:42.829341000 [DEBUG] <r_base::rpolo::init:19>:-----rpolo init start ----
+2023-12-01 15:38:42.829952000 [DEBUG] <r_base::rpolo::init:32>:-----rpolo init ok----
+2023-12-01 15:38:42.830002000 [DEBUG] <r_base::rpolo::api_raw:425>:--after init of polo-------
+2023-12-01 15:38:42.830099000 [DEBUG] <r_base::rpolo::api_raw:20>:-raw_insert_one-before_lock_polo: 3731216807040809671-------
+2023-12-01 15:38:42.830225000 [DEBUG] <r_base::rpolo::api_raw:22>:-raw_insert_one-after_lock_polo: 3731216807040809671-------
+2023-12-01 15:38:42.830878000 [DEBUG] <r_base::rpolo::api_raw:97>:-_raw_find_many-before_lock_polo: 1521745581726382479-------
+2023-12-01 15:38:42.830931000 [DEBUG] <r_base::rpolo::api_raw:99>:-_raw_find_many-after_lock_polo: 1521745581726382479-------
+2023-12-01 15:38:42.831308000 [DEBUG] <r_base::rpolo::api_raw:455>:--after aggregate-------
+2023-12-01 15:38:42.831424000 [DEBUG] <r_base::rpolo::api_raw:458>:---aggregate:--------[
+    Document({
+        "_id": Int64(
+            1,
+        ),
+        "title": String(
+            "aa",
+        ),
+    }),
+]-----------

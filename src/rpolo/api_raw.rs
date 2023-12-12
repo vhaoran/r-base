@@ -1,5 +1,7 @@
 use super::*;
 use crate::{g, init_module_n};
+use futures::executor::block_on;
+use futures::AsyncWriteExt;
 use log::*;
 use polodb_core::bson::oid::ObjectId;
 use polodb_core::bson::{doc, Document};
@@ -9,57 +11,61 @@ use serde::de::DeserializeOwned;
 use serde::{Deserialize, Serialize};
 use std::fmt::Debug;
 
-pub async fn raw_insert_one<T>(tb: &str, doc: T) -> anyhow::Result<InsertOneResult>
+pub fn raw_insert_one<T>(tb: &str, doc: T) -> anyhow::Result<InsertOneResult>
 where
     T: Serialize + DeserializeOwned + Unpin + Debug,
 {
     let a = cnt();
     let id = g::random();
     debug!("-raw_insert_one-before_lock_polo: {id}-------");
-    let c = a.lock().await;
+    let c = a.blocking_lock();
     debug!("-raw_insert_one-after_lock_polo: {id}-------");
 
     let tb = c.collection::<T>(tb);
     let r = tb.insert_one(doc)?;
-
     Ok(r)
 }
 
-pub async fn raw_del_one(tb: &str, filter: Document) -> anyhow::Result<DeleteResult> {
+pub fn raw_del_one(tb: &str, filter: Document) -> anyhow::Result<DeleteResult> {
     let a = cnt();
     let id = g::random();
     debug!("-raw_del_one-before_lock_polo: {id}-------");
-    let c = a.lock().await;
+    let c = a.blocking_lock();
     debug!("-raw_del_one-after_lock_polo: {id}-------");
 
     let tb = c.collection::<Document>(tb);
     let r = tb.delete_one(filter)?;
+
     Ok(r)
 }
-pub async fn raw_del_many(tb: &str, filter: Document) -> anyhow::Result<DeleteResult> {
+pub fn raw_del_many(tb: &str, filter: Document) -> anyhow::Result<DeleteResult> {
     let a = cnt();
     let id = g::random();
     debug!("-before_lock_polo: raw_del_many- {id}-------");
-    let c = a.lock().await;
+    let c = a.blocking_lock();
     debug!("-after_lock_polo:  raw_del_many-: {id}-------");
-    debug!("--talbe: {tb} filter: {filter:#?}-------");
+    debug!("--table: {tb} filter: {filter:#?}-------");
 
     let tb = c.collection::<Document>(tb);
     debug!("--after_get_tb delete_many-------");
 
-    let r = tb.delete_many(filter).map_err(|e| {
-        error!("---delete_many_error---{}-", e.to_string());
-        e
-    })?;
-    debug!("--after_delete_many_raw_del_many-------");
-    Ok(r)
+    if filter.len() == 0 {
+        let _ = tb.drop()?;
+        Ok(DeleteResult { deleted_count: 1 })
+    } else {
+        let r = tb.delete_many(filter).map_err(|e| {
+            error!("---delete_many_error---{}-", e.to_string());
+            e
+        })?;
+        Ok(r)
+    }
 }
 
-pub async fn raw_update_one(tb: &str, doc: Document, up: Document) -> anyhow::Result<UpdateResult> {
+pub fn raw_update_one(tb: &str, doc: Document, up: Document) -> anyhow::Result<UpdateResult> {
     let a = cnt();
     let id = g::random();
     debug!("-raw_update_one-before_lock_polo: {id}-------");
-    let c = a.lock().await;
+    let c = a.blocking_lock();
     debug!("-raw_update_one-after_lock_polo: {id}-------");
 
     let tb = c.collection::<Document>(tb);
@@ -67,15 +73,11 @@ pub async fn raw_update_one(tb: &str, doc: Document, up: Document) -> anyhow::Re
     Ok(r)
 }
 
-pub async fn raw_update_many(
-    tb: &str,
-    doc: Document,
-    up: Document,
-) -> anyhow::Result<UpdateResult> {
+pub fn raw_update_many(tb: &str, doc: Document, up: Document) -> anyhow::Result<UpdateResult> {
     let a = cnt();
     let id = g::random();
     debug!("-raw_update_many-before_lock_polo: {id}-------");
-    let c = a.lock().await;
+    let c = a.blocking_lock();
     debug!("-raw_update_many-after_lock_polo: {id}-------");
 
     let tb = c.collection::<Document>(tb);
@@ -83,7 +85,7 @@ pub async fn raw_update_many(
     Ok(r)
 }
 
-async fn _raw_find_many<T>(
+fn _raw_find_many<T>(
     tb: &str,
     filter: impl Into<Option<Document>>,
 ) -> anyhow::Result<ClientCursor<T>>
@@ -93,7 +95,7 @@ where
     let a = cnt();
     let id = g::random();
     debug!("-_raw_find_many-before_lock_polo: {id}-------");
-    let c = a.lock().await;
+    let c = a.blocking_lock();
     debug!("-_raw_find_many-after_lock_polo: {id}-------");
 
     let tb = c.collection::<T>(tb);
@@ -102,14 +104,11 @@ where
     Ok(r)
 }
 
-pub async fn raw_find_many<T>(
-    tb: &str,
-    filter: impl Into<Option<Document>>,
-) -> anyhow::Result<Vec<T>>
+pub fn raw_find_many<T>(tb: &str, filter: impl Into<Option<Document>>) -> anyhow::Result<Vec<T>>
 where
     T: Serialize + DeserializeOwned + Unpin + Debug + Send + Sync,
 {
-    let r = _raw_find_many(tb, filter).await?;
+    let r = _raw_find_many(tb, filter)?;
 
     let mut l = Vec::<T>::new();
     for v in r {
@@ -124,17 +123,14 @@ where
     Ok(l)
 }
 
-async fn _raw_find_one<T>(
-    tb: &str,
-    filter: impl Into<Option<Document>>,
-) -> anyhow::Result<Option<T>>
+fn _raw_find_one<T>(tb: &str, filter: impl Into<Option<Document>>) -> anyhow::Result<Option<T>>
 where
     T: Serialize + DeserializeOwned + Unpin + Debug + Send + Sync,
 {
     let a = cnt();
     let id = g::random();
     debug!("-before_lock_polo_raw_find_one-: {id}-------");
-    let c = a.lock().await;
+    let c = a.blocking_lock();
     debug!("-after_lock_polo:_raw_find_one- {id}-------");
     let doc: Option<Document> = filter.into();
     debug!("--tb: {tb}--filter: {doc:#?}-----");
@@ -144,14 +140,14 @@ where
     Ok(r)
 }
 
-pub async fn raw_count(tb: &str, filter: Document) -> anyhow::Result<i64> {
+pub fn raw_count(tb: &str, filter: Document) -> anyhow::Result<i64> {
     // todo-modify
     // avoid use this function
     // let r = _raw_find_many::<Document>(tb, filter)?;
     let a = cnt();
     let id = g::random();
     debug!("-raw_count-before_lock_polo: {id}-------");
-    let c = a.lock().await;
+    let c = a.blocking_lock();
     debug!("-raw_count-after_lock_polo: {id}-------");
 
     let tb = c.collection::<Document>(tb);
@@ -186,28 +182,28 @@ pub async fn raw_count(tb: &str, filter: Document) -> anyhow::Result<i64> {
     }
 }
 
-pub async fn raw_exist(tb: &str, filter: impl Into<Option<Document>>) -> bool {
-    match _raw_find_one::<Document>(tb, filter).await {
+pub fn raw_exist(tb: &str, filter: impl Into<Option<Document>>) -> bool {
+    match _raw_find_one::<Document>(tb, filter) {
         Ok(v) => v.is_some(),
         _ => false,
     }
 }
 
-pub async fn raw_find_one<T>(tb: &str, filter: impl Into<Option<Document>>) -> anyhow::Result<T>
+pub fn raw_find_one<T>(tb: &str, filter: impl Into<Option<Document>>) -> anyhow::Result<T>
 where
     T: Serialize + DeserializeOwned + Unpin + Debug + Send + Sync,
 {
-    match _raw_find_one(tb, filter).await? {
+    match _raw_find_one(tb, filter)? {
         Some(v) => Ok(v),
         _ => Err(anyhow!("not found data in {tb}",)),
     }
 }
 
-pub async fn raw_create_index(tb: &str, data: IndexModel) -> anyhow::Result<()> {
+pub fn raw_create_index(tb: &str, data: IndexModel) -> anyhow::Result<()> {
     let a = cnt();
     let id = g::random();
     debug!("--raw_create_index-----before_lock_polo: {id}-------");
-    let c = a.lock().await;
+    let c = a.blocking_lock();
     debug!("-raw_create_index-after_lock_polo: {id}-------");
 
     let tb = c.collection::<Document>(tb);
@@ -215,10 +211,10 @@ pub async fn raw_create_index(tb: &str, data: IndexModel) -> anyhow::Result<()> 
     Ok(())
 }
 
-#[tokio::test]
-async fn test_insert_1() -> anyhow::Result<()> {
+#[test]
+fn test_insert_1() -> anyhow::Result<()> {
     // only init-log
-    init_module_n(None, true, false).await?;
+    block_on(init_module_n(None, true, false))?;
 
     #[derive(Debug, Serialize, Deserialize)]
     struct Book {
@@ -240,8 +236,7 @@ async fn test_insert_1() -> anyhow::Result<()> {
                 title: "aa".to_string(),
                 author: format!("{i}_author"),
             },
-        )
-        .await;
+        );
         println!("-----------{r:#?}-----------",);
     }
 
@@ -251,8 +246,7 @@ async fn test_insert_1() -> anyhow::Result<()> {
         doc! {
             "author":"bbb"
         },
-    )
-    .await?;
+    )?;
     println!("-----find_one------{r:?}-----------",);
     //-------------------------------------
     let r = raw_update_one(
@@ -265,8 +259,7 @@ async fn test_insert_1() -> anyhow::Result<()> {
                 "title":"818181---update-one"
             }
         },
-    )
-    .await;
+    );
     println!("-----------{r:?}-----------",);
     //-------------------------------------
     let r = raw_update_many(
@@ -279,19 +272,18 @@ async fn test_insert_1() -> anyhow::Result<()> {
                 "author":"oooo um---update-one"
             }
         },
-    )
-    .await;
+    );
     println!("-----------{r:?}-----------",);
 
-    let r = raw_find_many::<Book>(tb, None).await?;
+    let r = raw_find_many::<Book>(tb, None)?;
     println!("-----------{r:#?}-----------",);
     Ok(())
 }
 
-#[tokio::test]
-async fn test_del_1() -> anyhow::Result<()> {
+#[test]
+fn test_del_1() -> anyhow::Result<()> {
     // only init-log
-    init_module_n(None, true, false).await?;
+    block_on(init_module_n(None, true, false))?;
 
     #[derive(Debug, Serialize, Deserialize)]
     struct Book {
@@ -313,8 +305,7 @@ async fn test_del_1() -> anyhow::Result<()> {
                 title: "aa".to_string(),
                 author: format!("{i}_author"),
             },
-        )
-        .await;
+        );
         println!("-----------{r:#?}-----------",);
     }
 
@@ -324,19 +315,17 @@ async fn test_del_1() -> anyhow::Result<()> {
         doc! {
             "title":"aa"
         },
-    )
-    .await;
+    );
     println!("-----------del result: {r:?}-----------",);
     let r = raw_del_many(
         tb,
         doc! {
             "author":"bbb"
         },
-    )
-    .await;
+    );
     println!("-----------del result: {r:?}-----------",);
     //-------------------------------------
-    let r = raw_find_many::<Book>(tb, None).await;
+    let r = raw_find_many::<Book>(tb, None);
     println!("-----------{r:#?}-----------",);
     //-------------------------------------
     let r = raw_count(
@@ -344,8 +333,7 @@ async fn test_del_1() -> anyhow::Result<()> {
         doc! {
             "author":"1_author"
         },
-    )
-    .await?;
+    )?;
     println!("----------count:-{r:?}-----------",);
     //-------------------------------------
     let r = raw_exist(
@@ -353,17 +341,16 @@ async fn test_del_1() -> anyhow::Result<()> {
         doc! {
             "author":"1_1 author"
         },
-    )
-    .await;
+    );
     println!("----------exist:-{r:?}-----------",);
 
     Ok(())
 }
 
-#[tokio::test]
-async fn test_bench() -> anyhow::Result<()> {
+#[test]
+fn test_bench() -> anyhow::Result<()> {
     // only init-log
-    init_module_n(None, true, false).await?;
+    block_on(init_module_n(None, true, false))?;
 
     #[derive(Debug, Serialize, Deserialize)]
     struct Book {
@@ -389,8 +376,7 @@ async fn test_bench() -> anyhow::Result<()> {
                 ..Default::default()
             }),
         },
-    )
-    .await;
+    );
 
     //-------------------------------------
     let h = 1_000_000;
@@ -404,8 +390,7 @@ async fn test_bench() -> anyhow::Result<()> {
                 title: "aa".to_string(),
                 author: format!("{i}_author"),
             },
-        )
-        .await;
+        );
         if r.is_err() {
             debug!("--{r:?}-------");
         }
@@ -419,11 +404,11 @@ async fn test_bench() -> anyhow::Result<()> {
     Ok(())
 }
 
-#[tokio::test]
-async fn test_xxx() -> anyhow::Result<()> {
+#[test]
+fn test_xxx() -> anyhow::Result<()> {
     //
     // only init-log
-    init_module_n(None, true, false).await?;
+    block_on(init_module_n(None, true, false))?;
     debug!("--after init model-------");
 
     #[derive(Debug, Serialize, Deserialize)]
@@ -445,15 +430,14 @@ async fn test_xxx() -> anyhow::Result<()> {
             id: Some(1),
             title: Some("aa".to_string()),
         },
-    )
-    .await;
-    let r = raw_find_many::<Document>(tb, None).await?;
+    );
+    let r = raw_find_many::<Document>(tb, None)?;
     println!("-------find-many----{r:#?}-----------",);
 
     //-------------------------------------
     let a = cnt();
     let id = g::random();
-    let c = a.lock().await;
+    let c = a.blocking_lock();
 
     let tb = c.collection::<Document>(tb);
     let r = tb.aggregate(vec![
@@ -479,11 +463,11 @@ async fn test_xxx() -> anyhow::Result<()> {
     Ok(())
 }
 
-#[tokio::test]
-async fn test_count() -> anyhow::Result<()> {
+#[test]
+fn test_count() -> anyhow::Result<()> {
     //
     // only init-log
-    init_module_n(None, true, false).await?;
+    block_on(init_module_n(None, true, false))?;
     debug!("--after init model-------");
 
     #[derive(Debug, Serialize, Deserialize)]
@@ -505,8 +489,7 @@ async fn test_count() -> anyhow::Result<()> {
             id: Some(1),
             title: Some("aa".to_string()),
         },
-    )
-    .await;
+    );
 
     let r = raw_count(
         tb,
@@ -515,8 +498,7 @@ async fn test_count() -> anyhow::Result<()> {
                 "$eq":1_i64
             },
         },
-    )
-    .await;
+    );
     println!("-----------{r:?}-----------",);
 
     Ok(())
