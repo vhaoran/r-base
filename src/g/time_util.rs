@@ -297,6 +297,10 @@ pub fn datetime_str_of_timestamp(timestamp: i64) -> String {
 /// output is a date_time_str
 /// similar: 2022-12-31 12:38:46
 pub fn timestamp_str(timestamp: i64) -> String {
+    if timestamp == 0 {
+        return "".to_string();
+    }
+
     self::datetime_str(self::from_timestamp(timestamp))
 }
 
