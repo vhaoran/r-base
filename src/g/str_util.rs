@@ -35,6 +35,19 @@ pub fn truncate_of_ascii_width(s: &str, high: usize) -> String {
     s.to_string()
 }
 
+pub fn fix_bit_len(s: &str, bit_len: usize) -> String {
+    if s.len() >= bit_len {
+        return s.to_string();
+    }
+
+    let mut s = format!("{s}");
+    for i in s.len()..bit_len {
+        s = format!("{s} ");
+    }
+
+    s
+}
+
 pub fn ascii_width(s: &str) -> usize {
     let l = s.chars();
     let mut count = 0usize;
