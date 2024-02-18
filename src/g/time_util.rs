@@ -229,7 +229,7 @@ pub fn yesterday() -> DateTime<Local> {
     self::add(&self::today(), -86400)
 }
 
-pub fn tomorrom() -> DateTime<Local> {
+pub fn tomorrow() -> DateTime<Local> {
     self::add(&self::today(), 86400)
 }
 
