@@ -4,7 +4,7 @@ use lapin::{
     message::Delivery, message::DeliveryResult, options::*, publisher_confirm::Confirmation,
     types::FieldTable, BasicProperties, Connection, ConnectionProperties,
 };
-use log::*;
+use tracing::*;
 
 #[tokio::test]
 async fn mq_cnt_1() -> anyhow::Result<()> {

@@ -3,7 +3,7 @@ use polodb_core::{bson, Database};
 use serde::{Deserialize, Serialize};
 use std::path::Path;
 
-use log::*;
+use tracing::*;
 use once_cell::sync::OnceCell;
 
 use std::sync::Arc;

@@ -7,7 +7,7 @@ async fn mq_raw_1() -> anyhow::Result<()> {
     };
 
     use tokio_amqp::*;
-    use log::info;
+    use tracing::*;
     if env::var("RUST_LOG").is_err() {
         env::set_var("RUST_LOG", "info");
     }

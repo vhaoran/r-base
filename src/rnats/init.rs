@@ -1,10 +1,10 @@
-use log::*;
+use tracing::*;
 use once_cell::sync::OnceCell;
 
 use std::sync::Arc;
 use tokio::sync::Mutex as Mu;
 
-use log::info;
+use tracing::*;
 
 use super::Config;
 use nats::Connection;

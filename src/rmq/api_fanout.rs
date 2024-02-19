@@ -1,5 +1,5 @@
 use super::*;
-use log::*;
+use tracing::*;
 
 use lapin::{
     message::Delivery, message::DeliveryResult, options::*, publisher_confirm::Confirmation,

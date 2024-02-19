@@ -1,5 +1,5 @@
 use once_cell::sync::OnceCell;
-use log::*;
+use tracing::*;
 
 use std::sync::Arc;
 use tokio::sync::Mutex as Mu;

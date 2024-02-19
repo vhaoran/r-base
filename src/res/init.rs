@@ -1,5 +1,5 @@
 use super::Config;
-use log::*;
+use tracing::*;
 use std::sync::Arc;
 
 // #[cfg(any(feature = "native-tls", feature = "rustls-tls"))]

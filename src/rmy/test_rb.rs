@@ -1,6 +1,6 @@
 // use std::collections::HashMap;
 // //-------------------------------------
-// use log::*;
+// use tracing::*;
 // use rbatis::core::db::DBPoolOptions;
 // use rbatis::crud::CRUD;
 // use rbatis::rbatis::Rbatis;

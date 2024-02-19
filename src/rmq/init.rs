@@ -7,8 +7,7 @@ use lapin::{
 };
 use once_cell::sync::OnceCell;
 use tokio::sync::Mutex;
-use log::info;
-use log::*;
+use tracing::*;
 // use nats::connect;
 use tokio_amqp::*;
 

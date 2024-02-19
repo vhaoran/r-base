@@ -1,5 +1,5 @@
 use serde_json::*;
-use log::*;
+use tracing::*;
 
 use super::Config;
 

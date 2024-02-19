@@ -4,7 +4,7 @@
 // // extern crate redis_rs;
 //
 // use async_trait::async_trait;
-// use log::*;
+// use tracing::*;
 // use once_cell::sync::OnceCell;
 //
 // use redisclient::RedisClient;

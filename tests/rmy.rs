@@ -1,6 +1,6 @@
 use std::collections::HashMap;
 //-------------------------------------
-use log::*;
+use tracing::*;
 #[macro_use]
 extern crate rbatis;
 

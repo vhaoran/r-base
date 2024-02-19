@@ -1,6 +1,6 @@
 use crate::*;
 use anyhow::anyhow;
-use log::*;
+use tracing::*;
 
 use super::module_cfg::*;
 use serde::{Deserialize, Serialize};

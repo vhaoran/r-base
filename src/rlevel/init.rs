@@ -3,7 +3,7 @@ use std::{env, io};
 use tokio::sync::Mutex;
 
 use async_trait::async_trait;
-use log::*;
+use tracing::*;
 use once_cell::sync::OnceCell;
 use std::collections::{HashMap, HashSet};
 use tokio::sync::RwLock;

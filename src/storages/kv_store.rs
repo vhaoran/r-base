@@ -1,6 +1,6 @@
 use crate::g;
 use core::fmt::Debug;
-use log::{debug, error};
+use tracing::*;
 use serde::{de::DeserializeOwned, Deserialize, Serialize};
 use std::collections::HashMap;
 use std::fs;

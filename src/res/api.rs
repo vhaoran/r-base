@@ -1,5 +1,5 @@
 use super::*;
-use log::*;
+use tracing::*;
 
 #[cfg(any(feature = "native-tls", feature = "rustls-tls"))]
 use elasticsearch::cert::CertificateValidation;

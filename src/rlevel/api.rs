@@ -1,7 +1,7 @@
 use std::fmt::Debug;
 
 use anyhow::anyhow;
-use log::*;
+use tracing::*;
 use rusty_leveldb::LdbIterator;
 use serde::de::DeserializeOwned;
 use serde::Serialize;

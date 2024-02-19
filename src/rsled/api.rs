@@ -1,6 +1,5 @@
 use anyhow::anyhow;
-use log::debug;
-use log::*;
+use tracing::*;
 use serde::de::DeserializeOwned;
 use serde::Serialize;
 use std::collections::HashMap;

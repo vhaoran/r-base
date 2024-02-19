@@ -1,4 +1,4 @@
-use log::*;
+use tracing::*;
 use mongodb::bson::{doc, Document};
 use mongodb::options::{
     AggregateOptions, CountOptions, DeleteOptions, FindOneOptions, FindOptions, InsertManyOptions,

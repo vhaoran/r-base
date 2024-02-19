@@ -1,7 +1,7 @@
 use super::*;
 // use futures_util::stream::stream::StreamExt;
 use crate::init_modules;
-use log::debug;
+use tracing::*;
 use mongodb::bson::{doc, Bson, Document};
 use mongodb::options::{Acknowledgment, ReadConcern, TransactionOptions, WriteConcern};
 use mongodb::Client;

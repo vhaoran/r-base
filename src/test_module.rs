@@ -1,5 +1,5 @@
 use super::*;
-use log::*;
+use tracing::*;
 
 #[tokio::test]
 async fn init_module_test() -> anyhow::Result<()> {

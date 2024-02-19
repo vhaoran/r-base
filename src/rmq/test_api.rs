@@ -5,7 +5,7 @@ use lapin::{
     types::FieldTable, BasicProperties, Connection, ConnectionProperties, ConnectionStatus,
 };
 use serde::{Deserialize, Serialize};
-use log::*;
+use tracing::*;
 
 use super::*;
 use super::*;

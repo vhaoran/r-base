@@ -15,7 +15,7 @@ use mongodb::results::{DeleteResult, UpdateResult};
 use mongodb::results::{InsertManyResult, InsertOneResult};
 use mongodb::{options::ClientOptions, Client, ClientSession};
 use serde::{de::DeserializeOwned, Deserialize, Serialize};
-use log::*;
+use tracing::*;
 
 use super::*;
 

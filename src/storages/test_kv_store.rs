@@ -2,7 +2,7 @@
 
 use crate::res::init;
 use crate::storages::KVStore;
-use log::debug;
+use tracing::*;
 use once_cell::sync::OnceCell;
 use std::collections::HashMap;
 use std::sync::Arc;

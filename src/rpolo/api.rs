@@ -1,6 +1,6 @@
 use super::*;
 use crate::{g, init_module_n};
-use log::*;
+use tracing::*;
 use polodb_core::bson::oid::ObjectId;
 use polodb_core::bson::{doc, Document};
 use polodb_core::results::{DeleteResult, InsertOneResult, UpdateResult};
