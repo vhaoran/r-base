@@ -51,7 +51,13 @@ pub fn init(cfg: &Config) -> anyhow::Result<()> {
         "error" => tracing::Level::ERROR,
         _ => tracing::Level::DEBUG,
     };
-    let _ = self::do_init_log(None, None, None, None, Some(level))?;
+    let _ = self::do_init_log(
+        Some(cfg.path.as_str()),
+        Some(cfg.file_name.as_str()),
+        None,
+        Some(cfg.roll_count as usize),
+        Some(level),
+    )?;
 
     debug!("....log module init ok.....");
     Ok(())
@@ -104,20 +110,43 @@ fn do_init_log(
         .filename_suffix(filename_suffix)
         .build(dir)?
         .with_max_level(Level::ERROR);
+    let rotate_info = RollingFileAppender::builder()
+        .rotation(Rotation::DAILY)
+        .max_log_files(max_files)
+        .filename_prefix("info")
+        .filename_suffix("txt")
+        .build(dir)?
+        .with_max_level(Level::INFO);
 
-    let all_files = rotate_file.and(io::stdout).and(rotate_err);
+    let all_files = rotate_file.and(io::stdout).and(rotate_err).and(rotate_info);
 
-    tracing_subscriber::fmt()
-        // .pretty()
-        .with_writer(all_files)
-        .with_ansi(false)
-        .with_file(true)
-        .with_line_number(true)
-        .with_thread_ids(true)
-        // .with_thread_names(true)
-        .with_timer(LocalTimer)
-        .with_max_level(level) //tracing::Level::TRACE
-        .init();
+    if level == Level::TRACE {
+        tracing_subscriber::fmt()
+            // .pretty()
+            .with_writer(all_files)
+            .with_ansi(false)
+            .with_file(true)
+            .with_line_number(true)
+            .with_thread_ids(true)
+            // .with_thread_names(true)
+            .with_timer(LocalTimer)
+            .with_max_level(level) //tracing::Level::TRACE
+            .init();
+    } else {
+        tracing_subscriber::fmt()
+            // .pretty()
+            .with_writer(all_files)
+            .with_ansi(false)
+            .without_time()
+            .with_target(false)
+            .with_file(false)
+            .with_line_number(false)
+            .with_level(false)
+            .compact()
+            // .with_timer(LocalTimer)
+            .with_max_level(level) //tracing::Level::TRACE
+            .init();
+    }
 
     Ok(())
 }
