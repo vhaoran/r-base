@@ -103,24 +103,25 @@ fn do_init_log(
         .filename_suffix(filename_suffix) // log file names will be suffixed with `.log`
         .build(dir)?;
 
-    let rotate_err = RollingFileAppender::builder()
-        .rotation(Rotation::DAILY)
-        .max_log_files(max_files)
-        .filename_prefix("err")
-        .filename_suffix(filename_suffix)
-        .build(dir)?
-        .with_max_level(Level::ERROR);
-    let rotate_info = RollingFileAppender::builder()
-        .rotation(Rotation::DAILY)
-        .max_log_files(max_files)
-        .filename_prefix("info")
-        .filename_suffix("txt")
-        .build(dir)?
-        .with_max_level(Level::INFO);
+    // let rotate_err = RollingFileAppender::builder()
+    //     .rotation(Rotation::DAILY)
+    //     .max_log_files(max_files)
+    //     .filename_prefix("err")
+    //     .filename_suffix(filename_suffix)
+    //     .build(dir)?
+    //     .with_max_level(Level::ERROR);
+    // let rotate_info = RollingFileAppender::builder()
+    //     .rotation(Rotation::DAILY)
+    //     .max_log_files(max_files)
+    //     .filename_prefix("info")
+    //     .filename_suffix("txt")
+    //     .build(dir)?
+    //     .with_max_level(Level::INFO);
 
-    let all_files = rotate_file.and(io::stdout).and(rotate_err).and(rotate_info);
+    // let all_files = rotate_file.and(io::stdout).and(rotate_err).and(rotate_info);
+    let all_files = rotate_file.and(io::stdout);
 
-    if level == Level::TRACE {
+    if level == Level::TRACE || level == Level::DEBUG {
         tracing_subscriber::fmt()
             // .pretty()
             .with_writer(all_files)
@@ -128,7 +129,6 @@ fn do_init_log(
             .with_file(true)
             .with_line_number(true)
             .with_thread_ids(true)
-            // .with_thread_names(true)
             .with_timer(LocalTimer)
             .with_max_level(level) //tracing::Level::TRACE
             .init();
