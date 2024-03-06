@@ -41,7 +41,7 @@ pub fn fix_bit_len(s: &str, bit_len: usize) -> String {
     }
 
     let mut s = format!("{s}");
-    for i in s.len()..bit_len {
+    for _i in s.len()..bit_len {
         s = format!("{s} ");
     }
 

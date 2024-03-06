@@ -46,7 +46,7 @@ pub fn from_n91(s: &str) -> anyhow::Result<i64> {
     let mut negative = false;
     let mut s = s;
     if s.starts_with("-") {
-        let ll = &s.as_bytes().clone()[1..];
+        let ll = &s.as_bytes()[1..];
         s = std::str::from_utf8(&ll).unwrap_or("");
         negative = true;
     }
