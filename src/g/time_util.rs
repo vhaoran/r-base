@@ -272,6 +272,10 @@ pub fn add(dt: &DateTime<Local>, secs: i64) -> DateTime<Local> {
 pub fn now_str() -> String {
     self::datetime_str(self::now())
 }
+pub fn now_str_only_number() -> String {
+    self::datetime_str_only_num(self::now())
+}
+
 pub fn now_date_str() -> String {
     self::date_str(self::now())
 }
@@ -313,6 +317,19 @@ pub fn datetime_str(dt: DateTime<Local>) -> String {
         dt.hour(),
         dt.minute(),
         dt.second()
+    );
+    s
+}
+
+pub fn datetime_str_only_num(dt: DateTime<Local>) -> String {
+    let s = format!(
+        "{:04}{:02}{:02}_{:02}{:02}{:02}",
+        dt.year(),
+        dt.month(),
+        dt.day(),
+        dt.hour(),
+        dt.minute(),
+        dt.second(),
     );
     s
 }

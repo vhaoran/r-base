@@ -59,7 +59,7 @@ impl Module {
     }
 }
 
-#[derive(Serialize, Deserialize, Clone, Debug)]
+#[derive(Serialize, Deserialize, Clone, Default, Debug)]
 pub struct ModuleConfig {
     pub redis: Option<rred::Config>,
     pub mongo: Option<rmongo::Config>,
@@ -70,6 +70,18 @@ pub struct ModuleConfig {
     pub log: Option<rlog::Config>,
     pub sled: Option<rsled::Config>,
     pub level: Option<rlevel::Config>,
+}
+
+impl ModuleConfig {
+    pub fn is_log_debug(&self) -> bool {
+        match &self.log {
+            Some(v) => {
+                let up = v.level.to_uppercase().trim().to_string();
+                up.contains("DEBUG") || up.contains("TRACE")
+            }
+            _ => true,
+        }
+    }
 }
 
 pub fn get_module_config(file_name: Option<&str>) -> anyhow::Result<ModuleConfig> {
@@ -177,6 +189,6 @@ pub async fn init_module_n(
 
 pub async fn init_modules(file_name: Option<&str>) -> anyhow::Result<ModuleConfig> {
     let r = self::init_module_n(file_name, true, true).await?;
-
+    let _ = module_cfg::set(r.clone()).await;
     Ok(r)
 }

@@ -28,8 +28,8 @@ pub struct Page<T: Debug + Clone> {
 // impl Copy<T> for Page<T> where T: Clone + Debug + Copy {}
 
 impl<T> Page<T>
-    where
-        T: Debug + Clone,
+where
+    T: Debug + Clone,
 {
     pub fn builder() -> PageBuilder<T> {
         PageBuilder::<T>::new()
@@ -59,8 +59,8 @@ impl<T> Page<T>
 }
 
 impl<T> Default for Page<T>
-    where
-        T: Debug + Clone,
+where
+    T: Debug + Clone,
 {
     fn default() -> Self {
         Page::new()
@@ -69,15 +69,15 @@ impl<T> Default for Page<T>
 
 //-------------------------------------
 pub struct PageBuilder<T>
-    where
-        T: Debug + Clone,
+where
+    T: Debug + Clone,
 {
     inner: Page<T>,
 }
 
 impl<T> PageBuilder<T>
-    where
-        T: Debug + Clone,
+where
+    T: Debug + Clone,
 {
     pub fn new() -> Self {
         PageBuilder { inner: Page::new() }

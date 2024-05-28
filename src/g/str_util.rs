@@ -100,13 +100,49 @@ pub fn truncate_n_bytes(s: &str, high: usize) -> String {
     s.to_string()
 }
 
+pub fn truncate_fill_n_chats(s: &str, high: usize) -> String {
+    let i = s.chars().count();
+    if i <= high {
+        return s.to_string();
+    }
+    //
+    let mut l: Vec<String> = Vec::new();
+    for c in s.chars() {
+        l.push(format!("{c}"));
+    }
+    //-------------------------------------
+    let l = l.iter().as_slice();
+    //
+    let h = high / 2;
+    let a = &l[..h];
+    let a: String = a
+        .iter()
+        .map(|x| format!("{x}"))
+        .reduce(|x, y| format!("{x}{y}"))
+        .unwrap_or("".to_string());
+    let b = &l[(i - h)..];
+    let b: String = b
+        .iter()
+        .map(|x| format!("{x}"))
+        .reduce(|x, y| format!("{x}{y}"))
+        .unwrap_or("".to_string());
+
+    format!("{a}**{b}",)
+}
+
 #[test]
 fn t_1() {
     //---------------------
-    let mut s = "blackdog12345".to_string();
-    let a = &s[3..];
-    let ss = format!("good{a}");
-
-    println!("-----------{s}-----------");
-    println!("-----------{ss}-----------");
+    {
+        let mut s = "blackd中华人民共和国社会主义好万风.m国社会主义好";
+        let a = truncate_fill_n_chats(s, 10);
+        println!("-----------old: {s}-----------");
+        println!("-----------n:   {a}-----------");
+    }
+    {
+        let mut s = "blackd中华人民共和国社会主义好万风.m国社会主义好";
+        let a = truncate_fill_n_chats(s, 15);
+        println!("-----------old: {s}-----------");
+        println!("-----------n:   {a}-----------");
+    }
 }

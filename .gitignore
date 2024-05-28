@@ -2,6 +2,7 @@ sled/
 polo/
 polo.db/
 target/
+*.db
 *.lock
 .idea/
 .git/

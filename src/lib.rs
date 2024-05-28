@@ -42,6 +42,7 @@ pub mod cache_wrapper;
 //--------pub--module------------------------
 pub mod g;
 pub mod res;
+pub mod rlite;
 pub mod rlog;
 pub mod rmongo;
 pub mod rmq;
