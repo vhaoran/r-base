@@ -1,6 +1,5 @@
 // use  serde::*;
-use serde::{Deserialize, Serialize};
-
+use serde_derive::{Deserialize, Serialize};
 #[derive(Serialize, Deserialize, Clone, Debug)]
 pub struct Config {
     pub level: String,

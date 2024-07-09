@@ -1,5 +1,5 @@
-#![allow(unused_imports)]
-#![allow(dead_code)]
+#[macro_use]
+extern crate serde;
 
 #[macro_use]
 extern crate anyhow;
@@ -10,13 +10,6 @@ extern crate lazy_static;
 #[macro_use]
 extern crate serde_json;
 
-// #[macro_use]
-// extern crate ormlite;
-// #[macro_use]
-// extern crate sqlx;
-
-//----pub fn/struct--------------------------
-
 use std::error::Error;
 
 pub use module_cfg::*;
@@ -26,9 +19,11 @@ pub use module_init::*;
 pub mod audios;
 #[macro_use]
 pub mod verify;
+#[cfg(feature = "rmongo")]
 #[macro_use]
 pub mod m_dao;
 
+#[cfg(feature = "rmongo")]
 #[macro_use]
 mod m_dyn_dao;
 
@@ -41,21 +36,30 @@ pub mod cache_wrapper;
 
 //--------pub--module------------------------
 pub mod g;
+#[cfg(feature = "res")]
 pub mod res;
+#[cfg(feature = "rlite")]
 pub mod rlite;
 pub mod rlog;
+
+#[cfg(feature = "rmongo")]
 pub mod rmongo;
+
+#[cfg(feature = "rmq")]
 pub mod rmq;
+#[cfg(feature = "rpolo")]
 pub mod rpolo;
 // pub mod rr;
 
 // #[cfg(feature = "rmy")]
 // pub mod rmy;
-
+#[cfg(feature = "rlevel")]
 pub mod rlevel;
-// pub mod rlite;
+#[cfg(feature = "rnats")]
 pub mod rnats;
+#[cfg(feature = "rred")]
 pub mod rred;
+#[cfg(feature = "rsled")]
 pub mod rsled;
 //------common module------------------
 mod module_cfg;
@@ -67,10 +71,12 @@ mod cached_test_2;
 mod test_m_dao;
 mod test_module;
 mod test_verify;
+
+#[cfg(feature = "rpolo")]
 #[macro_use]
 pub mod polo_dao;
 pub mod storages;
-mod test_polo_dao;
+// mod test_polo_dao;
 #[macro_use]
 pub mod store_kv_utils;
 mod test_store_kv;

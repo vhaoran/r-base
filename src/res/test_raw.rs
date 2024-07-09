@@ -1,3 +1,4 @@
+#[cfg(feature = "res")]
 extern crate elasticsearch;
 extern crate serde_json;
 extern crate url;
