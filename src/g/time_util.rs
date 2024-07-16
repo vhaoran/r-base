@@ -191,6 +191,13 @@ pub fn prior_month_first_day_of_now() -> DateTime<Local> {
     self::prior_month_first_day(d)
 }
 
+/// align to yyyy-mm-dd 00:00::00
+pub fn timestamp_align(i: i64) -> i64 {
+    let dt = self::from_timestamp(i);
+    let dt = self::from_ymd(dt.year(), dt.month(), dt.day());
+    dt.timestamp()
+}
+
 pub fn from_ymd(year: i32, month: u32, day: u32) -> DateTime<Local> {
     // let now = self::now();
     // let now: DateTime<Local> = Local.ymd(year, month, day).and_hms(0, 0, 0);
