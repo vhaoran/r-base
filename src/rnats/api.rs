@@ -1,7 +1,7 @@
 use crate::g::date;
-use tracing::*;
 use serde::{Deserialize, Serialize};
 use serde_json::*;
+use tracing::*;
 
 use super::*;
 
@@ -56,7 +56,7 @@ where
     })?;
 
     let _offset = date::now().timestamp_millis() - start;
-    // debug!("nats published : ms: {offset} topic: {topic} body {body}");
+    debug!("nats published : ms: {offset} topic: {topic} body {body}");
 
     Ok(())
 }
