@@ -47,8 +47,9 @@ impl Module {
     }
 
     #[cfg(feature = "rmy")]
-    pub async fn init_mysql(&self) -> anyhow::Result<Self> {
+    pub async fn init_mysql(&self, cfg: &rmy::Config) -> anyhow::Result<Self> {
         debug!("--init_my_sql_enter-------");
+        rmy::init(cfg).await?;
         Ok(self.clone())
     }
 
@@ -75,6 +76,8 @@ impl Module {
 pub struct ModuleConfig {
     #[cfg(feature = "rred")]
     pub redis: Option<rred::Config>,
+    #[cfg(feature = "rmy")]
+    pub mysql: Option<rmy::Config>,
     #[cfg(feature = "rmongo")]
     pub mongo: Option<rmongo::Config>,
     #[cfg(feature = "rpolo")]
@@ -144,7 +147,12 @@ pub async fn init_module_n(
     }
 
     #[cfg(feature = "rmy")]
-    Module.init_mysql().await?;
+    #[cfg(feature = "rmy")]
+    if let Some(cfg) = cfg.mysql {
+        info!("##### redis init starting ####");
+        Module.init_mysql(&cfg).await?;
+        print!("-----------  init 完成 -----------");
+    }
 
     #[cfg(feature = "rred")]
     if let Some(cfg) = cfg.redis {

@@ -1,13 +1,12 @@
-use crate::g;
-use futures::executor::block_on;
-use once_cell::sync::OnceCell;
-use sqlx::sqlite::{SqliteConnectOptions, SqliteSynchronous};
-use sqlx::{Pool, Sqlite, SqlitePool};
-use std::collections::HashMap;
-use std::fs;
 use std::path::Path;
 use std::sync::Arc;
-use tokio::sync::Mutex;
+
+use futures::executor::block_on;
+use once_cell::sync::OnceCell;
+use sqlx::{Pool, Sqlite, SqlitePool};
+use sqlx::sqlite::{SqliteConnectOptions, SqliteSynchronous};
+
+use crate::g;
 
 //
 type IType = Pool<Sqlite>;

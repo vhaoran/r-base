@@ -40,6 +40,10 @@ pub mod g;
 pub mod res;
 #[cfg(feature = "rlite")]
 pub mod rlite;
+#[cfg(feature = "rmy")]
+pub mod rmy;
+
+
 pub mod rlog;
 
 #[cfg(feature = "rmongo")]
