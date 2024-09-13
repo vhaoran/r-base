@@ -341,6 +341,17 @@ pub fn datetime_str_only_num(dt: DateTime<Local>) -> String {
     s
 }
 
+pub fn time_duration_str(i: i64) -> String {
+    if i < 0 {
+        return "".to_string();
+    }
+    let h = i / 3600_i64;
+    let m = i % 3600_i64 / 60_i64;
+    let sec = i % 3600_i64 % 60_i64;
+
+    format!("{h}:{m}:{sec}")
+}
+
 #[test]
 fn a_1() {
     //---------------------
