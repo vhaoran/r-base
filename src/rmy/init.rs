@@ -2,7 +2,7 @@ use std::sync::Arc;
 
 use once_cell::sync::OnceCell;
 use sqlx::mysql::{MySqlConnectOptions, MySqlPoolOptions};
-use sqlx::{MySql, MySqlPool, Pool};
+use sqlx::{MySql, Pool};
 
 use crate::rmy::Config;
 
