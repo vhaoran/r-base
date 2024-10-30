@@ -1,6 +1,3 @@
-use num_format::Buffer;
-use rand::prelude::*;
-
 pub fn random() -> i64 {
     let mut i = rand::random::<i64>();
     if i < 0 {

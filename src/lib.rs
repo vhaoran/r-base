@@ -1,12 +1,11 @@
 #[macro_use]
-extern crate serde;
-
-#[macro_use]
 extern crate anyhow;
 #[macro_use]
 extern crate cached;
 #[macro_use]
 extern crate lazy_static;
+#[macro_use]
+extern crate serde;
 #[macro_use]
 extern crate serde_json;
 
