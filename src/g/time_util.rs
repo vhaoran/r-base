@@ -5,6 +5,16 @@ pub fn unix_sec() -> i64 {
     //chrono::prelude::Local::now().timestamp()
     self::now().timestamp()
 }
+
+pub fn minutes_str(secs: i64) -> String {
+    if secs <= 0 {
+        return "0:00".to_string();
+    }
+    let m = secs / 60;
+    let sec = secs % 60;
+    format!("{m}分钟{sec}秒")
+}
+
 pub fn unix_millis() -> i64 {
     //chrono::prelude::Local::now().timestamp()
     self::now().timestamp_millis()
@@ -355,8 +365,6 @@ pub fn time_duration_str(i: i64) -> String {
 #[test]
 fn a_1() {
     //---------------------
-    let a = self::prior_month_first_day_of_now();
-    println!("-----------上月1号： {:?}-----------", a);
-    let a = self::month_first_day_of_now();
-    println!("-----------this月1号： {:?}-----------", a);
+    let a = 500;
+    println!("-----------{}-----------", self::minutes_str(a));
 }
