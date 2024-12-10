@@ -29,7 +29,7 @@ num-format = { version = "0.4.0", default-features = true }
 
 url = { version = "^2", default-features = true }
 # datetime
-chrono = { version = "0.4.23", default-features = true }
+chrono = { version = "0.4.39", default-features = true }
 once_cell = { version = "1.7.2", default-features = true }
 
 # deadpool = {version = "^0.9" , features = ["managed"]}
