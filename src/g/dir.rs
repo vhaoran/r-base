@@ -37,6 +37,13 @@ pub fn app_base() -> String {
     }
 }
 
+pub fn dir_of_pathfile<P: AsRef<Path>>(path_file: P) -> String {
+    // let p = Path::new(path_file);
+    match path_file.as_ref().parent() {
+        Some(p) => format!("{}", p.display()),
+        _ => "".to_string(),
+    }
+}
 pub fn verify_mkdir_parent_of_pathfile<T>(p: T) -> anyhow::Result<()>
 where
     T: AsRef<str> + std::fmt::Display,

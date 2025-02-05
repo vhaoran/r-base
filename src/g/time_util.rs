@@ -10,9 +10,10 @@ pub fn minutes_str(secs: i64) -> String {
     if secs <= 0 {
         return "0:00".to_string();
     }
-    let m = secs / 60;
-    let sec = secs % 60;
-    format!("{m}分钟{sec}秒")
+    let h = secs / 3600;
+    let m = (secs % 3600) / 60;
+    let sec = (secs % 3600) % 60;
+    format!("{h}:{m}:{sec}")
 }
 
 pub fn unix_millis() -> i64 {
@@ -23,6 +24,38 @@ pub fn unix_millis() -> i64 {
 //local now
 pub fn now() -> DateTime<Local> {
     Local::now()
+}
+
+/// monday:1   friday: 5; sunday:7
+pub fn week_n_of_timestamp(dt: i64) -> i64 {
+    let dt = self::from_timestamp(dt);
+    week_n(dt)
+}
+pub fn week_n(dt: DateTime<Local>) -> i64 {
+    match dt.weekday() {
+        /*
+                Mon = 0,
+        /// Tuesday.
+        Tue = 1,
+        /// Wednesday.
+        Wed = 2,
+        /// Thursday.
+        Thu = 3,
+        /// Friday.
+        Fri = 4,
+        /// Saturday.
+        Sat = 5,
+        /// Sunday.
+        Sun = 6,
+            */
+        Weekday::Mon => 1,
+        Weekday::Tue => 2,
+        Weekday::Wed => 3,
+        Weekday::Thu => 4,
+        Weekday::Fri => 5,
+        Weekday::Sat => 6,
+        Weekday::Sun => 7,
+    }
 }
 
 pub fn now_date() -> DateTime<Local> {
@@ -202,10 +235,16 @@ pub fn prior_month_first_day_of_now() -> DateTime<Local> {
 }
 
 /// align to yyyy-mm-dd 00:00::00
-pub fn timestamp_align(i: i64) -> i64 {
+pub fn timestamp_align_day(i: i64) -> i64 {
     let dt = self::from_timestamp(i);
     let dt = self::from_ymd(dt.year(), dt.month(), dt.day());
     dt.timestamp()
+}
+pub fn timestamp_align_hour(i: i64) -> i64 {
+    i - i % 3600
+}
+pub fn timestamp_align_next_hour(i: i64) -> i64 {
+    i - i % 3600 + 3600
 }
 
 pub fn from_ymd(year: i32, month: u32, day: u32) -> DateTime<Local> {
@@ -365,6 +404,6 @@ pub fn time_duration_str(i: i64) -> String {
 #[test]
 fn a_1() {
     //---------------------
-    let a = 500;
+    let a = 3700;
     println!("-----------{}-----------", self::minutes_str(a));
 }

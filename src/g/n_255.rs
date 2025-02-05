@@ -1,5 +1,3 @@
-use std::ops::Index;
-
 fn pat() -> Vec<u8> {
     let mut l: Vec<u8> = Vec::new();
     for i in 0..=44_u8 {
