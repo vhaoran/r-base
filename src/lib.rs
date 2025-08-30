@@ -50,20 +50,22 @@ pub mod rmongo;
 
 #[cfg(feature = "rmq")]
 pub mod rmq;
-#[cfg(feature = "rpolo")]
-pub mod rpolo;
+// #[cfg(feature = "rpolo")]
+// pub mod rpolo;
 // pub mod rr;
 
 // #[cfg(feature = "rmy")]
 // pub mod rmy;
-#[cfg(feature = "rlevel")]
-pub mod rlevel;
+// #[cfg(feature = "rlevel")]
+// pub mod rlevel;
 #[cfg(feature = "rnats")]
 pub mod rnats;
+#[cfg(feature = "rnatsx")]
+pub mod rnatsx;
 #[cfg(feature = "rred")]
 pub mod rred;
-#[cfg(feature = "rsled")]
-pub mod rsled;
+// #[cfg(feature = "rsled")]
+// pub mod rsled;
 //------common module------------------
 mod module_cfg;
 mod module_init;
@@ -75,11 +77,12 @@ mod test_m_dao;
 mod test_module;
 mod test_verify;
 
-#[cfg(feature = "rpolo")]
-#[macro_use]
-pub mod polo_dao;
+// #[cfg(feature = "rpolo")]
+// #[macro_use]
+// pub mod polo_dao;
 pub mod storages;
 // mod test_polo_dao;
 #[macro_use]
 pub mod store_kv_utils;
 mod test_store_kv;
+mod polo_dao;

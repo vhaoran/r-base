@@ -26,3 +26,12 @@ pub(crate) async fn set(cfg: ModuleConfig) {
     let mut m = a.lock().await;
     *m = cfg;
 }
+
+mod t{
+    #[test]
+    fn sss() {
+        //---------------------
+        println!("-----------hello world-----------", );
+    }
+
+}

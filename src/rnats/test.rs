@@ -51,7 +51,7 @@ async fn cnt_1() -> anyhow::Result<()> {
             tokio::time::sleep(std::time::Duration::from_secs(SECS_LOW)).await;
         }
     })
-        .await;
+    .await;
 
     Ok(())
 }
@@ -106,7 +106,7 @@ async fn cnt_2() -> anyhow::Result<()> {
             tokio::time::sleep(std::time::Duration::from_secs(SECS_LOW)).await;
         }
     })
-        .await;
+    .await;
 
     Ok(())
 }

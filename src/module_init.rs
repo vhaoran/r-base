@@ -22,11 +22,11 @@ impl Module {
         Ok(self.clone())
     }
 
-    #[cfg(feature = "rpolo")]
-    pub async fn init_polo(&self, cfg: &rpolo::Config) -> anyhow::Result<Self> {
-        rpolo::init(cfg)?;
-        Ok(self.clone())
-    }
+    // #[cfg(feature = "rpolo")]
+    // pub async fn init_polo(&self, cfg: &rpolo::Config) -> anyhow::Result<Self> {
+    //     rpolo::init(cfg)?;
+    //     Ok(self.clone())
+    // }
 
     #[cfg(feature = "rmq")]
     pub async fn init_mq(&self, cfg: &rmq::Config) -> anyhow::Result<Self> {
@@ -46,6 +46,12 @@ impl Module {
         Ok(self.clone())
     }
 
+    #[cfg(feature = "rnatsx")]
+    pub async fn init_natsx(&self, cfg: &rnatsx::Config) -> anyhow::Result<Self> {
+        rnatsx::init(cfg).await?;
+        Ok(self.clone())
+    }
+
     #[cfg(feature = "rmy")]
     pub async fn init_mysql(&self, cfg: &rmy::Config) -> anyhow::Result<Self> {
         debug!("--init_my_sql_enter-------");
@@ -58,18 +64,18 @@ impl Module {
         Ok(self.clone())
     }
 
-    #[cfg(feature = "rsled")]
-    pub fn init_sled(&self, cfg: &rsled::Config) -> anyhow::Result<Self> {
-        rsled::init(cfg.clone())?;
-        Ok(self.clone())
-    }
+    // #[cfg(feature = "rsled")]
+    // pub fn init_sled(&self, cfg: &rsled::Config) -> anyhow::Result<Self> {
+    //     rsled::init(cfg.clone())?;
+    //     Ok(self.clone())
+    // }
 
-    #[cfg(feature = "rlevel")]
-    pub fn init_level(&self, cfg: &rlevel::Config) -> anyhow::Result<Self> {
-        rlevel::init(cfg.clone())?;
-        debug!("--after init_level_db-------");
-        Ok(self.clone())
-    }
+    // #[cfg(feature = "rlevel")]
+    // pub fn init_level(&self, cfg: &rlevel::Config) -> anyhow::Result<Self> {
+    //     rlevel::init(cfg.clone())?;
+    //     debug!("--after init_level_db-------");
+    //     Ok(self.clone())
+    // }
 }
 
 #[derive(Serialize, Deserialize, Clone, Default, Debug)]
@@ -80,8 +86,8 @@ pub struct ModuleConfig {
     pub mysql: Option<rmy::Config>,
     #[cfg(feature = "rmongo")]
     pub mongo: Option<rmongo::Config>,
-    #[cfg(feature = "rpolo")]
-    pub polo: Option<rpolo::Config>,
+    // #[cfg(feature = "rpolo")]
+    // pub polo: Option<rpolo::Config>,
     #[cfg(feature = "res")]
     pub es: Option<res::Config>,
     #[cfg(feature = "rmq")]
@@ -89,11 +95,14 @@ pub struct ModuleConfig {
     #[cfg(feature = "rnats")]
     pub nats: Option<rnats::Config>,
 
+    #[cfg(feature = "rnatsx")]
+    pub natsx: Option<rnatsx::Config>,
+
     pub log: Option<rlog::Config>,
-    #[cfg(feature = "rsled")]
-    pub sled: Option<rsled::Config>,
-    #[cfg(feature = "rlevel")]
-    pub level: Option<rlevel::Config>,
+    // #[cfg(feature = "rsled")]
+    // pub sled: Option<rsled::Config>,
+    // #[cfg(feature = "rlevel")]
+    // pub level: Option<rlevel::Config>,
 }
 
 impl ModuleConfig {
@@ -167,12 +176,12 @@ pub async fn init_module_n(
         Module.init_mongo(&cfg).await?;
         debug!("-----------  init 完成 -----------");
     }
-    #[cfg(feature = "rpolo")]
-    if let Some(cfg) = cfg.polo {
-        info!("##### mongo init starting ####");
-        let _ = Module.init_polo(&cfg).await?;
-        debug!("-----------  init 完成 -----------");
-    }
+    // #[cfg(feature = "rpolo")]
+    // if let Some(cfg) = cfg.polo {
+    //     info!("##### mongo init starting ####");
+    //     let _ = Module.init_polo(&cfg).await?;
+    //     debug!("-----------  init 完成 -----------");
+    // }
 
     #[cfg(feature = "res")]
     if let Some(cfg) = cfg.es {
@@ -197,23 +206,31 @@ pub async fn init_module_n(
     }
     debug!("--after init nats-------");
 
+    #[cfg(feature = "rnatsx")]
+    if let Some(cfg) = cfg.natsx {
+        info!("##### mq-natsx init starting ####");
+        Module.init_natsx(&cfg).await?;
+        info!("##### mq-natsx init ok ####");
+    }
+    debug!("--after init natsx-------");
+
     //-----------sled--------------------------
-    #[cfg(feature = "rsled")]
-    if let Some(cfg) = cfg.sled {
-        info!("##### sled init starting ####");
-        Module.init_sled(&cfg)?;
-        info!("##### sled init ok ####");
-    }
-    debug!("--after init sled-------");
+    // #[cfg(feature = "rsled")]
+    // if let Some(cfg) = cfg.sled {
+    //     info!("##### sled init starting ####");
+    //     Module.init_sled(&cfg)?;
+    //     info!("##### sled init ok ####");
+    // }
+    // debug!("--after init sled-------");
 
-    #[cfg(feature = "rlevel")]
-    if let Some(cfg) = cfg.level {
-        info!("##### level-db init starting ####");
-        Module.init_level(&cfg)?;
-        info!("##### level-db init ok ####");
-    }
+    // #[cfg(feature = "rlevel")]
+    // if let Some(cfg) = cfg.level {
+    //     info!("##### level-db init starting ####");
+    //     Module.init_level(&cfg)?;
+    //     info!("##### level-db init ok ####");
+    // }
 
-    debug!("--after init level-------");
+    // debug!("--after init level-------");
 
     debug!("--before leave init-------");
     if load_other {

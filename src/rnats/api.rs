@@ -55,7 +55,7 @@ where
         e
     })?;
 
-    let _offset = date::now().timestamp_millis() - start;
+    let offset = date::now().timestamp_millis() - start;
     debug!("nats published : ms: {offset} topic: {topic} body {body}");
 
     Ok(())
