@@ -12,7 +12,8 @@ tokio = {version = "1.20" ,features=["full" ,"test-util"]}
 serde = { version = "~1.0.136", features = ["default","serde_derive"]}
 serde_json = { version = "~1.0.79", default-features = true }
 serde_derive = { version = "~1.0.136", default-features = true }
-serde_yaml = { version = "0.9.34+deprecated", default-features = true }
+#serde_yaml = { version = "0.9.34+deprecated", default-features = true }
+serde_yml = { version = "0.0.12", default-features = true }
 
 lazy_static = { version = "^1.4.0", default-features = true }
 

@@ -44,7 +44,7 @@ where
     pub fn flush_to_disk(&self) -> anyhow::Result<()> {
         debug!("--enter flush to disk-------");
 
-        let s = serde_yaml::to_string(&self.store).map_err(|e| {
+        let s = serde_yml::to_string(&self.store).map_err(|e| {
             error!("---flush_error---{}-", e.to_string());
             e
         })?;
@@ -61,7 +61,7 @@ where
     pub fn load_of_disk(&mut self) -> anyhow::Result<()> {
         let p = Path::new(self.path_of_disk.as_str());
         let s = fs::read_to_string(p)?;
-        self.store = serde_yaml::from_str(s.as_str())?;
+        self.store = serde_yml::from_str(s.as_str())?;
         Ok(())
     }
 

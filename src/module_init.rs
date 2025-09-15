@@ -124,7 +124,7 @@ pub fn get_module_config(file_name: Option<&str>) -> anyhow::Result<ModuleConfig
 
     let s = std::fs::read_to_string(p.as_path())?;
     //
-    let r: ModuleConfig = serde_yaml::from_str(s.as_str())?;
+    let r: ModuleConfig = serde_yml::from_str(s.as_str())?;
     Ok(r)
 }
 
@@ -213,22 +213,6 @@ pub async fn init_module_n(
         info!("##### mq-natsx init ok ####");
     }
     debug!("--after init natsx-------");
-
-    //-----------sled--------------------------
-    // #[cfg(feature = "rsled")]
-    // if let Some(cfg) = cfg.sled {
-    //     info!("##### sled init starting ####");
-    //     Module.init_sled(&cfg)?;
-    //     info!("##### sled init ok ####");
-    // }
-    // debug!("--after init sled-------");
-
-    // #[cfg(feature = "rlevel")]
-    // if let Some(cfg) = cfg.level {
-    //     info!("##### level-db init starting ####");
-    //     Module.init_level(&cfg)?;
-    //     info!("##### level-db init ok ####");
-    // }
 
     // debug!("--after init level-------");
 

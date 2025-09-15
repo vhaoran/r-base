@@ -17,12 +17,12 @@ pub fn md5<T: AsRef<[u8]>>(s: T) -> String {
 #[test]
 fn md5_1() {
     //---------------------
-    let s = self::md5("abcdefg");
-    println!("-----------{}-----------", s);
-    let s = self::md5_of_file("./a.mp3");
-    println!("-----------{:?}-----------", s);
+    let s = self::md5("abcdefg".to_string());
+    println!("------abcdefg _>-----{}-----------", s);
+    // let s = self::md5_of_file("./a.mp3");
+    // println!("-----------{:?}-----------", s);
 
-    let s = "xxx".to_string();
-    let s = md5(s.as_str());
-    println!("-----xx: {s}-----------",);
+    let old_s = "xxx".to_string();
+    let s = md5(old_s.clone());
+    println!("-----{old_s} -> {s}-----------",);
 }
