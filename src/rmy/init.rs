@@ -3,7 +3,7 @@ use std::sync::Arc;
 use once_cell::sync::OnceCell;
 use sqlx::mysql::{MySqlConnectOptions, MySqlPoolOptions};
 use sqlx::{MySql, Pool};
-
+use tracing::debug;
 use crate::rmy::Config;
 
 //-----------instance--------------------------
@@ -29,6 +29,8 @@ pub async fn init(cfg: &Config) -> anyhow::Result<()> {
         .database(db_name.as_str())
         .charset("utf8mb4")
         .timezone(Some("+08:00".to_string()));
+    debug!("--mysql-opt: {opt:#?}-------");
+
     let pool = MySqlPoolOptions::new()
         .min_connections(min_conn)
         .max_connections(max_conn)

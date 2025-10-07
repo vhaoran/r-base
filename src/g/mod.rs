@@ -6,6 +6,7 @@ pub use self::md5_util::*;
 pub use self::num_util::*;
 pub use self::str_util::*;
 pub use self::time_util::*;
+pub use self::base64_utils::*;
 
 pub mod date {
     pub use super::time_util::*;
@@ -25,3 +26,4 @@ pub mod n_91;
 mod markdowns;
 mod test_g;
 mod test_str;
+mod base64_utils;

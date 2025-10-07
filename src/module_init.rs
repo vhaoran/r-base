@@ -55,6 +55,8 @@ impl Module {
     #[cfg(feature = "rmy")]
     pub async fn init_mysql(&self, cfg: &rmy::Config) -> anyhow::Result<Self> {
         debug!("--init_my_sql_enter-------");
+        debug!("--cfg-mysql: {cfg:#?}-------");
+
         rmy::init(cfg).await?;
         Ok(self.clone())
     }
@@ -146,9 +148,9 @@ pub async fn init_module_n(
     //
     if load_log {
         if let Some(cfg) = cfg.log {
-            print!("##### log init starting ####");
+            info!("##### log init starting ####");
             Module.init_log(&cfg)?;
-            print!("----------- log init 完成 -----------");
+            info!("----------- log init 完成 -----------");
             if !load_other {
                 return Ok(config);
             }
@@ -158,23 +160,23 @@ pub async fn init_module_n(
     #[cfg(feature = "rmy")]
     #[cfg(feature = "rmy")]
     if let Some(cfg) = cfg.mysql {
-        info!("##### redis init starting ####");
+        info!("##### mysql init starting ####");
         Module.init_mysql(&cfg).await?;
-        print!("-----------  init 完成 -----------");
+        info!("-----------mysql  init 完成 -----------");
     }
 
     #[cfg(feature = "rred")]
     if let Some(cfg) = cfg.redis {
         info!("##### redis init starting ####");
         Module.init_redis(&cfg)?;
-        print!("-----------  init 完成 -----------");
+        info!("-----------redis  init 完成 -----------");
     }
     #[cfg(feature = "rmongo")]
     if let Some(cfg) = cfg.mongo {
         info!("##### mongo init starting ####");
 
         Module.init_mongo(&cfg).await?;
-        debug!("-----------  init 完成 -----------");
+        info!("---------mongo--  init 完成 -----------");
     }
     // #[cfg(feature = "rpolo")]
     // if let Some(cfg) = cfg.polo {
@@ -187,14 +189,14 @@ pub async fn init_module_n(
     if let Some(cfg) = cfg.es {
         info!("##### es init starting ####");
         Module.init_es(&cfg).await?;
-        print!("-----------  init 完成 -----------");
+        info!("-----------  init 完成 -----------");
     }
 
     #[cfg(feature = "rmq")]
     if let Some(cfg) = cfg.mq {
         info!("##### rabbitMQ init starting ####");
         Module.init_mq(&cfg).await?;
-        print!("-----------rabbitMQ  init 完成 -----------");
+        info!("-----------rabbitMQ  init 完成 -----------");
     }
     debug!("--after init mongo-------");
 
