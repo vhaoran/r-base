@@ -10,7 +10,7 @@ pub fn str_2_base64(s: &str) -> anyhow::Result<String> {
         Err(anyhow!("transfer to base64 err",))
     }
 }
-fn base64_2_str(src: &str) -> anyhow::Result<String> {
+pub fn base64_2_str(src: &str) -> anyhow::Result<String> {
     let mut r = Vec::<u8>::new();
     let _ = general_purpose::STANDARD.decode_vec(src, &mut r);
     let r = String::from_utf8(r)?;

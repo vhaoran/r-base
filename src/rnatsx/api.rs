@@ -11,9 +11,12 @@ where
     T: Serialize,
     Q: AsRef<str> + std::fmt::Display,
 {
+    let topic = topic.to_string();
     // let topic = topic.to_string();
     let s = serde_json::to_string(&body)?;
-    let _ = self::publish(topic, s.as_str()).await?;
+    debug!("--before_publish_{topic} data: {s}-------");
+    let _ = self::publish(topic.clone(), s.as_str()).await?;
+    debug!("--after_publish_{topic} data: {s}-------");
     Ok(())
 }
 
