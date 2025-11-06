@@ -14,9 +14,9 @@ where
     let topic = topic.to_string();
     // let topic = topic.to_string();
     let s = serde_json::to_string(&body)?;
-    debug!("--before_publish_{topic} data: {s}-------");
+    debug!("--before_mq_publish_{topic} data: {s}-------");
     let _ = self::publish(topic.clone(), s.as_str()).await?;
-    debug!("--after_publish_{topic} data: {s}-------");
+    debug!("--after_mq_publish_{topic} data: {s}-------");
     Ok(())
 }
 
@@ -40,6 +40,7 @@ where
             error!("---nats_publish_error---{}-", e.to_string());
             e
         })?;
+    debug!("--after_mq_publish_{topic} data: {msg}-------");
 
     // let _ = conn.publish(topic.as_str(), body).map_err(|e| {
     //     error!("---nats_publish_error---{}-", e.to_string());

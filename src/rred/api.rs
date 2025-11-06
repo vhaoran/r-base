@@ -1,15 +1,12 @@
 use super::*;
 use anyhow::anyhow;
-use redisclient::error::RedisError;
 
 pub async fn get_bool<T>(key: T) -> bool
 where
     T: AsRef<str> + std::fmt::Display,
 {
-    // let key = key.to_string*);
-    let s = self::get(key.to_string().as_str())
-        .await
-        .unwrap_or("".to_string());
+    let k = key.to_string();
+    let s = self::get(k).await.unwrap_or("".to_string());
     if s.len() == 0 {
         return false;
     }
@@ -36,7 +33,8 @@ pub async fn get_f64<T>(key: T, default_value: Option<f64>) -> f64
 where
     T: AsRef<str> + std::fmt::Display,
 {
-    self::get(key.to_string().as_str())
+    let k = key.to_string();
+    self::get(k)
         .await
         .unwrap_or("".to_string())
         .parse::<f64>()

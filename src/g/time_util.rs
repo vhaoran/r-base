@@ -243,6 +243,10 @@ pub fn timestamp_align_day(i: i64) -> i64 {
 pub fn timestamp_align_hour(i: i64) -> i64 {
     i - i % 3600
 }
+
+pub fn timestamp_align_minute(i: i64) -> i64 {
+    i - i % 60
+}
 pub fn timestamp_align_next_hour(i: i64) -> i64 {
     i - i % 3600 + 3600
 }
