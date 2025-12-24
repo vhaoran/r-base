@@ -11,6 +11,15 @@ pub fn uuid_str() -> String {
     s
 }
 
+pub fn uuid_short_str() -> String {
+    // use uuid::{Uuid, UuidVersion};
+    // let uuid1 = Uuid::new(UuidVersion::Random).unwrap();
+    // let s = uuid1.simple().to_string();
+
+    let s = self::uuid_str();
+    s.replace("-", "")
+}
+
 // 半角字符的宽度
 pub fn truncate_of_ascii_width(s: &str, high: usize) -> String {
     let i = self::ascii_width(s);
