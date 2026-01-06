@@ -19,29 +19,6 @@ use tracing_subscriber::{self, fmt, fmt::time::FormatTime};
 
 use super::Config;
 
-// pub fn init(cfg: &Config) -> anyhow::Result<()> {
-//     let path: PathBuf = env::current_dir()?;
-//     let path = path.join(cfg.path.as_str());
-//     if !path.exists() {
-//         std::fs::create_dir_all(path.clone())?;
-//     }
-//     let path = path.join(cfg.file_name.as_str());
-//     let s = path.to_str().unwrap().to_string();
-//
-//     let config = LogConfigBuilder::builder()
-//         .path(s)
-//         .size(cfg.size)
-//         .roll_count(cfg.roll_count)
-//         .level(cfg.level.as_str())
-//         .output_file()
-//         .output_console()
-//         .build();
-//
-//     let _ = simple_log::new(config).map_err(|e| anyhow!("{:?}", e))?;
-//     debug!("....log module init ok.....");
-//     Ok(())
-// }
-
 pub fn init(cfg: &Config) -> anyhow::Result<()> {
     let level = match cfg.level.as_str() {
         "trace" => tracing::Level::TRACE,
@@ -140,11 +117,11 @@ fn do_init_log(
             .with_ansi(false)
             .with_target(false)
             .with_timer(LocalTimer)
-            .with_file(false)
-            .with_line_number(false)
-            .with_level(false)
+            .with_file(true)
+            .with_line_number(true)
+            .with_level(true)
             .compact()
-            // .with_timer(LocalTimer)
+            .with_timer(LocalTimer)
             .with_max_level(level) //tracing::Level::TRACE
             .init();
     }
