@@ -5,7 +5,7 @@ macro_rules! cache_wrapper {
             proc_macro::cached, proc_macro::once, Cached, SizedCache, TimedCache, TimedSizedCache,
             UnboundCache,
         };
-        use once_cell::sync::OnceCell;
+        use tokio::sync::OnceCell;
         use std::collections::HashMap;
         use std::sync::Arc;
         use tokio::sync::Mutex;
@@ -18,31 +18,31 @@ macro_rules! cache_wrapper {
         // }
 
         //-------------------------------------
-        fn instance() -> &'static Arc<Mutex<TimedSizedCache<$K, $V>>> {
-            static INSTANCE: OnceCell<Arc<Mutex<TimedSizedCache<$K, $V>>>> = OnceCell::new();
-            INSTANCE.get_or_init(|| {
+        async fn instance() -> &'static Arc<Mutex<TimedSizedCache<$K, $V>>> {
+            static INSTANCE: OnceCell<Arc<Mutex<TimedSizedCache<$K, $V>>>> = OnceCell::const_new();
+            INSTANCE.get_or_init(|| async {
                 let  m =
                     TimedSizedCache::with_size_and_lifespan($CACHE_SIZE, $SPAN_SECS_i64 as u64);
                 Arc::new(Mutex::new(m))
-            })
+            }).await
         }
 
         //-----------clear--------------------------
         pub async fn cache_clear() {
-            let a = instance().clone();
+            let a = instance().await.clone();
             let mut m = a.lock().await;
             m.cache_clear();
         }
 
         //-------------------------------------
         pub async fn cache_remove(key: $K) {
-            let a = instance().clone();
+            let a = instance().await.clone();
             let mut m = a.lock().await;
             m.cache_remove(&key);
         }
 
         pub async fn cache_get(key: $K) -> Option<$V> {
-            let a = instance().clone();
+            let a = instance().await.clone();
             let mut m = a.lock().await;
             let r = m.cache_get(&key);
             if r.is_some() {
@@ -58,14 +58,14 @@ macro_rules! cache_wrapper {
         }
 
         pub async fn cache_contains(key: $K) -> bool {
-            let a = instance().clone();
+            let a = instance().await.clone();
             let mut m = a.lock().await;
             m.cache_get(&key).is_some()
         }
 
         //-----------set--------------------------
         pub async fn cache_set(key: $K, v: $V) {
-            let a = instance().clone();
+            let a = instance().await.clone();
             let mut m = a.lock().await;
             m.cache_set(key, v);
             // println!(
@@ -75,7 +75,7 @@ macro_rules! cache_wrapper {
             // );
         }
         pub async fn cache_count() -> usize {
-            let a = instance().clone();
+            let a = instance().await.clone();
             let m = a.lock().await;
             m.cache_size()
         }
