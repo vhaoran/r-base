@@ -2,14 +2,16 @@
 extern crate anyhow;
 #[macro_use]
 extern crate cached;
+#[allow(unused_imports)]
 #[macro_use]
 extern crate lazy_static;
+#[allow(unused_imports)]
 #[macro_use]
 extern crate serde;
+#[allow(unused_imports)]
 #[macro_use]
 extern crate serde_json;
 
-use std::error::Error;
 
 pub use module_cfg::*;
 pub use module_init::*;

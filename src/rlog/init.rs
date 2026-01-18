@@ -1,21 +1,15 @@
 extern crate chrono;
 
-use anyhow::anyhow;
 // use tracing::*;
 // use simple_log::LogConfigBuilder;
 use chrono::{Datelike, Local, Timelike};
-use std::fs::File;
-use std::path::PathBuf;
-use std::{env, io};
+use std::io;
 
-use tracing::subscriber::set_global_default;
 use tracing::*;
-use tracing_appender::rolling;
 use tracing_appender::rolling::{RollingFileAppender, Rotation};
 use tracing_subscriber::fmt::format::Writer;
 use tracing_subscriber::fmt::writer::MakeWriterExt;
-use tracing_subscriber::layer::SubscriberExt;
-use tracing_subscriber::{self, fmt, fmt::time::FormatTime};
+use tracing_subscriber::{self, fmt::time::FormatTime};
 
 use super::Config;
 

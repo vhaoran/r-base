@@ -5,10 +5,10 @@ macro_rules! cache_wrapper {
             proc_macro::cached, proc_macro::once, Cached, SizedCache, TimedCache, TimedSizedCache,
             UnboundCache,
         };
-        use tokio::sync::OnceCell;
         use std::collections::HashMap;
         use std::sync::Arc;
         use tokio::sync::Mutex;
+        use tokio::sync::OnceCell;
 
         const SECS: i64 = $SPAN_SECS_i64;
         // #[derive(Clone, Default, Debug)]
@@ -20,11 +20,13 @@ macro_rules! cache_wrapper {
         //-------------------------------------
         async fn instance() -> &'static Arc<Mutex<TimedSizedCache<$K, $V>>> {
             static INSTANCE: OnceCell<Arc<Mutex<TimedSizedCache<$K, $V>>>> = OnceCell::const_new();
-            INSTANCE.get_or_init(|| async {
-                let  m =
-                    TimedSizedCache::with_size_and_lifespan($CACHE_SIZE, $SPAN_SECS_i64 as u64);
-                Arc::new(Mutex::new(m))
-            }).await
+            INSTANCE
+                .get_or_init(|| async {
+                    let m =
+                        TimedSizedCache::with_size_and_lifespan($CACHE_SIZE, $SPAN_SECS_i64 as u64);
+                    Arc::new(Mutex::new(m))
+                })
+                .await
         }
 
         //-----------clear--------------------------
@@ -80,63 +82,4 @@ macro_rules! cache_wrapper {
             m.cache_size()
         }
     };
-}
-
-mod test {
-    #[tokio::test]
-    async fn test_1() -> anyhow::Result<()> {
-        cache_wrapper!(i64, i64, 1000_usize, 600_i64);
-
-        //---------------------
-        for i in 0..10_i64 {
-            // let key = format!("{i}_key");
-            cache_set(i, i % 10).await;
-        }
-
-        for i in 0..10_i64 {
-            // let key = format!("{i}_key");
-            let r = cache_get(i).await;
-            println!("-----{i} = {:?}-----------", r);
-        }
-        for i in 0..10_i64 {
-            // let key = format!("{i}_key");
-            let r = cache_contains(i).await;
-            println!("---contains: {i} = {:?}-----------", r);
-        }
-
-        //-----------sl--------------------------
-
-        Ok(())
-    }
-
-    #[tokio::test]
-    async fn benchmark_1() -> anyhow::Result<()> {
-        cache_wrapper!(i64, i64, 1000_usize, 600_i64);
-
-        for _ in 0..100 {
-            tokio::spawn(async move {
-                println!("----after sleep-----");
-
-                for i in 0..1000000_i64 {
-                    // let key = format!("{i}_key");
-                    cache_set(i, i % 10).await;
-                }
-
-                for i in 0..1000000_i64 {
-                    // let key = format!("{i}_key");
-                    // let r = cache_get(i).await;
-                    let r = cache_remove(i).await;
-                    println!("-----{i} = {:?}-----------", r);
-                    println!("-----count: {} ----------", cache_count().await);
-                }
-            });
-        }
-
-        loop {
-            println!("-----------aa-----------");
-            tokio::time::sleep(std::time::Duration::from_secs(5)).await;
-        }
-
-        // Ok(())
-    }
 }

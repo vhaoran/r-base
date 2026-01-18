@@ -2,7 +2,6 @@ use crate::*;
 use anyhow::anyhow;
 use tracing::*;
 
-use super::module_cfg::*;
 use serde_derive::{Deserialize, Serialize};
 
 #[derive(Serialize, Deserialize, Clone, Debug)]

@@ -4,6 +4,7 @@ use std::sync::Arc;
 use once_cell::sync::OnceCell;
 use tokio::sync::Mutex;
 
+#[allow(dead_code)]
 #[derive(Clone, Default, Debug)]
 struct Wrapper<T> {
     pub data: T,
@@ -21,12 +22,14 @@ fn instance() -> &'static Arc<Mutex<HashMap<i64, Wrapper<i64>>>> {
     })
 }
 
+#[allow(dead_code)]
 pub async fn cache_clear() {
     let a = self::instance().clone();
     let mut m = a.lock().await;
     m.clear();
 }
 
+#[allow(dead_code)]
 pub async fn cache_get(key: i64) -> Option<i64> {
     let a = self::instance().clone();
     let mut m = a.lock().await;
@@ -43,6 +46,7 @@ pub async fn cache_get(key: i64) -> Option<i64> {
     None
 }
 
+#[allow(dead_code)]
 pub async fn cache_set(key: i64, v: i64, live_secs: i64) {
     let a = self::instance().clone();
     let mut m = a.lock().await;
@@ -53,26 +57,4 @@ pub async fn cache_set(key: i64, v: i64, live_secs: i64) {
             expired: crate::g::unix_sec() + live_secs,
         },
     );
-}
-
-#[tokio::test]
-async fn test_c_1() -> anyhow::Result<()> {
-    //
-    tokio::spawn(async move {
-        for i in 0..100 {
-            self::cache_set(i, i * 100, 30).await;
-        }
-    });
-
-    tokio::spawn(async move {
-        for i in 0..100 {
-            tokio::time::sleep(std::time::Duration::from_secs(1)).await;
-            let a = self::cache_get(i).await;
-            println!("-----------{:?}-----------", a);
-        }
-    });
-
-    println!("-----------wait 10 secs-----------");
-    tokio::time::sleep(std::time::Duration::from_secs(10)).await;
-    Ok(())
 }

@@ -1,4 +1,3 @@
-use anyhow::anyhow;
 
 #[test]
 fn macro_1() {

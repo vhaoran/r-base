@@ -138,20 +138,3 @@ pub fn truncate_fill_n_chats(s: &str, high: usize) -> String {
 
     format!("{a}**{b}",)
 }
-
-#[test]
-fn t_1() {
-    //---------------------
-    {
-        let mut s = "blackd中华人民共和国社会主义好万风.m国社会主义好";
-        let a = truncate_fill_n_chats(s, 10);
-        println!("-----------old: {s}-----------");
-        println!("-----------n:   {a}-----------");
-    }
-    {
-        let mut s = "blackd中华人民共和国社会主义好万风.m国社会主义好";
-        let a = truncate_fill_n_chats(s, 15);
-        println!("-----------old: {s}-----------");
-        println!("-----------n:   {a}-----------");
-    }
-}

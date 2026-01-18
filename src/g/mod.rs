@@ -1,5 +1,4 @@
 pub use self::dir::*;
-pub use self::dir::*;
 pub use self::float_util::*;
 pub use self::markdowns::*;
 pub use self::md5_util::*;
