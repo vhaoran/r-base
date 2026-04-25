@@ -3,6 +3,8 @@ polo/
 polo.db/
 target/
 *.db
+*.wal
+*.sqlite
 *.lock
 .idea/
 .git/

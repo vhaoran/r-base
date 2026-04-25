@@ -1,5 +1,8 @@
 extern crate chrono;
+// use tracing_subscriber::prelude::*;
+use tracing_error::ErrorLayer;
 
+use tracing_subscriber::fmt::format::FmtSpan;
 // use tracing::*;
 // use simple_log::LogConfigBuilder;
 use chrono::{Datelike, Local, Timelike};
@@ -74,7 +77,7 @@ fn do_init_log(
             .filename_prefix(filename_prefix) // log file names will be prefixed with `myapp.`
             .filename_suffix(filename_suffix) // log file names will be suffixed with `.log`
             .build(dir)?
-    }else{
+    } else {
         RollingFileAppender::builder()
             .rotation(Rotation::HOURLY) // rotate log files once every hour
             .max_log_files(max_files)
@@ -95,18 +98,19 @@ fn do_init_log(
 
     if level == Level::TRACE || level == Level::DEBUG {
         tracing_subscriber::fmt()
-            // .pretty()
+            .pretty()
             .with_writer(all_files)
             .with_ansi(false)
             .with_file(true)
             .with_line_number(true)
             .with_thread_ids(true)
             .with_timer(LocalTimer)
+            .with_span_events(FmtSpan::ENTER | FmtSpan::CLOSE)
             .with_max_level(level) //tracing::Level::TRACE
             .init();
     } else {
         tracing_subscriber::fmt()
-            // .pretty()
+            .pretty()
             .with_writer(all_files)
             .with_ansi(false)
             .with_target(false)
@@ -116,6 +120,7 @@ fn do_init_log(
             .with_level(true)
             .compact()
             .with_timer(LocalTimer)
+            .with_span_events(FmtSpan::ENTER | FmtSpan::CLOSE)
             .with_max_level(level) //tracing::Level::TRACE
             .init();
     }
