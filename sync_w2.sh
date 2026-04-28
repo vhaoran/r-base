@@ -4,10 +4,10 @@
 
 rm -rf ./target
 
-ssh whr@w2 "cd /D d:\rust\; rmdir r-base /D /Q"
+ssh whr@w3 "cd /D d:\rust\; rmdir r-base /D /Q"
 
 
 
-scp -r ../r-base  whr@w2:/d:/rust/
+scp -r ../r-base  whr@w3:/d:/rust/
 
 

@@ -20,3 +20,13 @@ impl Default for Config {
         }
     }
 }
+impl Config {
+    pub fn level_str(&self) -> String {
+        let s = self.level.clone();
+        let all = "/error/debug/info/warn/trace";
+        if all.contains(s.as_str()) {
+            return "debug".to_string();
+        }
+        s
+    }
+}

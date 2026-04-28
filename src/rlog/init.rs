@@ -102,8 +102,8 @@ fn do_init_log(
             .with_writer(all_files)
             .with_ansi(false)
             .with_file(true)
-            .with_line_number(true)
             .with_thread_ids(true)
+            .with_line_number(true)
             .with_timer(LocalTimer)
             .with_span_events(FmtSpan::ENTER | FmtSpan::CLOSE)
             .with_max_level(level) //tracing::Level::TRACE
@@ -114,12 +114,11 @@ fn do_init_log(
             .with_writer(all_files)
             .with_ansi(false)
             .with_target(false)
+            .with_line_number(true)
             .with_timer(LocalTimer)
             .with_file(true)
-            .with_line_number(true)
             .with_level(true)
             .compact()
-            .with_timer(LocalTimer)
             .with_span_events(FmtSpan::ENTER | FmtSpan::CLOSE)
             .with_max_level(level) //tracing::Level::TRACE
             .init();
