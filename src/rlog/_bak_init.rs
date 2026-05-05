@@ -62,11 +62,15 @@ fn init_logging(cfg: &Config) -> anyhow::Result<(WorkerGuard, WorkerGuard)> {
     // 3. 组装 Subscriber
     let subscriber = Registry::default()
         // 控制台输出
-        .with(
+        .with(if cfg!(target_os = "macos") || cfg!(target_os = "linux") {
             fmt::layer()
                 .with_ansi(std::io::stdout().is_terminal())
-                .with_filter(EnvFilter::new(level.as_str())),
-        )
+                .with_filter(EnvFilter::new(level.as_str()))
+        } else {
+            fmt::layer()
+                .with_ansi(false)
+                .with_filter(EnvFilter::new(level.as_str()))
+        })
         // 全量文件输出 (Debug 级别以上)
         .with(
             fmt::layer()
