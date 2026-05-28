@@ -1,42 +1,42 @@
 extern crate chrono;
-// use tracing_subscriber::prelude::*;
+
+use std::io::IsTerminal;
 use tracing_error::ErrorLayer;
+use tracing_subscriber::prelude::*;
+use tracing_subscriber::{fmt, EnvFilter, Registry};
 
-use tracing_subscriber::fmt::format::FmtSpan;
-// use tracing::*;
-// use simple_log::LogConfigBuilder;
+// ✅ 核心修改 1: 导入 WorkerGuard
+use crate::rlog::Config;
+use tracing_appender::non_blocking::WorkerGuard;
+
+//-------------------------------------
 use chrono::{Datelike, Local, Timelike};
-use std::io;
-
-use tracing::*;
-use tracing_appender::rolling::{RollingFileAppender, Rotation};
+use futures::executor::block_on;
+use std::sync::Arc;
+use tokio::sync::Mutex;
+use tokio::sync::OnceCell;
 use tracing_subscriber::fmt::format::Writer;
-use tracing_subscriber::fmt::writer::MakeWriterExt;
-use tracing_subscriber::{self, fmt::time::FormatTime};
+use tracing_subscriber::fmt::time::FormatTime;
 
-use super::Config;
+//
+type IType = (Option<WorkerGuard>, Option<WorkerGuard>);
 
-pub fn init(cfg: &Config) -> anyhow::Result<()> {
-    let level = match cfg.level.as_str() {
-        "trace" => tracing::Level::TRACE,
-        "debug" => tracing::Level::DEBUG,
-        "info" => tracing::Level::INFO,
-        "warn" => tracing::Level::WARN,
-        "error" => tracing::Level::ERROR,
-        _ => tracing::Level::DEBUG,
-    };
-    let _ = self::do_init_log(
-        Some(cfg.path.as_str()),
-        Some(cfg.file_name.as_str()),
-        None,
-        Some(cfg.roll_count as usize),
-        Some(level),
-    )?;
-
-    debug!("....log module init ok.....");
-    Ok(())
+async fn instance() -> &'static Arc<Mutex<IType>> {
+    static INSTANCE: OnceCell<Arc<Mutex<IType>>> = OnceCell::const_new();
+    INSTANCE
+        .get_or_init(|| async {
+            let m: (Option<WorkerGuard>, Option<WorkerGuard>) = (None, None);
+            Arc::new(Mutex::new(m))
+        })
+        .await
 }
 
+pub async fn push_guard((guard1, guard2): (WorkerGuard, WorkerGuard)) {
+    let a = self::instance().await.clone();
+    let mut m = a.lock().await;
+    *m = (Some(guard1), Some(guard2));
+}
+// --------------------------
 struct LocalTimer;
 impl FormatTime for LocalTimer {
     fn format_time(&self, w: &mut Writer<'_>) -> std::fmt::Result {
@@ -55,74 +55,81 @@ impl FormatTime for LocalTimer {
         write!(w, "{s}")
     }
 }
+//-------------------------------------
 
-fn do_init_log(
-    dir: Option<&str>,
-    filename_prefix: Option<&str>,
-    filename_suffix: Option<&str>,
-    max_files: Option<usize>,
-    level: Option<tracing::Level>,
-) -> anyhow::Result<()> {
-    let dir = dir.unwrap_or("./logs");
-    let filename_prefix = filename_prefix.unwrap_or("log");
-    let filename_suffix = filename_suffix.unwrap_or("log");
-    let max_files = max_files.unwrap_or(3);
-    let level = level.unwrap_or(tracing::Level::TRACE);
-
-    // let warn_file = rolling::daily(dir, "log").with_max_level(level);
-    let rotate_file = if level == Level::TRACE {
-        RollingFileAppender::builder()
-            .rotation(Rotation::DAILY) // rotate log files once every hour
-            .max_log_files(max_files)
-            .filename_prefix(filename_prefix) // log file names will be prefixed with `myapp.`
-            .filename_suffix(filename_suffix) // log file names will be suffixed with `.log`
-            .build(dir)?
-    } else {
-        RollingFileAppender::builder()
-            .rotation(Rotation::HOURLY) // rotate log files once every hour
-            .max_log_files(max_files)
-            .filename_prefix(filename_prefix) // log file names will be prefixed with `myapp.`
-            .filename_suffix(filename_suffix) // log file names will be suffixed with `.log`
-            .build(dir)?
-    };
-
-    let rotate_err = RollingFileAppender::builder()
-        .rotation(Rotation::DAILY)
-        .max_log_files(max_files)
-        .filename_prefix("err")
-        .filename_suffix(filename_suffix)
-        .build(dir)?
-        .with_max_level(Level::ERROR);
-
-    let all_files = rotate_file.and(io::stdout).and(rotate_err);
-
-    if level == Level::TRACE || level == Level::DEBUG {
-        tracing_subscriber::fmt()
-            .pretty()
-            .with_writer(all_files)
-            .with_ansi(false)
-            .with_file(true)
-            .with_thread_ids(true)
-            .with_line_number(true)
-            .with_timer(LocalTimer)
-            .with_span_events(FmtSpan::ENTER | FmtSpan::CLOSE)
-            .with_max_level(level) //tracing::Level::TRACE
-            .init();
-    } else {
-        tracing_subscriber::fmt()
-            .pretty()
-            .with_writer(all_files)
-            .with_ansi(false)
-            .with_target(false)
-            .with_line_number(true)
-            .with_timer(LocalTimer)
-            .with_file(true)
-            .with_level(true)
-            .compact()
-            .with_span_events(FmtSpan::ENTER | FmtSpan::CLOSE)
-            .with_max_level(level) //tracing::Level::TRACE
-            .init();
-    }
+pub fn init(cfg: &Config) -> anyhow::Result<()> {
+    let guard = init_logging(cfg)?;
+    let _ = block_on(self::push_guard((guard.0, guard.1)));
 
     Ok(())
+}
+
+fn init_logging(cfg: &Config) -> anyhow::Result<(WorkerGuard, WorkerGuard)> {
+    let level = cfg.level_str();
+    let log_dir = cfg.path.as_str();
+    let file_name = cfg.file_name.as_str();
+
+    // 1. 普通日志文件 (app.log) - 记录所有日志
+    let file_appender_all = tracing_appender::rolling::daily(log_dir, file_name);
+    let (non_blocking_all, guard_all) = tracing_appender::non_blocking(file_appender_all);
+
+    // 2. 错误日志文件 (error.log) - 仅记录错误
+    let file_appender_err = tracing_appender::rolling::daily(log_dir, "error.log");
+    let (non_blocking_err, guard_err) = tracing_appender::non_blocking(file_appender_err);
+
+    // 3. 组装 Subscriber
+    let subscriber = Registry::default()
+        // 控制台输出
+        .with(if cfg!(target_os = "macos") || cfg!(target_os = "linux") {
+            fmt::layer()
+                .with_ansi(std::io::stdout().is_terminal())
+                //
+                .with_target(true)
+                .with_file(true)
+                .with_line_number(true)
+                .with_timer(LocalTimer)
+                //
+                .with_filter(EnvFilter::new(level.as_str()))
+        } else {
+            fmt::layer()
+                .with_ansi(false)
+                //
+                .with_target(true)
+                .with_file(true)
+                .with_line_number(true)
+                .with_timer(LocalTimer)
+                //
+                .with_filter(EnvFilter::new(level.as_str()))
+        })
+        // 全量文件输出 (Debug 级别以上)
+        .with(
+            fmt::layer()
+                .with_ansi(false)
+                // .with_timer(LocalTime)
+                .with_target(true)
+                .with_file(true)
+                .with_line_number(true)
+                .with_timer(LocalTimer)
+                //
+                .with_writer(non_blocking_all)
+                .with_filter(EnvFilter::new(level.as_str())),
+        )
+        // 错误文件输出 (仅 Error 级别)
+        .with(
+            fmt::layer()
+                .with_ansi(false)
+                //
+                .with_target(true)
+                .with_file(true)
+                .with_line_number(true)
+                .with_timer(LocalTimer)
+                //
+                .with_writer(non_blocking_err)
+                .with_filter(EnvFilter::new("error")),
+        )
+        .with(ErrorLayer::default()); // 启用错误追踪
+
+    tracing::subscriber::set_global_default(subscriber)?;
+
+    Ok((guard_all, guard_err))
 }

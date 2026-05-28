@@ -138,3 +138,15 @@ pub fn truncate_fill_n_chats(s: &str, high: usize) -> String {
 
     format!("{a}**{b}",)
 }
+
+pub fn ascii_width_right_star(s: &str, width: usize) -> String {
+    let s = s.to_string();
+    let mut s = s.replace("\n", "");
+    let s = if ascii_width(&s) > width {
+        s = truncate_of_ascii_width(&s, width);
+        format!("{s}**")
+    } else {
+        s
+    };
+    s
+}
