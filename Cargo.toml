@@ -148,3 +148,23 @@ rred = ["redisclient"]
 #name = "rnatsx"
 #path = "tests/rnatsx_test.rs"
 #required-features = ["rnatsx"]
+
+
+[lints.rust]
+unused_variables = "allow"
+unused_imports = "allow"
+unused_mut = "allow"
+unused_must_use = "allow"
+# 或者直接使用unused组
+unused_results = "allow"
+#- 未使用的赋值（给变量赋值但从未读取）
+unused_assignments = "allow"
+#- 未使用的属性（如#[allow(...)]）
+unused_attributes = "allow"
+#- 未使用的循环标签
+unused_labels = "allow"
+dead_code = "allow"
+#- 未使用的特性（features）
+unused_features = "allow"
+#- 未使用的unsafe块
+unused_unsafe = "allow"
