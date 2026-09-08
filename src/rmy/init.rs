@@ -1,13 +1,13 @@
 use std::sync::Arc;
 
+use crate::rmy::Config;
 use once_cell::sync::OnceCell;
 use sqlx::mysql::{MySqlConnectOptions, MySqlPoolOptions};
-use sqlx::{MySql, Pool};
+use sqlx::{MySql, MySqlPool, Pool};
 use tracing::debug;
-use crate::rmy::Config;
 
 //-----------instance--------------------------
-type IType = Pool<MySql>;
+type IType = MySqlPool;
 
 static INSTANCE: OnceCell<Arc<IType>> = OnceCell::new();
 // const SECS: i64 = 60 * 2;
