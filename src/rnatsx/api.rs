@@ -6,6 +6,7 @@ use tracing::*;
 
 use super::*;
 
+/// natsx.publish
 pub async fn publish_json<Q, T>(topic: Q, body: T) -> anyhow::Result<()>
 where
     T: Serialize,
